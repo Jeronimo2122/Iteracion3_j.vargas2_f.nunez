@@ -41,7 +41,7 @@ class SQLUtil
 	/**
 	 * El manejador de persistencia general de la aplicación
 	 */
-	private PersistenciaParranderos pp;
+	private PersitenciaAforoandes pp;
 
 	/* ****************************************************************
 	 * 			Métodos
@@ -49,11 +49,11 @@ class SQLUtil
 
 	/**
 	 * Constructor
-	 * @param pp - El Manejador de persistencia de la aplicación
+	 * @param persitenciaAforoandes - El Manejador de persistencia de la aplicación
 	 */
-	public SQLUtil (PersistenciaParranderos pp)
+	public SQLUtil (PersitenciaAforoandes persitenciaAforoandes)
 	{
-		this.pp = pp;
+		this.pp = persitenciaAforoandes;
 	}
 	
 	/**
