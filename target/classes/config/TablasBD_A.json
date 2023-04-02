@@ -1,6 +1,6 @@
 {
 	"title": "Nombres de las tablas de Parranderos Uniandes para la aplicación A",
-	"unidadPersistencia": "AforoAndes",
+	"unidadPersistencia": "Parranderos",
 	"tablas":
 	[
 		"Parranderos_sequence",
