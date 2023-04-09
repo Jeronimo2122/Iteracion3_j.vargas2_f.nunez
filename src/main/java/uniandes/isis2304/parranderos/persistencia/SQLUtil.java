@@ -33,7 +33,7 @@ class SQLUtil
 	 * Cadena que representa el tipo de consulta que se va a realizar en las sentencias de acceso a la base de datos
 	 * Se renombra acá para facilitar la escritura de las sentencias
 	 */
-	private final static String SQL = PersistenciaParranderos.SQL;
+	private final static String SQL = PersitenciaAforoandes.SQL;
 
 	/* ****************************************************************
 	 * 			Atributos
@@ -41,7 +41,7 @@ class SQLUtil
 	/**
 	 * El manejador de persistencia general de la aplicación
 	 */
-	private PersistenciaParranderos pp;
+	private PersitenciaAforoandes pp;
 
 	/* ****************************************************************
 	 * 			Métodos
@@ -51,7 +51,7 @@ class SQLUtil
 	 * Constructor
 	 * @param pp - El Manejador de persistencia de la aplicación
 	 */
-	public SQLUtil (PersistenciaParranderos pp)
+	public SQLUtil (PersitenciaAforoandes pp)
 	{
 		this.pp = pp;
 	}
@@ -75,25 +75,26 @@ class SQLUtil
 	 * @return Un arreglo con 7 números que indican el número de tuplas borradas en las tablas GUSTAN, SIRVEN, VISITAN, BEBIDA,
 	 * TIPOBEBIDA, BEBEDOR y BAR, respectivamente
 	 */
-	public long [] limpiarParranderos (PersistenceManager pm)
+	public long [] limpiarAforoandes (PersistenceManager pm)
 	{
-        Query qGustan = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaGustan ());          
-        Query qSirven = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaSirven ());
-        Query qVisitan = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaVisitan ());
-        Query qBebida = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaBebida ());
-        Query qTipoBebida = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaTipoBebida ());
-        Query qBebedor = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaBebedor ());
-        Query qBar = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaBar ());
+        Query qAlojamiento = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaAlojamiento());          
+        Query qAlojamiento_Operador = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaAlojamiento_Operador());
+        Query qAlojamiento_Servicio = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaAlojamiento_Servicio());
+        Query qCliente = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaCliente());
+        Query qOperador = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaOperador());
+        Query qReserva = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaReserva());
+        Query qServicio = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaServicio());
 
-        long gustanEliminados = (long) qGustan.executeUnique ();
-        long sirvenEliminados = (long) qSirven.executeUnique ();
-        long visitanEliminadas = (long) qVisitan.executeUnique ();
-        long bebidasEliminadas = (long) qBebida.executeUnique ();
-        long tiposBebidaEliminados = (long) qTipoBebida.executeUnique ();
-        long bebedoresEliminados = (long) qBebedor.executeUnique ();
-        long baresEliminados = (long) qBar.executeUnique ();
-        return new long[] {gustanEliminados, sirvenEliminados, visitanEliminadas, bebidasEliminadas, 
-        		tiposBebidaEliminados, bebedoresEliminados, baresEliminados};
+        long AlojamientosEliminados = (long) qAlojamiento.executeUnique ();
+        long Alojamiento_OperadorsEliminados = (long) qAlojamiento_Operador.executeUnique ();
+        long Alojamiento_ServiciosEliminadas = (long) qAlojamiento_Servicio.executeUnique ();
+        long ClientesEliminadas = (long) qCliente.executeUnique ();
+        long OperadoresEliminados = (long) qOperador.executeUnique ();
+        long ReservasEliminados = (long) qReserva.executeUnique ();
+        long ServiciosEliminados = (long) qServicio.executeUnique ();
+        return new long[] {AlojamientosEliminados, Alojamiento_OperadorsEliminados, 
+			Alojamiento_ServiciosEliminadas, ClientesEliminadas, OperadoresEliminados, 
+			ReservasEliminados, ServiciosEliminados};
 	}
 
 }

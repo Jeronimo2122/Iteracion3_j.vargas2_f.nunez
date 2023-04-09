@@ -1,5 +1,7 @@
 package uniandes.isis2304.parranderos.negocio;
 
+import java.sql.Timestamp;
+
 /**
  * Interfaz para los métodos get de BAR.
  * Sirve para proteger la información del negocio de posibles manipulaciones desde la interfaz 
@@ -18,12 +20,12 @@ public interface VOReserva
 	/**
 	 * @return Fecha_llegada de la Reserva
 	 */
-	public String getFecha_llegada();
+	public Timestamp getFecha_llegada();
 	
 	/**
 	 * @return Fecha_Salida de la Reserva
 	 */
-	public String getFecha_Salida();
+	public Timestamp getFecha_Salida();
 	
 	/**
 	 * @return Precio de la Reserva
