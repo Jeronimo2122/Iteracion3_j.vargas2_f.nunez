@@ -596,7 +596,7 @@ public class Aforoandes{
 	public long [] limpiarAforoandes ()
 	{
         log.info ("Limpiando la BD de Parranderos");
-        long [] borrrados = pp.limp();	
+        long [] borrrados = pp.limpiarAforoandes();	
         log.info ("Limpiando la BD de Parranderos: Listo!");
         return borrrados;
 	}
