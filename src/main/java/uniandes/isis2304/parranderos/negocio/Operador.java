@@ -23,12 +23,9 @@ public class Operador implements VOOperador
 	/**
 	 * Vinculo del Operador
 	 */
-	private int ganancias;
+	private float ganancias;
 	
-	/**
-	 * Vinculo del Operador
-	 */
-	private String direccion;
+
 	
 	
 
@@ -43,16 +40,14 @@ public class Operador implements VOOperador
     	this.Id = 0;
     	this.nombre = "";
     	this.ganancias = 0;
-    	this.direccion = "";
 	}
 
 	
-    public Operador(long Id, String nombre, int ganancias, String direccion) 
+    public Operador(long Id, String nombre, float ganancias) 
     {
     	this.Id = Id;
     	this.nombre = nombre;
     	this.ganancias = ganancias;
-    	this.direccion = direccion;
     }
 
 
@@ -91,7 +86,7 @@ public class Operador implements VOOperador
 	/**
 	 * @return la ciudad del Operador
 	 */
-	public int getGanancias() 
+	public float getGanancias() 
 	{
 		return ganancias;
 	}
@@ -104,21 +99,7 @@ public class Operador implements VOOperador
 		this.ganancias = ganancias;
 	}
 	
-	/**
-	 * @return la ciudad del Operador
-	 */
-	public String getDireccion() 
-	{
-		return direccion;
-	}
-	
-	/**
-	 * @param ciudad - nuevo vinculo del Operador
-	 */
-	public void setDireccion(String direccion) 
-	{
-		this.direccion = direccion;
-	}
+
 	
 	@Override
 	/**
@@ -126,8 +107,7 @@ public class Operador implements VOOperador
 	 */
 	public String toString() 
 	{
-		return "Operador [Id=" + Id + ", nombre=" + nombre + ", ganancias=" + ganancias
-				+ ", direccion=" + direccion + "]" ;
+		return "Operador [Id=" + Id + ", nombre=" + nombre + ", ganancias=" + ganancias + "]" ;
 	}
 	
 

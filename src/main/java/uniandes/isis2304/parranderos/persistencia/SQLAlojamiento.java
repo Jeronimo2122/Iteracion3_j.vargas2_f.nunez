@@ -51,93 +51,52 @@ class SQLAlojamiento
 	 * @param sedes - El número de sedes del bar
 	 * @return El número de tuplas insertadas
 	 */
-	public long adicionarAlojamiento (PersistenceManager pm, long identificacion, String nombre, String vinculo) 
+	public long adicionarAlojamiento (PersistenceManager pm, long id, int capacidad, String estado, String direccion, String tipo_aloja) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaAlojamiento() () + "(identificacion, nombre, vinculo) values (?, ?, ?)");
-        q.setParameters(identificacion, nombre, vinculo);
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaAlojamiento() + 
+		"(id, capacidad, estado, direccion, tipo_aloja) values (?, ?, ?, ?, ?)");
+        q.setParameters(id, capacidad, estado, direccion, tipo_aloja);
         return (long) q.executeUnique();
 	}
 
-	/**
-	 * Crea y ejecuta la sentencia SQL para eliminar BARES de la base de datos de Parranderos, por su nombre
-	 * @param pm - El manejador de persistencia
-	 * @param nombreBar - El nombre del bar
-	 * @return EL número de tuplas eliminadas
-	 */
-	public long eliminarClientePorNombre (PersistenceManager pm, String nombreBar)
+
+	public long eliminarAlojamientoPorId(PersistenceManager pm, long id)
 	{
-        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaAlojamiento () + " WHERE nombre = ?");
-        q.setParameters(nombreBar);
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaAlojamiento () + " WHERE id = ?");
+        q.setParameters(id);
         return (long) q.executeUnique();
 	}
 
-	/**
-	 * Crea y ejecuta la sentencia SQL para eliminar UN BAR de la base de datos de Parranderos, por su identificador
-	 * @param pm - El manejador de persistencia
-	 * @param idBar - El identificador del bar
-	 * @return EL número de tuplas eliminadas
-	 */
-	public long eliminarClientePorId (PersistenceManager pm, long idBar)
+
+	public long eliminarAlojamientoPorTipoAlojamiento (PersistenceManager pm, String Tipo_Aloja)
 	{
-        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaCliente () + " WHERE id = ?");
-        q.setParameters(idBar);
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaAlojamiento () + " WHERE Tipo_Aloja = ?");
+        q.setParameters(Tipo_Aloja);
         return (long) q.executeUnique();
 	}
 
-	/**
-	 * Crea y ejecuta la sentencia SQL para encontrar la información de UN BAR de la 
-	 * base de datos de Parranderos, por su identificador
-	 * @param pm - El manejador de persistencia
-	 * @param idBar - El identificador del bar
-	 * @return El objeto BAR que tiene el identificador dado
-	 */
-	public Alojamiento darClientePorId (PersistenceManager pm, long idBar) 
+
+	public Alojamiento darAlojamientoPorId (PersistenceManager pm, long id) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAlojamiento() + " WHERE id = ?");
 		q.setResultClass(Alojamiento.class);
-		q.setParameters(idBar);
+		q.setParameters(id);
 		return (Alojamiento) q.executeUnique();
 	}
 
-	/**
-	 * Crea y ejecuta la sentencia SQL para encontrar la información de LOS BARES de la 
-	 * base de datos de Parranderos, por su nombre
-	 * @param pm - El manejador de persistencia
-	 * @param nombreBar - El nombre de bar buscado
-	 * @return Una lista de objetos BAR que tienen el nombre dado
-	 */
-	public List<Alojamiento> darBaresPorNombre (PersistenceManager pm, String nombreBar) 
+	public List<Alojamiento> darAlojamientosPorTipo (PersistenceManager pm, String tipo)
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAlojamiento () + " WHERE nombre = ?");
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAlojamiento ()  + " WHERE id = ?");
 		q.setResultClass(Alojamiento.class);
-		q.setParameters(nombreBar);
+		q.setParameters(tipo);
 		return (List<Alojamiento>) q.executeList();
 	}
 
-	/**
-	 * Crea y ejecuta la sentencia SQL para encontrar la información de LOS BARES de la 
-	 * base de datos de Parranderos
-	 * @param pm - El manejador de persistencia
-	 * @return Una lista de objetos BAR
-	 */
-	public List<Alojamiento> darClientes (PersistenceManager pm)
+	public List<Alojamiento> darAlojamientos (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAlojamiento ());
 		q.setResultClass(Alojamiento.class);
 		return (List<Alojamiento>) q.executeList();
 	}
 
-	/**
-	 * Crea y ejecuta la sentencia SQL para aumentar en uno el número de sedes de los bares de la 
-	 * base de datos de Parranderos
-	 * @param pm - El manejador de persistencia
-	 * @param ciudad - La ciudad a la cual se le quiere realizar el proceso
-	 * @return El número de tuplas modificadas
-	 */
-	public long aumentarSedesBaresCiudad (PersistenceManager pm, String vinculo, long id)
-	{
-        Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaAlojamiento () + " SET vinculo ="+vinculo+ "WHERE ciudad = ?");
-        q.setParameters(id);
-        return (long) q.executeUnique();
-	}
 }

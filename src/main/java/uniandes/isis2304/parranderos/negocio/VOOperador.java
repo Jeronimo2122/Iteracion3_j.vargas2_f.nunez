@@ -24,13 +24,9 @@ public interface VOOperador
 	/**
 	 * @return la ciudad del bar
 	 */
-	public int getGanancias();
+	public float getGanancias();
 	
-	/**
-	 * @return El presupuesto del bar
-	 */
-	public String getDireccion();
-	
+
 	@Override
 	/**
 	 * @return Una cadena de caracteres con todos los atributos del bar

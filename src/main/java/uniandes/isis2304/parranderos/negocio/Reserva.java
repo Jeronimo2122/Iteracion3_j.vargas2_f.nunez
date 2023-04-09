@@ -1,5 +1,7 @@
 package uniandes.isis2304.parranderos.negocio;
 
+import java.sql.Timestamp;
+
 /**
  * Clase para modelar el concepto BAR del negocio de los Parranderos
 o
@@ -17,12 +19,12 @@ public class Reserva implements VOReserva
 	/**
 	 * Fecha_llegada del Reserva
 	 */
-	private String Fecha_llegada;
+	private Timestamp Fecha_llegada;
 
 	/**
 	 * Fecha_Salida del Reserva
 	 */
-	private String Fecha_Salida;
+	private Timestamp Fecha_Salida;
 	
 	/**
 	 * precio del Reserva
@@ -60,8 +62,8 @@ public class Reserva implements VOReserva
 	public Reserva() 
     {
     	this.Id = 0;
-		this.Fecha_llegada = "";
-		this.Fecha_Salida = "";
+		this.Fecha_llegada = new Timestamp(0);
+		this.Fecha_Salida = new Timestamp(0);
 		this.precio = 0;
 		this.Id_Cliente = 0;
 		this.Id_Alojamiento = 0;
@@ -71,16 +73,16 @@ public class Reserva implements VOReserva
 
 	/**
 	 */
-    public Reserva(long Identificacion, String nombre, String vinculo) 
+    public Reserva(long Id, Timestamp Fecha_llegada, Timestamp Fecha_Salida, float precio, long Id_Cliente, long Id_Alojamiento, long Id_Operador, String estado ) 
     {
-    	this.Id = 0;
-		this.Fecha_llegada = "";
-		this.Fecha_Salida = "";
-		this.precio = 0;
-		this.Id_Cliente = 0;
-		this.Id_Alojamiento = 0;
-		this.Id_Operador = 0;
-		this.estado = "";
+    	this.Id = Id;
+		this.Fecha_llegada = Fecha_llegada;
+		this.Fecha_Salida = Fecha_Salida;
+		this.precio = precio;
+		this.Id_Cliente = Id_Cliente;
+		this.Id_Alojamiento = Id_Alojamiento;
+		this.Id_Operador = Id_Operador;
+		this.estado = estado;
 	}
 
 
@@ -104,7 +106,7 @@ public class Reserva implements VOReserva
 	/**
 	 * @return el nombre del Cliente
 	 */
-	public String getFecha_llegada() 
+	public Timestamp getFecha_llegada() 
 	{
 		return Fecha_llegada;
 	}
@@ -112,33 +114,26 @@ public class Reserva implements VOReserva
 	/**
 	 * @param nombre El nuevo nombre del Cliente
 	 */
-	public void setFecha_llegada(String Fecha_llegada) 
+	public void setFecha_llegada(Timestamp Fecha_llegada) 
 	{
 		this.Fecha_llegada = Fecha_llegada;
 	}
 	
 	
-	/**
-	 * @return la ciudad del bar
-	 */
-	public String getFecha_Salida() 
+	
+	public Timestamp getFecha_Salida() 
 	{
 		return Fecha_Salida;
 	}
 	
-	/**
-	 * @param ciudad - nuevo vinculo del Cliente
-	 */
-	public void setFecha_Salida(String Fecha_Salida) 
+
+	public void setFecha_Salida(Timestamp Fecha_Salida) 
 	{
 		this.Fecha_Salida = Fecha_Salida;
 	}
 	
 	
 	
-	/**
-	 * @return la ciudad del bar
-	 */
 	public float getPrecio() 
 	{
 		return precio;
@@ -153,70 +148,39 @@ public class Reserva implements VOReserva
 	}
 	
 	
-	
-	/**
-	 * @return la ciudad del bar
-	 */
 	public long getId_cliente() 
 	{
 		return Id_Cliente;
 	}
-	
-	/**
-	 * @param ciudad - nuevo vinculo del Cliente
-	 */
 	public void setId_cliente(long Id_Cliente) 
 	{
 		this.Id_Cliente = Id_Cliente;
 	}
-	
-	
-	/**
-	 * @return la ciudad del bar
-	 */
+
 	public long getId_alojamiento() 
 	{
 		return Id_Alojamiento;
 	}
-	
-	/**
-	 * @param ciudad - nuevo vinculo del Cliente
-	 */
 	public void setId_alojamiento(long Id_Alojamiento) 
 	{
 		this.Id_Alojamiento = Id_Alojamiento;
 	}
 	
-	
-	/**
-	 * 
-	 */
 	public long getId_operador() 
 	{
 		return Id_Operador;
 	}
-	
-	/**
-	 * @param ciudad - nuevo vinculo del Cliente
-	 */
 	public void setId_operador(long Id_Operador) 
 	{
 		this.Id_Operador = Id_Operador;
 	}
 	
 	
-	
-	/**
-	 * 
-	 */
+
 	public String getEstado() 
 	{
 		return estado;
 	}
-	
-	/**
-	 * @param ciudad - nuevo vinculo del Cliente
-	 */
 	public void setEstado(String estado) 
 	{
 		this.estado = estado;
@@ -228,7 +192,7 @@ public class Reserva implements VOReserva
 	 */
 	public String toString() 
 	{
-		return "Cliente [Id=" + Id + ", Fecha_llegada=" + Fecha_llegada + ", Fecha_Salida=" + Fecha_Salida + 
+		return "Reserva [Id=" + Id + ", Fecha_llegada=" + Fecha_llegada + ", Fecha_Salida=" + Fecha_Salida + 
 				", precio=" + precio + ", Id_Cliente=" + Id_Alojamiento + ", Id_Operador=" + Id_Operador 
 				+ ", estado=" + estado + "]" ;
 	}
