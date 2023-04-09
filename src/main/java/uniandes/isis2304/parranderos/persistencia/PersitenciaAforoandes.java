@@ -16,6 +16,8 @@ import org.apache.log4j.Logger;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+
+import oracle.net.aso.s;
 import uniandes.isis2304.parranderos.negocio.Cliente;
 import uniandes.isis2304.parranderos.negocio.Operador;
 import uniandes.isis2304.parranderos.negocio.Alojamiento;
@@ -23,6 +25,11 @@ import uniandes.isis2304.parranderos.negocio.Servicio;
 import uniandes.isis2304.parranderos.negocio.Reserva;
 import uniandes.isis2304.parranderos.negocio.Alojamiento_Servicio;
 import uniandes.isis2304.parranderos.negocio.Alojamiento_Operador;
+import uniandes.isis2304.parranderos.negocio.Hotel_Hostal;
+import uniandes.isis2304.parranderos.negocio.Edificio_Universitario;
+import uniandes.isis2304.parranderos.negocio.Hab_Hotel;
+import uniandes.isis2304.parranderos.negocio.Hab_Hostal;
+import uniandes.isis2304.parranderos.negocio.Persona;
 
 /**
  * 
@@ -78,6 +85,16 @@ public class PersitenciaAforoandes{
 	private SQLAlojamiento_Operador sqlAlojamiento_Operador;
 
 	private SQLAlojamiento_Servicio sqlAlojamiento_Servicio;
+
+	private SQLHotel_Hostal sqlHotel_Hostal;
+
+	private SQLEdificio_Universitario sqlEdificio_Universitario;
+
+	private SQLHab_Hotel sqlHab_Hotel;
+
+	private SQLHab_Hostal sqlHab_Hostal;
+
+	private SQLPersona sqlPersona;
 	
 	/* ****************************************************************
 	 * 			Métodos del MANEJADOR DE PERSISTENCIA
@@ -101,6 +118,11 @@ public class PersitenciaAforoandes{
 		tablas.add ("RESERVA");
 		tablas.add ("ALOJAMINETO_SERVICIO");
 		tablas.add ("ALOJAMINETO_OPERADOR");
+		tablas.add ("HOTEL_HOSTAL");
+		tablas.add ("EDIFICIO_UNIVERSITARIO");
+		tablas.add ("HAB_HOTEL");
+		tablas.add ("HAB_HOSTAL");
+		tablas.add ("PERSONA");
 }
 
 	/**
@@ -181,7 +203,12 @@ public class PersitenciaAforoandes{
 		sqlServicio = new SQLServicio(this);
 		sqlReserva = new SQLReserva(this);
 		sqlAlojamiento_Operador = new SQLAlojamiento_Operador (this);
-		sqlAlojamiento_Servicio = new SQLAlojamiento_Servicio (this);		
+		sqlAlojamiento_Servicio = new SQLAlojamiento_Servicio (this);	
+		sqlHotel_Hostal = new SQLHotel_Hostal(this);
+		sqlEdificio_Universitario = new SQLEdificio_Universitario(this);
+		sqlHab_Hotel = new SQLHab_Hotel(this);
+		sqlHab_Hostal = new SQLHab_Hostal(this);
+		sqlPersona = new SQLPersona(this);
 		sqlUtil = new SQLUtil(this);
 	}
 
@@ -248,8 +275,46 @@ public class PersitenciaAforoandes{
 	{
 		return tablas.get (7);
 	}
+
+		/**
+	 * @return La cadena de caracteres con el nombre de la tabla de Visitan de parranderos
+	 */
+	public String darTablaHotel_Hostal ()
+	{
+		return tablas.get (8);
+	}
 	
+			/**
+	 * @return La cadena de caracteres con el nombre de la tabla de Visitan de parranderos
+	 */
+	public String darTablaEdificio_Universitario ()
+	{
+		return tablas.get (9);
+	}
+				/**
+	 * @return La cadena de caracteres con el nombre de la tabla de Visitan de parranderos
+	 */
+	public String darTablaHab_Hotel ()
+	{
+		return tablas.get (10);
+	}
+
+					/**
+	 * @return La cadena de caracteres con el nombre de la tabla de Visitan de parranderos
+	 */
+	public String darTablaHab_Hostal ()
+	{
+		return tablas.get (11);
+	}
+
 	
+					/**
+	 * @return La cadena de caracteres con el nombre de la tabla de Visitan de parranderos
+	 */
+	public String darTablaPersona ()
+	{
+		return tablas.get (12);
+	}
 	
 	/**
 	 * Transacción para el generador de secuencia de Parranderos
