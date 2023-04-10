@@ -5,21 +5,21 @@
 	"bannerPath": "./src/main/resources/config/logo.png",
 	"menuBar":
 	[
-		{ "menuTitle": "TipoBebida",
+		{ "menuTitle": "Cliente",
 		  "options":
 			[
 				{
-					"label": "CRD de TipoBebida",
-					"event": "demoTipoBebida"
+					"label": "Registrar Cliente",
+					"event": "ReqCliente"
 				}
 			]
 		},		
-		{ "menuTitle": "Bebida",
+		{ "menuTitle": "Operador",
 		  "options":
 			[
 				{
-					"label": "CRD Bebida",
-					"event": "demoBebida"
+					"label": "Registrar Operador",
+					"event": "ReqOperador"
 				},
 				{
 					"label": "Eliminar Bebidas no servidas 1",
@@ -31,12 +31,12 @@
 				}
 			]
 		},
-		{ "menuTitle": "Bar",
+		{ "menuTitle": "Alojamiento",
 		  "options":
 			[
 				{
-					"label": "CRD Bar",
-					"event": "demoBar"
+					"label": "Registrar Alojamiento",
+					"event": "ReqAlojamiento"
 				},
 				{
 					"label": "Bares y Bebidas",
@@ -48,12 +48,12 @@
 				}
 			]
 		},
-		{ "menuTitle": "Bebedor",
+		{ "menuTitle": "Reserva",
 		  "options":
 			[
 				{
-					"label": "CRD Bebedor",
-					"event": "demoBebedor"
+					"label": "CRD Reserva",
+					"event": "demoReserva"
 				},
 				{
 					"label": "Cambiar ciudad",

@@ -62,7 +62,7 @@ public class Alohandes{
 	 * @param nombre - El nombre del Cliente
 	 * @return El objeto Cliente adicionado. null si ocurre alguna Excepción
 	 */
-	public Cliente adicionarTipoCliente (String nombre, String vinculo)
+	public Cliente adicionarCliente (String nombre, String vinculo)
 	{
         log.info ("Adicionando Cliente: " + nombre);
         Cliente cliente = pp.adicionarCliente(nombre, vinculo);		
@@ -88,7 +88,7 @@ public class Alohandes{
 	 * @param identificador - El id del Cliente a eliminar
 	 * @return El número de tuplas eliminadas
 	 */
-	public long eliminarTipoBebidaPorId (long identificador)
+	public long eliminarClientePorId (long identificador)
 	{
 		log.info ("Eliminando Cliente por id: " + identificador);
         long resp = pp.eliminarClientePorId(identificador);		
@@ -128,17 +128,24 @@ public class Alohandes{
 	 */
     public List<Cliente> darClientesPornombre(String Nombre)
 	{
-		log.info ("Consultando Tipos de bebida");
+		log.info ("Consultando Cliente por nombre");
         List<Cliente> Clientes = pp.darClientePorNombre(Nombre);	
-        log.info ("Consultando Tipos de bebida: " + Clientes.size() + " existentes");
+        log.info ("Consultando Cliente por nombre: " + Clientes.size() + " existentes");
         return Clientes;
 	}
     public List<Cliente> darClientesPorVinculo(String vinculo)
 	{
-		log.info ("Consultando Tipos de bebida");
+		log.info ("Consultando Cliente por vinculo");
         List<Cliente> Clientes = pp.darClientesPorVinculo(vinculo);	
-        log.info ("Consultando Tipos de bebida: " + Clientes.size() + " existentes");
+        log.info ("Consultando Cliente por vinculo: " + Clientes.size() + " existentes");
         return Clientes;
+	}
+	public Cliente darClientePorID(Long id)
+	{
+		log.info ("Consultando Cliente por ID");
+		Cliente Cliente = pp.darClientesPorId(id);	
+        log.info ("Consultando Cliente por ID: " + Cliente.toString() + " existentes");
+        return Cliente;
 	}
 
 	/* ****************************************************************
@@ -879,11 +886,11 @@ public class Alohandes{
 	 * @return Un arreglo con 7 números que indican el número de tuplas borradas en las tablas GUSTAN, SIRVEN, VISITAN, BEBIDA,
 	 * TIPOBEBIDA, BEBEDOR y BAR, respectivamente
 	 */
-	public long [] limpiarAforoandes ()
+	public long [] limpiarAlohandes ()
 	{
-        log.info ("Limpiando la BD de Parranderos");
+        log.info ("Limpiando la BD de Alohandes");
         long [] borrrados = pp.limpiarAlohandes();	
-        log.info ("Limpiando la BD de Parranderos: Listo!");
+        log.info ("Limpiando la BD de Alohandes: Listo!");
         return borrrados;
 	}
 }

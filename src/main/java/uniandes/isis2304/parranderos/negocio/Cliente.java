@@ -50,9 +50,9 @@ public class Cliente implements VOCliente
 	 */
     public Cliente(long Identificacion, String nombre, String vinculo) 
     {
-     	this.Identificacion = 0;
-   		this.nombre = "";
-   		this.vinculo = "";
+     	this.Identificacion = Identificacion;
+   		this.nombre = nombre;
+   		this.vinculo = vinculo;
     }
 
 
