@@ -1,5 +1,6 @@
 package uniandes.isis2304.parranderos.negocio;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -582,6 +583,291 @@ public class Alohandes{
 		}
 		log.info ("Generando los VO de Alojamiento_Operador: " + voAlojamiento_Operadors.size () + " Sirven existentes");
 		return voAlojamiento_Operadors;
+	}
+
+		/* ****************************************************************
+	 * 			Métodos para manejar las PERSONAS
+	 *****************************************************************/
+	/**
+	 * Adiciona de manera persistente una Persona
+	 * Adiciona entradas al log de la aplicación
+	 */
+	public Persona adicionarPersona (long id, long Identificacion, String vinculo)
+	{
+        log.info ("Adicionando Persona: [" + id + ", " + Identificacion + ", " + vinculo +"]");
+        Persona persona = pp.adicionarPersona(id, Identificacion, vinculo);
+        log.info ("Adicionando Servicio: " + persona);
+        return persona;
+	}
+	
+	/**
+	 * Elimina una Persona por su nombre
+	 * Adiciona entradas al log de la aplicación
+	 */
+	public long eliminarPersonaPorId (long id)
+	{
+        log.info ("Eliminando persona por id: " + id);
+        long resp = pp.eliminarPersonaPorId(id);
+        log.info ("Eliminando bar: " + resp + " tuplas eliminadas");
+        return resp;
+	}
+	
+	/**
+	 * Encuentra todas las Personas en Aforoandes
+	 * Adiciona entradas al log de la aplicación
+	 * @return Una lista de objetos Bar con todos las bares que conoce la aplicación, llenos con su información básica
+	 */
+	public List<Persona> darPersonas ()
+	{
+        log.info ("Listando Personas");
+        List<Persona> personas = pp.darPersonas();	
+        log.info ("Listando Servicios: " + personas.size() + " personas existentes");
+        return personas;
+	}
+
+	/**
+	 * Encuentra todos las Personas en Aoroande y los devuelce como VO
+	 * Adiciona entradas al log de la aplicación
+	 * @return Una lista de objetos Persona con todos las personas que conoce la aplicación, llenos con su información básica
+	 */
+	public List<VOPersona> darVOPersonas ()
+	{
+		log.info ("Generando los VO de Personas");
+		List<VOPersona> VOPersonas = new LinkedList<VOPersona> ();
+		for (Persona per: pp.darPersonas())
+		{
+			VOPersonas.add (per);
+		}
+		log.info ("Generando los VO de Personas: " + VOPersonas.size () + " personas existentes");
+		return VOPersonas;
+	}
+
+	/* ****************************************************************
+	 * 			Métodos para manejar las HAB_HOTEL
+	 *****************************************************************/
+	/**
+	 * Adiciona de manera persistente una Hab_Hotel
+	 * Adiciona entradas al log de la aplicación
+	 */
+	public Hab_Hotel adicionarHab_Hotel (long id_Aloja, String categoria)
+	{
+        log.info ("Adicionando Hab_Hotel: [" + id_Aloja + ", " + categoria +"]");
+        Hab_Hotel hab_Hotel = pp.adicionarHab_Hotel(id_Aloja, categoria);
+        log.info ("Adicionando Servicio: " + hab_Hotel);
+        return hab_Hotel;
+	}
+	
+	/**
+	 * Elimina una Hab_Hotel por su id
+	 * Adiciona entradas al log de la aplicación
+	 */
+	public long eliminarHab_HotelPorId (long id)
+	{
+        log.info ("Eliminando Hab_Hotel por id: " + id);
+        long resp = pp.eliminarHab_HotelPorId(id);
+        log.info ("Eliminando Hab_Hotel: " + resp + " tuplas eliminadas");
+        return resp;
+	}
+	
+	/**
+	 * Encuentra todas las Hab_Hotel en Aforoandes
+	 * Adiciona entradas al log de la aplicación
+	 * @return Una lista de objetos Hab_Hotel con todos las Hab_Hotel que conoce la aplicación, llenos con su información básica
+	 */
+	public List<Hab_Hotel> darHabs_Hoteles ()
+	{
+        log.info ("Listando Habitaciones de Hoteles");
+        List<Hab_Hotel> Habs_Hoteles = pp.darHabs_Hoteles();	
+        log.info ("Listando Habitaciones de Hoteles: " + Habs_Hoteles.size() + " Habitaciones de hoteles existentes");
+        return Habs_Hoteles;
+	}
+
+	/**
+	 * Encuentra todos las Hab_Hotel en Aoroande y los devuelce como VO
+	 * Adiciona entradas al log de la aplicación
+	 * @return Una lista de objetos Hab_Hotel con todos las Hab_Hotel que conoce la aplicación, llenos con su información básica
+	 */
+	public List<VOHab_Hotel> darVOHabs_Hoteles ()
+	{
+		log.info ("Generando los VO de Hab_Hotel");
+		List<VOHab_Hotel> VOHabs_Hoteles = new LinkedList<VOHab_Hotel> ();
+		for (Hab_Hotel hab_hotel: pp.darHabs_Hoteles())
+		{
+			VOHabs_Hoteles.add (hab_hotel);
+		}
+		log.info ("Generando los VO de Habs_Hoteles: " + VOHabs_Hoteles.size () + " Habitaciones de hoteles existentes");
+		return VOHabs_Hoteles;
+	}
+
+		/* ****************************************************************
+	 * 			Métodos para manejar las HAB_HOSTAL
+	 *****************************************************************/
+	/**
+	 * Adiciona de manera persistente una Hab_Hostal
+	 * Adiciona entradas al log de la aplicación
+	 */
+	public Hab_Hostal adicionarHab_Hostal (long id_Aloja, SimpleDateFormat horaApertura, SimpleDateFormat horaCierre)
+	{
+        log.info ("Adicionando Hab_Hostal: [" + id_Aloja + ", " + horaApertura + ", " + horaCierre +"]");
+        Hab_Hostal hab_Hostal = pp.adicionarHab_Hostal(id_Aloja, horaApertura, horaCierre);
+        log.info ("Adicionando Hab_Hpstal: " + hab_Hostal);
+        return hab_Hostal;
+	}
+	
+	/**
+	 * Elimina una Hab_Hostal por su id
+	 * Adiciona entradas al log de la aplicación
+	 */
+	public long eliminarHab_HostalPorId (long id)
+	{
+        log.info ("Eliminando Hab_Hostal por id: " + id);
+        long resp = pp.eliminarHab_HostalPorId(id);
+        log.info ("Eliminando Hab_Hostal: " + resp + " tuplas eliminadas");
+        return resp;
+	}
+	
+	/**
+	 * Encuentra todas las Hab_Hostal en Aforoandes
+	 * Adiciona entradas al log de la aplicación
+	 * @return Una lista de objetos Hab_Hostal con todos las Hab_Hostal que conoce la aplicación, llenos con su información básica
+	 */
+	public List<Hab_Hostal> darHabs_Hostales ()
+	{
+        log.info ("Listando Habitaciones de Hostales");
+        List<Hab_Hostal> Habs_Hostales = pp.darHabs_Hostales();	
+        log.info ("Listando Habitaciones de Hostales: " + Habs_Hostales.size() + " Habitaciones de hostales existentes");
+        return Habs_Hostales;
+	}
+
+	/**
+	 * Encuentra todos las Hab_Hostal en Aoroande y los devuelce como VO
+	 * Adiciona entradas al log de la aplicación
+	 * @return Una lista de objetos Hab_Hostal con todos las Hab_Hostal que conoce la aplicación, llenos con su información básica
+	 */
+	public List<VOHab_Hostal> darVOHabs_Hostales ()
+	{
+		log.info ("Generando los VO de Hab_Hostal");
+		List<VOHab_Hostal> VOHabs_Hostales = new LinkedList<VOHab_Hostal> ();
+		for (Hab_Hostal hab_hostal: pp.darHabs_Hostales())
+		{
+			VOHabs_Hostales.add (hab_hostal);
+		}
+		log.info ("Generando los VO de Habs_Hostales: " + VOHabs_Hostales.size () + " Habitaciones de hostales existentes");
+		return VOHabs_Hostales;
+	}
+
+	/* ****************************************************************
+	 * 			Métodos para manejar los HOTEL_HOSTAL
+	 *****************************************************************/
+	/**
+	 * Adiciona de manera persistente un Hotel_Hostal
+	 * Adiciona entradas al log de la aplicación
+	 */
+	public Hotel_Hostal adicionarHotel_Hostal (long id, String estadoLegal, int numeroRegistroCC, int numHabitaciones, int numHabitacionesDisponibles, String direccion)
+	{
+        log.info ("Adicionando Hotel_Hostal: [" + id + ", " + ", " + estadoLegal + ", " + numeroRegistroCC + ", " + numHabitacionesDisponibles + ", " + numHabitacionesDisponibles + ", " + direccion +"]");
+        Hotel_Hostal hotel_hostal = pp.adicionarHotel_Hostal(id, estadoLegal, numeroRegistroCC, numHabitaciones, numHabitacionesDisponibles, direccion);
+        log.info ("Adicionando Hotel_Hostal: " + hotel_hostal);
+        return hotel_hostal;
+	}
+	
+	/**
+	 * Elimina una Hotel_Hostal por su id
+	 * Adiciona entradas al log de la aplicación
+	 */
+	public long eliminarHotel_HostalPorId (long id)
+	{
+        log.info ("Eliminando Hotel_Hostal por id: " + id);
+        long resp = pp.eliminarHotel_HostalPorId(id);
+        log.info ("Eliminando Hotel_Hostal: " + resp + " tuplas eliminadas");
+        return resp;
+	}
+	
+	/**
+	 * Encuentra todas las Hotel_Hostal en Aforoandes
+	 * Adiciona entradas al log de la aplicación
+	 * @return Una lista de objetos Hotel_Hostal con todos las Hotel_Hostal que conoce la aplicación, llenos con su información básica
+	 */
+	public List<Hotel_Hostal> darHoteles_Hostales ()
+	{
+        log.info ("Listando Hoteles y Hostales");
+        List<Hotel_Hostal> hoteles_hostales = pp.darHoteles_Hostales();	
+        log.info ("Listando Hoteles y Hostales: " + hoteles_hostales.size() + " hoteles y hostales existentes");
+        return hoteles_hostales;
+	}
+
+	/**
+	 * Encuentra todos las Hotel_Hostal en Aoroande y los devuelce como VO
+	 * Adiciona entradas al log de la aplicación
+	 * @return Una lista de objetos Hotel_Hostal con todos las Hotel_Hostal que conoce la aplicación, llenos con su información básica
+	 */
+	public List<VOHotel_Hostal> darVOHoteles_Hostales ()
+	{
+		log.info ("Generando los VO de Hotel_Hostal");
+		List<VOHotel_Hostal> VOHoteles_Hostales = new LinkedList<VOHotel_Hostal> ();
+		for (Hotel_Hostal hotel_hostal: pp.darHoteles_Hostales())
+		{
+			VOHoteles_Hostales.add (hotel_hostal);
+		}
+		log.info ("Generando los VO de Habs_Hostales: " + VOHoteles_Hostales.size () + " Habitaciones de hostales existentes");
+		return VOHoteles_Hostales;
+	}
+
+	/* ****************************************************************
+	 * 			Métodos para manejar los EDIFICIO_UNIVERSITARIO
+	 *****************************************************************/
+	/**
+	 * Adiciona de manera persistente un Edificio_Universitario
+	 * Adiciona entradas al log de la aplicación
+	 */
+	public Edificio_Universitario adicionarEdificio_Universitario (long id, int numViviendas, int numViviendasDisponibles, String direccion)
+	{
+        log.info ("Adicionando Hotel_Hostal: [" + id + ", " + numViviendas + ", " + numViviendasDisponibles + ", " + direccion +"]");
+        Edificio_Universitario edificio_universitario = pp.adicionarEdificio_Universitario(id, numViviendas, numViviendasDisponibles, direccion);
+        log.info ("Adicionando Hotel_Hostal: " + edificio_universitario);
+        return edificio_universitario;
+	}
+	
+	/**
+	 * Elimina una Edificio_Universitario por su id
+	 * Adiciona entradas al log de la aplicación
+	 */
+	public long eliminarEdificio_UniversitarioPorId (long id)
+	{
+        log.info ("Eliminando Edificio_Universitario por id: " + id);
+        long resp = pp.eliminarEdificio_UniversitarioPorId(id);
+        log.info ("Eliminando Edificio_Universitario: " + resp + " tuplas eliminadas");
+        return resp;
+	}
+	
+	/**
+	 * Encuentra todas las Edificio_Universitario en Aforoandes
+	 * Adiciona entradas al log de la aplicación
+	 * @return Una lista de objetos Edificio_Universitario con todos las Edificio_Universitario que conoce la aplicación, llenos con su información básica
+	 */
+	public List<Edificio_Universitario> darEdificios_Universitarios ()
+	{
+        log.info ("Listando Edificios Universitarios");
+        List<Edificio_Universitario> edificios_universitarios = pp.darEdificios_Universitarios();	
+        log.info ("Listando Edificios Universitarios: " + edificios_universitarios.size() + " esdificios universitarios existentes");
+        return edificios_universitarios;
+	}
+
+	/**
+	 * Encuentra todos las Edificio_Universitario en Aoroande y los devuelce como VO
+	 * Adiciona entradas al log de la aplicación
+	 * @return Una lista de objetos Edificio_Universitario con todos las Edificio_Universitario que conoce la aplicación, llenos con su información básica
+	 */
+	public List<VOEdificio_Universitario> darVOEdificios_Universitarios ()
+	{
+		log.info ("Generando los VO de Edificio_Universitario");
+		List<VOEdificio_Universitario> VOEdificios_Universitarios = new LinkedList<VOEdificio_Universitario> ();
+		for (Edificio_Universitario edificio_universitario: pp.darEdificios_Universitarios())
+		{
+			VOEdificios_Universitarios.add (edificio_universitario);
+		}
+		log.info ("Generando los VO de Edificio_Universitario: " + VOEdificios_Universitarios.size () + " edficios universitarios existentes");
+		return VOEdificios_Universitarios;
 	}
 
 	/* ****************************************************************
