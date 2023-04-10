@@ -48,24 +48,12 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
-import uniandes.isis2304.parranderos.interfazApp.PanelDatos;
-import uniandes.isis2304.parranderos.negocio.Parranderos;
-import uniandes.isis2304.parranderos.negocio.VOBar;
-import uniandes.isis2304.parranderos.negocio.VOBebedor;
-import uniandes.isis2304.parranderos.negocio.VOBebida;
-import uniandes.isis2304.parranderos.negocio.VOGustan;
-import uniandes.isis2304.parranderos.negocio.VOSirven;
-import uniandes.isis2304.parranderos.negocio.VOTipoBebida;
-import uniandes.isis2304.parranderos.negocio.VOVisitan;
+import uniandes.isis2304.parranderos.negocio.Aforoandes;
 
-/**
- * Clase principal de la interfaz
- * 
- * @author Germán Bravo
- */
+
 @SuppressWarnings("serial")
 
-public class InterfazParranderosDemo extends JFrame implements ActionListener
+public class InterfazAlohandesDemo extends JFrame implements ActionListener
 {
 	/* ****************************************************************
 	 * 			Constantes
@@ -73,7 +61,7 @@ public class InterfazParranderosDemo extends JFrame implements ActionListener
 	/**
 	 * Logger para escribir la traza de la ejecución
 	 */
-	private static Logger log = Logger.getLogger(InterfazParranderosDemo.class.getName());
+	private static Logger log = Logger.getLogger(InterfazAlohandesDemo.class.getName());
 	
 	/**
 	 * Ruta al archivo de configuración de la interfaz
@@ -96,7 +84,7 @@ public class InterfazParranderosDemo extends JFrame implements ActionListener
     /**
      * Asociación a la clase principal del negocio.
      */
-    private Parranderos parranderos;
+    private Aforoandes alohandes;
     
 	/* ****************************************************************
 	 * 			Atributos de interfaz
@@ -123,7 +111,7 @@ public class InterfazParranderosDemo extends JFrame implements ActionListener
      * Construye la ventana principal de la aplicación. <br>
      * <b>post:</b> Todos los componentes de la interfaz fueron inicializados.
      */
-    public InterfazParranderosDemo( )
+    public InterfazAlohandesDemo( )
     {
         // Carga la configuración de la interfaz desde un archivo JSON
         guiConfig = openConfig ("Interfaz", CONFIG_INTERFAZ);
@@ -136,7 +124,7 @@ public class InterfazParranderosDemo extends JFrame implements ActionListener
         }
         
         tableConfig = openConfig ("Tablas BD", CONFIG_TABLAS);
-        parranderos = new Parranderos (tableConfig);
+        alohandes = new Aforoandes (tableConfig);
         
     	String path = guiConfig.get("bannerPath").getAsString();
         panelDatos = new PanelDatos ( );
@@ -1806,7 +1794,7 @@ public class InterfazParranderosDemo extends JFrame implements ActionListener
 		String evento = pEvento.getActionCommand( );		
         try 
         {
-			Method req = InterfazParranderosDemo.class.getMethod ( evento );			
+			Method req = InterfazAlohandesDemo.class.getMethod ( evento );			
 			req.invoke ( this );
 		} 
         catch (Exception e) 
@@ -1829,7 +1817,7 @@ public class InterfazParranderosDemo extends JFrame implements ActionListener
         	
             // Unifica la interfaz para Mac y para Windows.
             UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
-            InterfazParranderosDemo interfaz = new InterfazParranderosDemo( );
+            InterfazAlohandesDemo interfaz = new InterfazAlohandesDemo( );
             interfaz.setVisible( true );
         }
         catch( Exception e )
