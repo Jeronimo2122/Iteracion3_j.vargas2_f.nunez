@@ -1,9 +1,9 @@
 {
 	"title": "Nombres de las tablas de Parranderos Uniandes para la aplicación B",
-	"unidadPersistencia": "Parranderos",
+	"unidadPersistencia": "Alohandes",
 	"tablas":
 	[
-		"Parranderos_sequence",
+		"Alohandes_sequence",
 		"B_TIPOBEBIDA",
 		"B_BEBIDA",
 		"B_BAR",

@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import com.google.gson.JsonObject;
-import uniandes.isis2304.parranderos.persistencia.PersitenciaAforoandes;
-public class Aforoandes{
+import uniandes.isis2304.parranderos.persistencia.PersistenciaAlohandes;
+public class Alohandes{
 
 	/* ****************************************************************
 	 * 			Constantes
@@ -14,7 +14,7 @@ public class Aforoandes{
 	/**
 	 * Logger para escribir la traza de la ejecución
 	 */
-	private static Logger log = Logger.getLogger(Aforoandes.class.getName());
+	private static Logger log = Logger.getLogger(Alohandes.class.getName());
 	
 	/* ****************************************************************
 	 * 			Atributos
@@ -22,7 +22,7 @@ public class Aforoandes{
 	/**
 	 * El manejador de persistencia
 	 */
-	private PersitenciaAforoandes pp;
+	private PersistenciaAlohandes pp;
 	
 	/* ****************************************************************
 	 * 			Métodos
@@ -30,18 +30,18 @@ public class Aforoandes{
 	/**
 	 * El constructor por defecto
 	 */
-	public Aforoandes ()
+	public Alohandes ()
 	{
-		pp = PersitenciaAforoandes.getInstance ();
+		pp = PersistenciaAlohandes.getInstance ();
 	}
 	
 	/**
 	 * El constructor qye recibe los nombres de las tablas en tableConfig
 	 * @param tableConfig - Objeto Json con los nombres de las tablas y de la unidad de persistencia
 	 */
-	public Aforoandes (JsonObject tableConfig)
+	public Alohandes (JsonObject tableConfig)
 	{
-		pp = PersitenciaAforoandes.getInstance (tableConfig);
+		pp = PersistenciaAlohandes.getInstance (tableConfig);
 	}
 	
 	/**
@@ -596,7 +596,7 @@ public class Aforoandes{
 	public long [] limpiarAforoandes ()
 	{
         log.info ("Limpiando la BD de Parranderos");
-        long [] borrrados = pp.limpiarAforoandes();	
+        long [] borrrados = pp.limpiarAlohandes();	
         log.info ("Limpiando la BD de Parranderos: Listo!");
         return borrrados;
 	}

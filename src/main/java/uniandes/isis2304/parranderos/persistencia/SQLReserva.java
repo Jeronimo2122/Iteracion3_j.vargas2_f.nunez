@@ -19,7 +19,7 @@ class SQLReserva
 	 * Cadena que representa el tipo de consulta que se va a realizar en las sentencias de acceso a la base de datos
 	 * Se renombra acá para facilitar la escritura de las sentencias
 	 */
-	private final static String SQL = PersitenciaAforoandes.SQL;
+	private final static String SQL = PersistenciaAlohandes.SQL;
 
 	/* ****************************************************************
 	 * 			Atributos
@@ -27,7 +27,7 @@ class SQLReserva
 	/**
 	 * El manejador de persistencia general de la aplicación
 	 */
-	private PersitenciaAforoandes pp;
+	private PersistenciaAlohandes pp;
 
 	/* ****************************************************************
 	 * 			Métodos
@@ -37,7 +37,7 @@ class SQLReserva
 	 * Constructor
 	 * @param pp - El Manejador de persistencia de la aplicación
 	 */
-	public SQLReserva (PersitenciaAforoandes pp)
+	public SQLReserva (PersistenciaAlohandes pp)
 	{
 		this.pp = pp;
 	}

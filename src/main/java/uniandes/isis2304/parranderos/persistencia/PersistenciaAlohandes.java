@@ -17,7 +17,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import oracle.net.aso.s;
 import uniandes.isis2304.parranderos.negocio.Cliente;
 import uniandes.isis2304.parranderos.negocio.Operador;
 import uniandes.isis2304.parranderos.negocio.Alojamiento;
@@ -34,14 +33,14 @@ import uniandes.isis2304.parranderos.negocio.Persona;
 /**
  * 
  */
-public class PersitenciaAforoandes{
+public class PersistenciaAlohandes{
 	/* ****************************************************************
 	 * 			Constantes
 	 *****************************************************************/
 	/**
 	 * Logger para escribir la traza de la ejecución
 	 */
-	private static Logger log = Logger.getLogger(PersitenciaAforoandes.class.getName());
+	private static Logger log = Logger.getLogger(PersistenciaAlohandes.class.getName());
 	
 	/**
 	 * Cadena para indicar el tipo de sentencias que se va a utilizar en una consulta
@@ -54,7 +53,7 @@ public class PersitenciaAforoandes{
 	/**
 	 * Atributo privado que es el único objeto de la clase - Patrón SINGLETON
 	 */
-	private static PersitenciaAforoandes instance;
+	private static PersistenciaAlohandes instance;
 	
 	/**
 	 * Fábrica de Manejadores de persistencia, para el manejo correcto de las transacciones
@@ -103,14 +102,14 @@ public class PersitenciaAforoandes{
 	/**
 	 * Constructor privado con valores por defecto - Patrón SINGLETON
 	 */
-	private PersitenciaAforoandes()
+	private PersistenciaAlohandes()
 	{
-		pmf = JDOHelper.getPersistenceManagerFactory("Parranderos");		
+		pmf = JDOHelper.getPersistenceManagerFactory("Alohandes");		
 		crearClasesSQL ();
 		
 		// Define los nombres por defecto de las tablas de la base de datos
 		tablas = new LinkedList<String> ();
-		tablas.add ("AforoAndes_sequence");
+		tablas.add ("Alohandes_sequence");
 		tablas.add ("CLIENTE");
 		tablas.add ("OPERADOR");
 		tablas.add ("ALOJAMIENTO");
@@ -129,7 +128,7 @@ public class PersitenciaAforoandes{
 	 * Constructor privado, que recibe los nombres de las tablas en un objeto Json - Patrón SINGLETON
 	 * @param tableConfig - Objeto Json que contiene los nombres de las tablas y de la unidad de persistencia a manejar
 	 */
-	private PersitenciaAforoandes (JsonObject tableConfig)
+	private PersistenciaAlohandes (JsonObject tableConfig)
 	{
 		crearClasesSQL ();
 		tablas = leerNombresTablas (tableConfig);
@@ -142,11 +141,11 @@ public class PersitenciaAforoandes{
 	/**
 	 * @return Retorna el único objeto PersistenciaParranderos existente - Patrón SINGLETON
 	 */
-	public static PersitenciaAforoandes getInstance ()
+	public static PersistenciaAlohandes getInstance ()
 	{
 		if (instance == null)
 		{
-			instance = new PersitenciaAforoandes ();
+			instance = new PersistenciaAlohandes ();
 		}
 		return instance;
 	}
@@ -156,11 +155,11 @@ public class PersitenciaAforoandes{
 	 * @param tableConfig - El objeto JSON con los nombres de las tablas
 	 * @return Retorna el único objeto PersistenciaParranderos existente - Patrón SINGLETON
 	 */
-	public static PersitenciaAforoandes getInstance (JsonObject tableConfig)
+	public static PersistenciaAlohandes getInstance (JsonObject tableConfig)
 	{
 		if (instance == null)
 		{
-			instance = new PersitenciaAforoandes (tableConfig);
+			instance = new PersistenciaAlohandes (tableConfig);
 		}
 		return instance;
 	}
@@ -1725,14 +1724,14 @@ public class PersitenciaAforoandes{
 		return sqlPersona.darPersonaPorId(pmf.getPersistenceManager(), idPersona);
 	}
 
-	public long [] limpiarAforoandes ()
+	public long [] limpiarAlohandes ()
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
         try
         {
             tx.begin();
-            long [] resp = sqlUtil.limpiarAforoandes(pm);
+            long [] resp = sqlUtil.limpiarAlohandes(pm);
             tx.commit ();
             log.info ("Borrada la base de datos");
             return resp;
