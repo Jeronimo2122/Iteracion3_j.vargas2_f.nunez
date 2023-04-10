@@ -205,7 +205,7 @@ public class ConexionTest
 		}
 		finally
 		{
-			alohandes.limpiarAforoandes();
+			alohandes.limpiarAlohandes();
     		alohandes.cerrarUnidadPersistencia ();    		
 		}
     }

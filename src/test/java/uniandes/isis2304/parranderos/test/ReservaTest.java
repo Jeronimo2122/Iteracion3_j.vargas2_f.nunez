@@ -167,7 +167,7 @@ public class ReservaTest
 		}
 		finally
 		{
-			alohandes.limpiarAforoandes() ;
+			alohandes.limpiarAlohandes() ;
     		alohandes.cerrarUnidadPersistencia ();    		
 		}
 	}
