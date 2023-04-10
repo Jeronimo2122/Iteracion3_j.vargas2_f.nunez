@@ -48,7 +48,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
-import uniandes.isis2304.parranderos.negocio.Aforoandes;
+import uniandes.isis2304.parranderos.negocio.Alohandes;
 
 
 @SuppressWarnings("serial")
@@ -84,7 +84,7 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
     /**
      * Asociación a la clase principal del negocio.
      */
-    private Aforoandes alohandes;
+    private Alohandes alohandes;
     
 	/* ****************************************************************
 	 * 			Atributos de interfaz
@@ -124,7 +124,7 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
         }
         
         tableConfig = openConfig ("Tablas BD", CONFIG_TABLAS);
-        alohandes = new Aforoandes (tableConfig);
+        alohandes = new Alohandes (tableConfig);
         
     	String path = guiConfig.get("bannerPath").getAsString();
         panelDatos = new PanelDatos ( );
@@ -235,7 +235,7 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
     }
     
 	/* ****************************************************************
-	 * 			Demos de TipoBebida
+	 * 			Demos de Cliente
 	 *****************************************************************/
     /**
      * Demostración de creación, consulta y borrado de Tipos de Bebida
