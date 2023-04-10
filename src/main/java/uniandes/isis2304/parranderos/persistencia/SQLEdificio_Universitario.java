@@ -86,21 +86,6 @@ class SQLEdificio_Universitario
 	}
 
 	/**
-	 * Crea y ejecuta la sentencia SQL para encontrar la información de LOS Edificio universitario de la 
-	 * base de datos de alohandess, por su nombre
-	 * @param pm - El manejador de persistencia
-	 * @param idEdificioUniversitario- El identificador del Edificio universitario
-	 * @return Una lista de objetos Edificio universitario que tienen el nombre dado
-	 */
-	public List<Edificio_Universitario> darEdificio_UniversitariosconId (PersistenceManager pm, int idEdificioUniversitario) 
-	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaEdificio_Universitario () + " WHERE nombre = ?");
-		q.setResultClass(Edificio_Universitario.class);
-		q.setParameters(idEdificioUniversitario);
-		return (List<Edificio_Universitario>) q.executeList();
-	}
-
-	/**
 	 * Crea y ejecuta la sentencia SQL para encontrar la información de HOTELES_HOSTALES de la 
 	 * base de datos de Parranderos
 	 * @param pm - El manejador de persistencia

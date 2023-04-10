@@ -62,7 +62,7 @@ class SQLPersona
 	 * @param id- El identificador de la persona
 	 * @return EL número de tuplas eliminadas
 	 */
-	public long eliminarPersona (PersistenceManager pm, long id)
+	public long eliminarPersonaPorId (PersistenceManager pm, long id)
 	{
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaPersona () + " WHERE id = ?");
         q.setParameters(id);
@@ -85,27 +85,12 @@ class SQLPersona
 	}
 
 	/**
-	 * Crea y ejecuta la sentencia SQL para encontrar la información de LAS Personas de la 
-	 * base de datos de alohandess, por su id
-	 * @param pm - El manejador de persistencia
-	 * @param id - El identificador de la Persona
-	 * @return Una lista de objetos Persona que tienen el nombre dado
-	 */
-	public List<Persona> darPersonaconId (PersistenceManager pm, int id) 
-	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaPersona () + " WHERE nombre = ?");
-		q.setResultClass(Persona.class);
-		q.setParameters(id);
-		return (List<Persona>) q.executeList();
-	}
-
-	/**
 	 * Crea y ejecuta la sentencia SQL para encontrar la información de Persona de la 
 	 * base de datos de Parranderos
 	 * @param pm - El manejador de persistencia
 	 * @return Una lista de objetos Persona
 	 */
-	public List<Persona> darPersona (PersistenceManager pm)
+	public List<Persona> darPersonas (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaPersona ());
 		q.setResultClass(Persona.class);

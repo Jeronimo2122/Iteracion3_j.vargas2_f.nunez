@@ -2,6 +2,7 @@
 package uniandes.isis2304.parranderos.persistencia;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -1286,6 +1287,442 @@ public class PersitenciaAforoandes{
 	public Alojamiento_Operador darAlojamiento_Operador (long id_Aloja, long id_Operador)
 	{
 		return sqlAlojamiento_Operador.darAlojamiento_Operador(pmf.getPersistenceManager(), id_Aloja, id_Operador);
+	}
+
+	/* ****************************************************************
+	 * 			Métodos para manejar la relación Hotel_Hostal
+	 *****************************************************************/
+
+	/**
+	 * Método que inserta, de manera transaccional, una tupla en la tabla Hotel_Hostal
+	 */
+	public Hotel_Hostal adicionarHotel_Hostal (long id, String estadoLegal, int numeroRegistroCC, int numHabitaciones, int numHabitacionesDisponibles, String direccion) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long tuplasInsertadas = sqlHotel_Hostal.adicionarHotel_Hostal(pmf.getPersistenceManager(),
+			 id, estadoLegal, numeroRegistroCC, numHabitaciones, numHabitacionesDisponibles, direccion);
+    		tx.commit();
+
+            log.trace ("Inserción de gustan: [" + id + ", " + estadoLegal + ", " + numeroRegistroCC + ", " + numHabitaciones + ", " + numHabitacionesDisponibles +
+			", " + direccion + "]. " + tuplasInsertadas + " tuplas insertadas");
+            return new Hotel_Hostal(id, estadoLegal, numeroRegistroCC, numHabitaciones, numHabitacionesDisponibles, direccion);
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+ 
+	/**
+	 * Método que elimina, de manera transaccional, una tupla en la tabla Hotel_Hostal, dado el id de Hotel_Hostal
+	 */
+	public long eliminarHotel_HostalPorId (long idHotel_Hostal) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+	        Transaction tx=pm.currentTransaction();
+	        try
+	        {
+	            tx.begin();
+	            long resp = sqlHotel_Hostal.eliminarHotel_HostalPorId(pm, idHotel_Hostal) ;	            
+	            tx.commit();
+
+	            return resp;
+	        }
+	        catch (Exception e)
+	        {
+//	        	e.printStackTrace();
+	        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+	        	return -1;
+	        }
+	        finally
+	        {
+	            if (tx.isActive())
+	            {
+	                tx.rollback();
+	            }
+	            pm.close();
+	        }
+	}
+ 
+
+	/**
+	 * Método que consulta todas las tuplas en la tabla Hotel_Hostal
+	 * @return La lista de objetos Hotel_Hostal, construidos con base en las tuplas de la tabla Hotel_Hostal
+	 */
+	public List<Hotel_Hostal> darHoteles_Hostales ()
+	{
+		return sqlHotel_Hostal.darHoteles_Hostales(pmf.getPersistenceManager());
+	}
+
+		/**
+	 * Método que consulta todas las tuplas en la tabla Alojamiento-Servicio
+	 * @return La lista de objetos Alojamiento_Servicio, construidos con base en las tuplas de la tabla Alojamiento-Servicio
+	 */
+	public Hotel_Hostal darHotel_Hostal (long idHotel_Hostal)
+	{
+		return sqlHotel_Hostal.darHotel_HostalPorId(pmf.getPersistenceManager(), idHotel_Hostal);
+	}
+
+		/* ****************************************************************
+	 * 			Métodos para manejar la relación Hab_Hotel
+	 *****************************************************************/
+
+	/**
+	 * Método que inserta, de manera transaccional, una tupla en la tabla Hab_Hotel
+	 */
+	public Hab_Hotel adicionarHab_Hotel (long id_Aloja, String categoria) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long tuplasInsertadas = sqlHab_Hotel.adicionarHab_Hotel(pmf.getPersistenceManager(),
+			 id_Aloja, categoria);
+    		tx.commit();
+
+            log.trace ("Inserción de gustan: [" + id_Aloja + ", " + categoria + "]. " + tuplasInsertadas + " tuplas insertadas");
+            return new Hab_Hotel(id_Aloja, categoria);
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+ 
+	/**
+	 * Método que elimina, de manera transaccional, una tupla en la tabla Hab_Hotel, dado el id de Hab_Hotel
+	 */
+	public long eliminarHab_HotelPorId (long idHab_Hotel) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+	        Transaction tx=pm.currentTransaction();
+	        try
+	        {
+	            tx.begin();
+	            long resp = sqlHab_Hotel.eliminarHab_HotelPorId(pm, idHab_Hotel) ;	            
+	            tx.commit();
+
+	            return resp;
+	        }
+	        catch (Exception e)
+	        {
+//	        	e.printStackTrace();
+	        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+	        	return -1;
+	        }
+	        finally
+	        {
+	            if (tx.isActive())
+	            {
+	                tx.rollback();
+	            }
+	            pm.close();
+	        }
+	}
+ 
+
+	/**
+	 * Método que consulta todas las tuplas en la tabla Hab_Hotel
+	 * @return La lista de objetos Hotel_Hostal, construidos con base en las tuplas de la tabla Hab_Hotel
+	 */
+	public List<Hab_Hotel> darHabs_Hoteles ()
+	{
+		return sqlHab_Hotel.darHabs_Hoteles(pmf.getPersistenceManager());
+	}
+
+		/**
+	 * Método que consulta todas las tuplas en la tabla Hab_Hotel
+	 * @return La lista de objetos Hab_Hotel, construidos con base en las tuplas de la tabla Hab_Hotel
+	 */
+	public Hab_Hotel darHab_HotelPorId (long idHab_Hotel)
+	{
+		return sqlHab_Hotel.darHab_HotelPorId(pmf.getPersistenceManager(), idHab_Hotel);
+	}
+
+	/* ****************************************************************
+	 * 			Métodos para manejar la relación Hab_Hostal
+	 *****************************************************************/
+
+	/**
+	 * Método que inserta, de manera transaccional, una tupla en la tabla Hab_Hostal
+	 */
+	public Hab_Hostal adicionarHab_Hostal (long id_Aloja, SimpleDateFormat horaApertura, SimpleDateFormat horaCierre) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long tuplasInsertadas = sqlHab_Hostal.adicionarHab_Hostal(pmf.getPersistenceManager(),
+			 id_Aloja, horaApertura, horaCierre);
+    		tx.commit();
+
+            log.trace ("Inserción de gustan: [" + id_Aloja + ", " + horaApertura + ", " + horaCierre + "]. " + tuplasInsertadas + " tuplas insertadas");
+            return new Hab_Hostal(id_Aloja, horaApertura, horaCierre);
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+ 
+	/**
+	 * Método que elimina, de manera transaccional, una tupla en la tabla Hab_Hostal, dado el id de Hab_Hostal
+	 */
+	public long eliminarHab_HostalPorId (long idHab_Hostal) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+	        Transaction tx=pm.currentTransaction();
+	        try
+	        {
+	            tx.begin();
+	            long resp = sqlHab_Hostal.eliminarHab_HostalPorId(pm, idHab_Hostal) ;	            
+	            tx.commit();
+
+	            return resp;
+	        }
+	        catch (Exception e)
+	        {
+//	        	e.printStackTrace();
+	        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+	        	return -1;
+	        }
+	        finally
+	        {
+	            if (tx.isActive())
+	            {
+	                tx.rollback();
+	            }
+	            pm.close();
+	        }
+	}
+ 
+
+	/**
+	 * Método que consulta todas las tuplas en la tabla Hab_Hostal
+	 * @return La lista de objetos Hab_Hostal, construidos con base en las tuplas de la tabla Hab_Hostal
+	 */
+	public List<Hab_Hostal> darHabs_Hostales ()
+	{
+		return sqlHab_Hostal.darHabs_Hostales(pmf.getPersistenceManager());
+	}
+
+		/**
+	 * Método que consulta todas las tuplas en la tabla Hab_Hostal
+	 * @return La lista de objetos Hab_Hostal, construidos con base en las tuplas de la tabla Hab_Hostal
+	 */
+	public Hab_Hostal darHab_HostalPorId (long idHab_Hostal)
+	{
+		return sqlHab_Hostal.darHab_HostalPorId(pmf.getPersistenceManager(), idHab_Hostal);
+	}
+
+	/* ****************************************************************
+	 * 			Métodos para manejar la relación Edificio_Universitario
+	 *****************************************************************/
+
+	/**
+	 * Método que inserta, de manera transaccional, una tupla en la tabla Edificio_Universitario
+	 */
+	public Edificio_Universitario adicionarEdificio_Universitario (long id, int numViviendas, int numViviendasDisponibles, String direccion) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long tuplasInsertadas = sqlEdificio_Universitario.adicionarEdificio_Universitario(pmf.getPersistenceManager(),
+			 id, numViviendas, numViviendasDisponibles, direccion);
+    		tx.commit();
+
+            log.trace ("Inserción de gustan: [" + id + ", " + numViviendas + ", " + numViviendasDisponibles + ", " + direccion + "]. " + tuplasInsertadas + " tuplas insertadas");
+            return new Edificio_Universitario(id, numViviendas, numViviendasDisponibles, direccion);
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+ 
+	/**
+	 * Método que elimina, de manera transaccional, una tupla en la tabla Edificio_Universitario, dado el id de Edificio_Universitario
+	 */
+	public long eliminarEdificio_UniversitarioPorId (long idEdificio_Universitario) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+	        Transaction tx=pm.currentTransaction();
+	        try
+	        {
+	            tx.begin();
+	            long resp = sqlEdificio_Universitario.eliminarEdificio_UniversitarioPorId(pm, idEdificio_Universitario) ;	            
+	            tx.commit();
+
+	            return resp;
+	        }
+	        catch (Exception e)
+	        {
+//	        	e.printStackTrace();
+	        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+	        	return -1;
+	        }
+	        finally
+	        {
+	            if (tx.isActive())
+	            {
+	                tx.rollback();
+	            }
+	            pm.close();
+	        }
+	}
+ 
+
+	/**
+	 * Método que consulta todas las tuplas en la tabla Edificio_Universitario
+	 * @return La lista de objetos Edificio_Universitario, construidos con base en las tuplas de la tabla Edificio_Universitario
+	 */
+	public List<Edificio_Universitario> darEdificios_Universitarios ()
+	{
+		return sqlEdificio_Universitario.darEdificios_Universitarios(pmf.getPersistenceManager());
+	}
+
+		/**
+	 * Método que consulta todas las tuplas en la tabla Edificio_Universitario
+	 * @return La lista de objetos Edificio_Universitario, construidos con base en las tuplas de la tabla Edificio_Universitario
+	 */
+	public Edificio_Universitario darEdificio_UniversitarioPorId (long idEdificio_Universitario)
+	{
+		return sqlEdificio_Universitario.darEdificio_UniversitarioPorId(pmf.getPersistenceManager(), idEdificio_Universitario);
+	}
+
+		/* ****************************************************************
+	 * 			Métodos para manejar la relación Persona
+	 *****************************************************************/
+
+	/**
+	 * Método que inserta, de manera transaccional, una tupla en la tabla Persona
+	 */
+	public Persona adicionarPersona (long id, long Identificacion, String vinculo) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long tuplasInsertadas = sqlPersona.adicionarPersona(pmf.getPersistenceManager(),
+			 id, Identificacion, vinculo);
+    		tx.commit();
+
+            log.trace ("Inserción de gustan: [" + id + ", " + Identificacion + ", " + vinculo + ", " + "]. " + tuplasInsertadas + " tuplas insertadas");
+            return new Persona(id, Identificacion, vinculo);
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+ 
+	/**
+	 * Método que elimina, de manera transaccional, una tupla en la tabla Persona, dado el id de Persona
+	 */
+	public long eliminarPersonaPorId (long idPersona) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+	        Transaction tx=pm.currentTransaction();
+	        try
+	        {
+	            tx.begin();
+	            long resp = sqlPersona.eliminarPersonaPorId(pm, idPersona) ;	            
+	            tx.commit();
+
+	            return resp;
+	        }
+	        catch (Exception e)
+	        {
+//	        	e.printStackTrace();
+	        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+	        	return -1;
+	        }
+	        finally
+	        {
+	            if (tx.isActive())
+	            {
+	                tx.rollback();
+	            }
+	            pm.close();
+	        }
+	}
+ 
+
+	/**
+	 * Método que consulta todas las tuplas en la tabla Persona
+	 * @return La lista de objetos Persona, construidos con base en las tuplas de la tabla Persona
+	 */
+	public List<Persona> darPersonas ()
+	{
+		return sqlPersona.darPersonas(pmf.getPersistenceManager());
+	}
+
+		/**
+	 * Método que consulta todas las tuplas en la tabla Persona
+	 * @return La lista de objetos Persona, construidos con base en las tuplas de la tabla Persona
+	 */
+	public Persona darPersonaPorId (long idPersona)
+	{
+		return sqlPersona.darPersonaPorId(pmf.getPersistenceManager(), idPersona);
 	}
 
 	public long [] limpiarAforoandes ()

@@ -63,7 +63,7 @@ class SQLHab_Hostal
 	 * @param id_Aloja- El identificador del alojamiento
 	 * @return EL número de tuplas eliminadas
 	 */
-	public long eliminarHab_HostalId (PersistenceManager pm, long idHab_Hostal)
+	public long eliminarHab_HostalPorId (PersistenceManager pm, long idHab_Hostal)
 	{
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHab_Hostal () + " WHERE id = ?");
         q.setParameters(idHab_Hostal);
@@ -86,27 +86,12 @@ class SQLHab_Hostal
 	}
 
 	/**
-	 * Crea y ejecuta la sentencia SQL para encontrar la información de LAS haitaciones de hostal de la 
-	 * base de datos de alohandess, por su id
-	 * @param pm - El manejador de persistencia
-	 * @param id_Aloja- El identificador del alojamiento
-	 * @return Una lista de objetos Hab_Hostal que tienen el nombre dado
-	 */
-	public List<Hab_Hostal> darHab_HostalconId (PersistenceManager pm, int idHab_Hostal) 
-	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaHab_Hostal() + " WHERE nombre = ?");
-		q.setResultClass(Hab_Hostal.class);
-		q.setParameters(idHab_Hostal);
-		return (List<Hab_Hostal>) q.executeList();
-	}
-
-	/**
 	 * Crea y ejecuta la sentencia SQL para encontrar la información de Hab_Hostal de la 
 	 * base de datos de Parranderos
 	 * @param pm - El manejador de persistencia
 	 * @return Una lista de objetos Hab_Hostal
 	 */
-	public List<Hab_Hostal> darHab_Hostal (PersistenceManager pm)
+	public List<Hab_Hostal> darHabs_Hostales (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaHab_Hostal ());
 		q.setResultClass(Hab_Hostal.class);

@@ -52,7 +52,7 @@ class SQLHotel_Hostal
      * @param direccion - La direccion del hotel o hostal
 	 * @return El número de tuplas insertadas
 	 */
-	public long adicionarAlojamiento (PersistenceManager pm, long id, String estadoLegal, int numeroRegistroCC, int numHabitaciones, int numHabitacionesDisponibles, String direccion) 
+	public long adicionarHotel_Hostal (PersistenceManager pm, long id, String estadoLegal, int numeroRegistroCC, int numHabitaciones, int numHabitacionesDisponibles, String direccion) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaHotel_Hostal() + "(id, estadoLegal, numeroRegistroCC, numHabitaciones, numHabitacionesDisponibles, direccion) values (?, ?, ?, ?, ?, ?)");
         q.setParameters(id, estadoLegal, numeroRegistroCC, numHabitaciones, numHabitacionesDisponibles, direccion);
@@ -65,7 +65,7 @@ class SQLHotel_Hostal
 	 * @param idHotelHostal - El identificador del hotel o hostal
 	 * @return EL número de tuplas eliminadas
 	 */
-	public long eliminarHotelHostalPorId (PersistenceManager pm, long idHotelHostal)
+	public long eliminarHotel_HostalPorId (PersistenceManager pm, long idHotelHostal)
 	{
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHotel_Hostal () + " WHERE id = ?");
         q.setParameters(idHotelHostal);
@@ -85,21 +85,6 @@ class SQLHotel_Hostal
 		q.setResultClass(Hotel_Hostal.class);
 		q.setParameters(idHotelHostal);
 		return (Hotel_Hostal) q.executeUnique();
-	}
-
-	/**
-	 * Crea y ejecuta la sentencia SQL para encontrar la información de LOS HOTELES_HOSTALES de la 
-	 * base de datos de alohandess, por su nombre
-	 * @param pm - El manejador de persistencia
-	 * @param idHotelHostal - El identificador del hotel o hostal
-	 * @return Una lista de objetos BAR que tienen el nombre dado
-	 */
-	public List<Hotel_Hostal> darHotel_HostalPorNombre (PersistenceManager pm, int idHotelHostal) 
-	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaHotel_Hostal () + " WHERE nombre = ?");
-		q.setResultClass(Hotel_Hostal.class);
-		q.setParameters(idHotelHostal);
-		return (List<Hotel_Hostal>) q.executeList();
 	}
 
 	/**

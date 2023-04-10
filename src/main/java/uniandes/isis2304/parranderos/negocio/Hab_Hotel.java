@@ -34,7 +34,7 @@ public class Hab_Hotel implements VOHab_Hotel
 
 	/**
 	 */
-    public Hab_Hotel(long Id_Aloja, String categoria, long Id_Hotel) 
+    public Hab_Hotel(long Id_Aloja, String categoria) 
     {
     	this.Id_Aloja = Id_Aloja;
 		this.categoria = categoria;
