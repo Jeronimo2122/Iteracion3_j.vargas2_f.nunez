@@ -28,7 +28,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.jdo.JDODataStoreException;
@@ -49,6 +51,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 import uniandes.isis2304.parranderos.negocio.Alohandes;
+import uniandes.isis2304.parranderos.negocio.VOReserva;
 
 
 @SuppressWarnings("serial")
@@ -251,28 +254,41 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
     		// Ejecución de la demo y recolección de los resultados
 			// ATENCIÓN: En una aplicación real, los datos JAMÁS están en el código
 			long idReserva = 1;
+			int idReservaInt = 1;
 			boolean errorReserva = false;
-			VOTipoBebida tipoBebida = alohandes.adicionarReserva ();
-			if (tipoBebida == null)
+
+			SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			String fechaLlegada1Str = "2023-01-01 00:00:00";
+			Date parsedDate1 = (Date) dateFormat1.parse(fechaLlegada1Str);
+			java.sql.Timestamp fechaLlegada1 = new java.sql.Timestamp(parsedDate1.getTime());
+
+			
+			SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			String fechaFin1Str = "2023-01-05 00:00:00";
+			Date parsedDate2 = (Date) dateFormat2.parse(fechaFin1Str);
+			java.sql.Timestamp fechaFin1 = new java.sql.Timestamp(parsedDate2.getTime());
+
+			VOReserva reserva = alohandes.adicionarReserva (fechaLlegada1, fechaFin1, 100000, 1, 1, 1, "Activa");
+			if (reserva == null)
 			{
-				tipoBebida = parranderos.darTipoBebidaPorNombre (nombreTipoBebida);
-				errorTipoBebida = true;
+				reserva = alohandes.darReservas().get(idReservaInt);
+				errorReserva = true;
 			}
-			List <VOTipoBebida> lista = parranderos.darVOTiposBebida();
-			long tbEliminados = parranderos.eliminarTipoBebidaPorId (tipoBebida.getId ());
+			List <VOReserva> lista = alohandes.darVOReservas();
+			long tbEliminados = alohandes.eliminarReservaPorId (reserva.getId ());
 			
 			// Generación de la cadena de caracteres con la traza de la ejecución de la demo
 			String resultado = "Demo de creación y listado de TipoBebida\n\n";
 			resultado += "\n\n************ Generando datos de prueba ************ \n";
-			if (errorTipoBebida)
+			if (errorReserva)
 			{
-				resultado += "*** Exception creando tipo de bebida !!\n";
-				resultado += "*** Es probable que ese tipo de bebida ya existiera y hay restricción de UNICIDAD sobre el nombre del tipo de bebida\n";
-				resultado += "*** Revise el log de parranderos para más detalles\n";
+				resultado += "*** Exception creando Reserva!!\n";
+				resultado += "*** Es probable que ese tipo de bebida ya existiera y hay restricción de UNICIDAD sobre la Reserva\n";
+				resultado += "*** Revise el log de alohandes para más detalles\n";
 			}
-			resultado += "Adicionado el tipo de bebida con nombre: " + nombreTipoBebida + "\n";
+			resultado += "Adicionada la reserva con id: " + idReserva + "\n";
 			resultado += "\n\n************ Ejecutando la demo ************ \n";
-			resultado +=  "\n" + listarTiposBebida (lista);
+			resultado +=  "\n" + listarReservas (lista);
 			resultado += "\n\n************ Limpiando la base de datos ************ \n";
 			resultado += tbEliminados + " Tipos de bebida eliminados\n";
 			resultado += "\n Demo terminada";
@@ -1642,11 +1658,11 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
      * @param lista - La lista con los sirven
      * @return La cadena con una líea para cada sirven recibido
      */
-    private String listarSirven (List<VOSirven> lista) 
+    private String listarReservas (List<VOReserva> lista) 
     {
-    	String resp = "Los sirven existentes son:\n";
+    	String resp = "Las reservas existentes son:\n";
     	int i = 1;
-        for (VOSirven serv : lista)
+        for (VOReserva serv : lista)
         {
         	resp += i++ + ". " + serv.toString() + "\n";
         }
