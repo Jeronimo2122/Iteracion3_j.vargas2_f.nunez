@@ -427,7 +427,7 @@ public class Alohandes{
 	 * Adiciona entradas al log de la aplicación
 	 * @return El número de tuplas eliminadas
 	 */
-	public long eliminarGustan (long id_Reserva)
+	public long eliminarReservaPorId(long id_Reserva)
 	{
         log.info ("Eliminando Reserva");
         long resp = pp.eliminarReservaPorId(id_Reserva);
@@ -453,7 +453,7 @@ public class Alohandes{
 	 * Adiciona entradas al log de la aplicación
 	 * @return Una lista de objetos Reserva con todos las Reserva que conoce la aplicación, llenos con su información básica
 	 */
-	public List<VOReserva> darVOGustan ()
+	public List<VOReserva> darVOReservas ()
 	{
 		log.info ("Generando los VO de Reserva");
 		List<VOReserva> voReservas = new LinkedList<VOReserva> ();

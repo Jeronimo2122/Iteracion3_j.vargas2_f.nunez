@@ -235,7 +235,7 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
     }
     
 	/* ****************************************************************
-	 * 			Demos de Cliente
+	 * 			Demos de Reserva
 	 *****************************************************************/
     /**
      * Demostración de creación, consulta y borrado de Tipos de Bebida
@@ -244,15 +244,15 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
      * Pre: La base de datos está vacía
      * Post: La base de datos está vacía
      */
-    public void demoTipoBebida( )
+    public void demoReserva( )
     {
     	try 
     	{
     		// Ejecución de la demo y recolección de los resultados
 			// ATENCIÓN: En una aplicación real, los datos JAMÁS están en el código
-			String nombreTipoBebida = "Vino tinto";
-			boolean errorTipoBebida = false;
-			VOTipoBebida tipoBebida = parranderos.adicionarTipoBebida (nombreTipoBebida);
+			long idReserva = 1;
+			boolean errorReserva = false;
+			VOTipoBebida tipoBebida = alohandes.adicionarReserva ();
 			if (tipoBebida == null)
 			{
 				tipoBebida = parranderos.darTipoBebidaPorNombre (nombreTipoBebida);
