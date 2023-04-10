@@ -84,6 +84,11 @@ class SQLUtil
         Query qOperador = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaOperador());
         Query qReserva = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaReserva());
         Query qServicio = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaServicio());
+		Query qPersona = pm.newQuery(SQL, "DELETE FROM" + pp.darTablaPersona());
+		Query qHotel_Hostal = pm.newQuery(SQL, "DELETE FROM" + pp.darTablaHotel_Hostal());
+		Query qHab_Hotel = pm.newQuery(SQL, "DELETE FROM" + pp.darTablaHab_Hotel());
+		Query qHab_Hostal = pm.newQuery(SQL, "DELETE FROM" + pp.darTablaHab_Hostal());
+		Query qEdificio_Universitario = pm.newQuery(SQL, "DELETE FROM" + pp.darTablaEdificio_Universitario());
 
         long AlojamientosEliminados = (long) qAlojamiento.executeUnique ();
         long Alojamiento_OperadorsEliminados = (long) qAlojamiento_Operador.executeUnique ();
@@ -92,9 +97,16 @@ class SQLUtil
         long OperadoresEliminados = (long) qOperador.executeUnique ();
         long ReservasEliminados = (long) qReserva.executeUnique ();
         long ServiciosEliminados = (long) qServicio.executeUnique ();
+		long PersonasEliminadas = (long) qPersona.executeUnique ();
+		long Hoteles_HostalesEliminados = (long) qHotel_Hostal.executeUnique();
+		long Habitaciones_HotelesEliminadas = (long) qHab_Hotel.executeUnique();
+		long Habitaciones_HostalesEliminadas = (long) qHab_Hostal.executeUnique();
+		long Edficios_UniversitariosEliminados = (long) qEdificio_Universitario.executeUnique();
+
         return new long[] {AlojamientosEliminados, Alojamiento_OperadorsEliminados, 
 			Alojamiento_ServiciosEliminadas, ClientesEliminadas, OperadoresEliminados, 
-			ReservasEliminados, ServiciosEliminados};
+			ReservasEliminados, ServiciosEliminados, PersonasEliminadas, Hoteles_HostalesEliminados,
+			Habitaciones_HotelesEliminadas, Habitaciones_HostalesEliminadas, Edficios_UniversitariosEliminados};
 	}
 
 }
