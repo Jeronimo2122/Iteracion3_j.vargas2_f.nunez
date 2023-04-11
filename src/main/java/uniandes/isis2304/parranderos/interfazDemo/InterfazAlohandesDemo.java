@@ -50,7 +50,10 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 import uniandes.isis2304.parranderos.negocio.Alohandes;
+import uniandes.isis2304.parranderos.negocio.VOAlojamiento;
+import uniandes.isis2304.parranderos.negocio.VOAlojamiento_Operador;
 import uniandes.isis2304.parranderos.negocio.VOCliente;
+import uniandes.isis2304.parranderos.negocio.VOOperador;
 import uniandes.isis2304.parranderos.negocio.VOReserva;
 
 
@@ -354,7 +357,7 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
 
 
 	/* ****************************************************************
-	 * 			Demos de Operador
+	 * 			Registar Alojamiento con su Operador
 	 *****************************************************************/
     /**
      * Demostración de creación, consulta y borrado de Bebidas.
@@ -365,92 +368,130 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
      * Post: La base de datos está vacía
      */
 
-	 public void ReqOperador( )
+	 public void ReqAlojamientoOperadorNuevos( )
 	 {
-		 try 
-		 {
+		try 
+		{
 			 // Ejecución de la demo y recolección de los resultados
 			 // ATENCIÓN: En una aplicación real, los datos JAMÁS están en el código
  
-			 String nombreCliente = JOptionPane.showInputDialog (this, "Nombre del Cliente?", "Registrar Cliente", JOptionPane.QUESTION_MESSAGE);
-			 String vinculo = JOptionPane.showInputDialog (this, "Vinculo del Cliente('ESTUDIANTE','PROFESOR','EMPLEADO','INVITADO','EGRESADO','PADRE')", "Registrar Cliente", JOptionPane.QUESTION_MESSAGE);
-			 vinculo = vinculo.toUpperCase();
-			 if (nombreCliente != null)
-			 {
-				 VOCliente cliente = alohandes.adicionarCliente(nombreCliente, vinculo);
+			String estado = JOptionPane.showInputDialog (this, "Estado del Alojamiento?[DISPONIBLE, OCUPADO]", "Registrar Alojamiento", JOptionPane.QUESTION_MESSAGE);
+			int capacidad = Integer.parseInt(JOptionPane.showInputDialog (this, "Capacidad del Alojamiento", "Registrar Alojamiento", JOptionPane.QUESTION_MESSAGE));
+			String direccion = JOptionPane.showInputDialog (this, "Direccion del Alojamiento?", "Registrar Alojamiento", JOptionPane.QUESTION_MESSAGE);
+			String tipo = JOptionPane.showInputDialog (this, "Tipo del Alojamiento?[VIVIENDA_U,HABITACION_HOTEL,HABITACION_HOSTAL,VIVIENDA,APARTAMENTO,HABITACION_VIVIENDA]", "Registrar Alojamiento", JOptionPane.QUESTION_MESSAGE);
+			 
+			String nombreOperador = JOptionPane.showInputDialog (this, "Nombre del Operador?", "Registrar Operador", JOptionPane.QUESTION_MESSAGE);
+			Float ganacias = Float.parseFloat(JOptionPane.showInputDialog (this, "Ganacias del Operador", "Registrar Operador", JOptionPane.QUESTION_MESSAGE));
+
+			if (estado != null && capacidad != 0 && direccion != null && tipo != null && nombreOperador != null && ganacias != 0)
+			{
+				VOAlojamiento Aloja = alohandes.adicionarAlojamiento(capacidad, estado, direccion, tipo);
 				 
-				 if (cliente == null)
-				 {
-					 throw new Exception ("No se pudo crear un Cliente con nombre: " + nombreCliente);
-				 }
-				 String resultado = "En adicionarCliente\n\n";
-				 resultado += "Cliente Registrado exitosamente: " + cliente;
-				 resultado += "\n Operación terminada";
-				 panelDatos.actualizarInterfaz(resultado);
-			 }
-			 else
-			 {
-				 panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-			 }
-	
-		 } 
-		 catch (Exception e) 
-		 {
+				if (Aloja == null)
+				{
+					throw new Exception ("No se pudo crear un Alojamiento de tipo: " + tipo);
+				}
+				String resultado = "En adicionarAlojamiento\n\n";
+				resultado += "Alojamiento Registrado exitosamente: " + Aloja;
+				//resultado += "\n Operación terminada";
+				//panelDatos.actualizarInterfaz(resultado);
+
+		
+				VOOperador Op = alohandes.adicionarOperador(nombreOperador, ganacias);
+					
+				if (Op == null)
+				{
+					throw new Exception ("No se pudo crear un Operador de nombre: " + nombreOperador);
+				}
+				resultado += "\n En adicionarOperador\n\n";
+				resultado += "Operador Registrado exitosamente: " + Op;
+
+				VOAlojamiento_Operador Al_Op = alohandes.adicionarAlojamiento_Operador(Aloja.getId(), Op.getId());
+				if (Al_Op == null)
+				{
+					throw new Exception ("No se pudo Asociar un Operador con el Alojamiento: " + nombreOperador);
+				}
+				resultado += "\n Asociar Operador y Alojamiento: ";
+				resultado += "Operador y Alojamiento Asociados exitosamente: " + Al_Op;
+				resultado += "\n Operación terminada";
+
+				panelDatos.actualizarInterfaz(resultado);
+				}
+				else
+				{
+					panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+				}
+
+		} 
+		catch (Exception e) 
+		{
  //			e.printStackTrace();
-			 String resultado = generarMensajeError(e);
-			 panelDatos.actualizarInterfaz(resultado);
-		 }
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 	}
 
-
-	/* ****************************************************************
-	 * 			Demos de Alojamiento
-	 *****************************************************************/
-    /**
-     * Demostración de creación, consulta y borrado de Bebidas.
-     * Incluye también los tipos de bebida pues el tipo de bebida es llave foránea en las bebidas
-     * Muestra la traza de la ejecución en el panelDatos
-     * 
-     * Pre: La base de datos está vacía
-     * Post: La base de datos está vacía
-     */
-
-	 public void ReqAlojamiento( )
-	 {
-		 try 
-		 {
+	public void ReqAlojamientoOperadorExistente( ) 
+	{
+		try 
+		{
 			 // Ejecución de la demo y recolección de los resultados
 			 // ATENCIÓN: En una aplicación real, los datos JAMÁS están en el código
  
-			 String nombreCliente = JOptionPane.showInputDialog (this, "Nombre del Cliente?", "Registrar Cliente", JOptionPane.QUESTION_MESSAGE);
-			 String vinculo = JOptionPane.showInputDialog (this, "Vinculo del Cliente('ESTUDIANTE','PROFESOR','EMPLEADO','INVITADO','EGRESADO','PADRE')", "Registrar Cliente", JOptionPane.QUESTION_MESSAGE);
-			 vinculo = vinculo.toUpperCase();
-			 if (nombreCliente != null)
-			 {
-				 VOCliente cliente = alohandes.adicionarCliente(nombreCliente, vinculo);
-				 
-				 if (cliente == null)
-				 {
-					 throw new Exception ("No se pudo crear un Cliente con nombre: " + nombreCliente);
-				 }
-				 String resultado = "En adicionarCliente\n\n";
-				 resultado += "Cliente Registrado exitosamente: " + cliente;
-				 resultado += "\n Operación terminada";
-				 panelDatos.actualizarInterfaz(resultado);
-			 }
-			 else
-			 {
-				 panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-			 }
-	
-		 } 
-		 catch (Exception e) 
-		 {
+			String estado = JOptionPane.showInputDialog (this, "Estado del Alojamiento?[DISPONIBLE, OCUPADO]", "Registrar Alojamiento", JOptionPane.QUESTION_MESSAGE);
+			int capacidad = Integer.parseInt(JOptionPane.showInputDialog (this, "Capacidad del Alojamiento", "Registrar Alojamiento", JOptionPane.QUESTION_MESSAGE));
+			String direccion = JOptionPane.showInputDialog (this, "Direccion del Alojamiento?", "Registrar Alojamiento", JOptionPane.QUESTION_MESSAGE);
+			String tipo = JOptionPane.showInputDialog (this, "Tipo del Alojamiento?[VIVIENDA_U,HABITACION_HOTEL,HABITACION_HOSTAL,VIVIENDA,APARTAMENTO,HABITACION_VIVIENDA]", "Registrar Alojamiento", JOptionPane.QUESTION_MESSAGE);
+			Long idOperador = Long.parseLong(JOptionPane.showInputDialog (this, "Id del Operador?", "Asociar Operador", JOptionPane.QUESTION_MESSAGE));
+
+
+			if (estado != null && capacidad != 0 && direccion != null && tipo != null && idOperador != 0)
+			{
+				VOOperador ope = alohandes.darOperadorPorId(idOperador);
+				if (ope == null)
+				{
+					throw new Exception ("No Existe el Operador para asociar: " + tipo);
+				}
+				String resultado = "En darOperadorPorId\n\n";
+				resultado += "Operador: " + ope;
+
+				VOAlojamiento Aloja = alohandes.adicionarAlojamiento(capacidad, estado, direccion, tipo); 
+				if (Aloja == null)
+				{
+					throw new Exception ("No se pudo crear un Alojamiento de tipo: " + tipo);
+				}
+				resultado = "\nEn adicionarAlojamiento\n";
+				resultado += "Alojamiento Registrado exitosamente: " + Aloja;
+				//resultado += "\n Operación terminada";
+				//panelDatos.actualizarInterfaz(resultado);
+
+				VOAlojamiento_Operador Al_Op = alohandes.adicionarAlojamiento_Operador(Aloja.getId(), ope.getId());
+				if (Al_Op == null)
+				{
+					throw new Exception ("No se pudo Asociar un Operador con el Alojamiento: " + ope.getNombre());
+				}
+				resultado += "\n Asociar Alojamiento al Operador: " + ope.getNombre();
+				resultado += "\nOperador y Alojamiento Asociados exitosamente: " + Al_Op;
+				resultado += "\n Operación terminada";
+
+				panelDatos.actualizarInterfaz(resultado);
+				}
+				else
+				{
+					panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+				}
+
+		} 
+		catch (Exception e) 
+		{
  //			e.printStackTrace();
-			 String resultado = generarMensajeError(e);
-			 panelDatos.actualizarInterfaz(resultado);
-		 }
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 	}
+
+
+
 
 	/* ****************************************************************
 	 * 			Métodos administrativos

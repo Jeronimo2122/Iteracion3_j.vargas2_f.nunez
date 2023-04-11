@@ -4,12 +4,12 @@
 	"tablas":
 	[
 		"Alohandes_sequence",
-		"B_TIPOBEBIDA",
-		"B_BEBIDA",
-		"B_BAR",
-		"B_BEBEDOR",
-		"B_GUSTAN",
-		"B_SIRVEN",
-		"B_VISITAN"
+		"CLIENTE",
+		"OPERADOR",
+		"ALOJAMIENTO",
+		"SERVICIO",
+		"RESERVA",
+		"ALOJAMIENTO_SERVICIO",
+		"ALOJAMIENTO_RESERVA"
 	]
 }
