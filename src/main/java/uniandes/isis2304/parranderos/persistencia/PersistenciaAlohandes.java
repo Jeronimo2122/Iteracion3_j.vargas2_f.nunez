@@ -851,7 +851,7 @@ public class PersistenciaAlohandes{
 	/**
 	 * Método que inserta, de manera transaccional, una tupla en la tabla RESERVA
 	 */
-	public Reserva adicionarReserva(Timestamp fecha_llegada, Timestamp fecha_salida, int precio, long Id_Cliente, long Id_Alojamiento, long Id_Operador, String estado) 
+	public Reserva adicionarReserva(Timestamp fecha_llegada, Timestamp fecha_salida, float precio, long Id_Cliente, long Id_Alojamiento, long Id_Operador, String estado) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
@@ -911,6 +911,34 @@ public class PersistenciaAlohandes{
             pm.close();
         }
 	}
+
+	public long ActualizarReserva(String estado, long idReserva) 
+	{
+			PersistenceManager pm = pmf.getPersistenceManager();
+			Transaction tx=pm.currentTransaction();
+			try
+			{
+				tx.begin();
+				long resp = sqlReserva.ActulizarReserva(pm, estado, idReserva);           
+				tx.commit();
+	
+				return resp;
+			}
+			catch (Exception e)
+			{
+	//        	e.printStackTrace();
+				log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+				return -1;
+			}
+			finally
+			{
+				if (tx.isActive())
+				{
+					tx.rollback();
+				}
+				pm.close();
+			}
+		}
 
 	/**
 	 * Método que elimina, de manera transaccional, una tupla en la tabla RESERVA, dados los identificador de la reserva

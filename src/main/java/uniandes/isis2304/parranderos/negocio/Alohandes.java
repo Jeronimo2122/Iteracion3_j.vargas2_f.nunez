@@ -425,11 +425,9 @@ public class Alohandes{
 	/**
 	 * Adiciona de manera persistente una preferencia de una bebida por un bebedor
 	 * Adiciona entradas al log de la aplicación
-	 * @param idBebedor - El identificador del bebedor
-	 * @param idBebida - El identificador de la bebida
 	 * @return Un objeto Gustan con los valores dados
 	 */
-	public Reserva adicionarReserva(Timestamp fecha_llegada, Timestamp fecha_salida, int precio, long Id_Cliente, long Id_Alojamiento, long Id_Operador, String estado)
+	public Reserva adicionarReserva(Timestamp fecha_llegada, Timestamp fecha_salida, float precio, long Id_Cliente, long Id_Alojamiento, long Id_Operador, String estado)
 	{
         log.info ("Adicionando Reserva [" + Id_Cliente + ", " + Id_Cliente + ", "+precio+ "]");
         Reserva resp = pp.adicionarReserva(fecha_llegada, fecha_salida, precio, Id_Cliente, Id_Alojamiento, Id_Operador, estado);
@@ -449,6 +447,14 @@ public class Alohandes{
         log.info ("Eliminando Reserva: " + resp + " tuplas eliminadas");
         return resp;
 	}
+
+	public long ActualizarReserva(String estado, long id_Reserva)
+	{
+		log.info ("Actualizando Reserva");
+		long resp = pp.ActualizarReserva(estado, id_Reserva);
+		log.info ("Actualizando Reserva: " + resp + " tuplas actualizadas");
+		return resp;
+	}
 	
 	/**
 	 * Encuentra todas las Reserva en Aforoandes
@@ -461,6 +467,14 @@ public class Alohandes{
         List<Reserva> gustan = pp.darReservas();	
         log.info ("Listando Reserva: " + gustan.size() + " preferencias de gusto existentes");
         return gustan;
+	}
+
+	public Reserva darReservaPorId (long id_reserva)
+	{
+        log.info ("Dar Reserva");
+        Reserva reserva = pp.darReservaPorId(id_reserva);	
+        log.info ("Dar Reserva: ");
+        return reserva;
 	}
 
 	/**

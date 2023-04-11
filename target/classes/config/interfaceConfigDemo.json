@@ -24,84 +24,24 @@
 				{
 					"label": "Registrar Alojamiento a un Operador Existente",
 					"event": "ReqAlojamientoOperadorExistente"
+				},
+				{
+					"label": "Retirar Oferta de Alojamiento",
+					"event": "ReqEliminarAlojamiento"
 				}
 			]
 		},
-		{ "menuTitle": "Alojamiento",
+		{ "menuTitle": "RESERVA",
 		  "options":
 			[
 				{
-					"label": "Registrar Alojamiento",
-					"event": "ReqAlojamiento"
+					"label": "Registrar Reserva",
+					"event": "ReqRegReserva"
 				},
 				{
-					"label": "Bares y Bebidas",
-					"event": "demoBaresBebidas"
-				},
-				{
-					"label": "Aumentar sedes en una ciudad",
-					"event": "demoAumentarSedesBaresEnCiudad"
+					"label": "Cancelar Reserva",
+					"event": "ReqCancelarReserva"
 				}
-			]
-		},
-		{ "menuTitle": "Reserva",
-		  "options":
-			[
-				{
-					"label": "CRD Reserva",
-					"event": "demoReserva"
-				},
-				{
-					"label": "Cambiar ciudad",
-					"event": "demoCambiarCiudadBebedor"
-				},
-				{
-					"label": "Bebedor y cuántas visita realiza",
-					"event": "demoBebedoresYNumVisitasRealizadas"
-				},
-				{
-					"label": "Bebedores de una ciudad",
-					"event": "demoBebedoresDeCiudad"
-				},
-				{
-					"label": "Dar Bebedor Completo",
-					"event": "demoDarBebedorCompleto"
-				},
-				{
-					"label": "* Eliminar Bebedor y sus visitas 1",
-					"event": "demoEliminarBebedorYVisitas_v1"
-				},
-				{
-					"label": "* Eliminar Bebedor y sus visitas 2",
-					"event": "demoEliminarBebedorYVisitas_v2"
-				}
-			]
-		},
-		{ "menuTitle": "Gustan",
-		  "options":
-			[
-				{
-					"label": "CRD Gustan",
-					"event": "demoGustan"
-				}
-			]
-		},
-		{ "menuTitle": "Sirven",
-		  "options":
-			[
-				{
-					"label": "CRD Sirven",
-					"event": "demoSirven"
-				}
-			]
-		},
-		{ "menuTitle": "Visitan",
-		  "options":
-			[
-				{
-					"label": "CRD Visitan",
-					"event": "demoVisitan"
-				}			
 			]
 		},
 		{ "menuTitle": "Mantenimiento",

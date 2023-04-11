@@ -99,4 +99,6 @@ class SQLAlojamiento
 		return (List<Alojamiento>) q.executeList();
 	}
 
+	
+
 }
