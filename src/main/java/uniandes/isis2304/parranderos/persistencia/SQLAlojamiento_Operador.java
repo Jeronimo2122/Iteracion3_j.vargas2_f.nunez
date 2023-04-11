@@ -43,7 +43,7 @@ class SQLAlojamiento_Operador
 
 	public long adicionarAlojamiento_Operador (PersistenceManager pm, long idAlojamiento, long idOperador) 
     {
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaAlojamiento_Operador() + "(idAlojamiento, idOperador) values (?, ?)");
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaAlojamiento_Operador() + "(id_Aloja, id_Operador) values (?, ?)");
         q.setParameters(idAlojamiento, idOperador);
         return (long) q.executeUnique();
     }

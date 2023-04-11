@@ -43,7 +43,7 @@ class SQLOperador
 	
 	public long adicionarOperador (PersistenceManager pm, long id, String nombre, float ganancias) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaOperador() + "(id, nombre, ganancias, direccion) values (?, ?, ?)");
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaOperador() + "(id, nombre, ganancias) values (?, ?, ?)");
         q.setParameters(id, nombre, ganancias);
         return (long) q.executeUnique();
 	}

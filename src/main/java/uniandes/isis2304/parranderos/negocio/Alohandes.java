@@ -183,8 +183,16 @@ public class Alohandes{
         log.info ("Eliminando Operador por id: " + resp + " tuplas eliminadas");
         return resp;
 	}
+
+	public Operador darOperadorPorId (long id)
+	{
+        log.info ("Consultando Operadores");
+        Operador operador = pp.darOperadorPorId(id);	
+        log.info ("Consultando Operadores: " + operador + " bebidas existentes");
+        return operador;
+	}
 	/**
-	 * Encuentra todas las bebida en Parranderos
+	 * Encuentra todas las Operadores en Parranderos
      */
 	public List<Operador> derOperadores ()
 	{
@@ -198,7 +206,7 @@ public class Alohandes{
 	 * Encuentra todos los Operadores en Aforoandes y los devuelve como una lista de VOOperador
 	 * Adiciona entradas al log de la aplicación
 	 */
-	public List<VOOperador> darVOBebidas ()
+	public List<VOOperador> darVOOperadores ()
 	{
 		log.info ("Generando los VO de los Operadores");       
         List<VOOperador> voBebidas = new LinkedList<VOOperador> ();
@@ -219,9 +227,9 @@ public class Alohandes{
 	 */
 	public Alojamiento adicionarAlojamiento (int capacidad, String estado, String direccion, String tipo_Aloja)
 	{
-        log.info ("Adicionando bebedor: " + tipo_Aloja);
+        log.info ("Adicionando Alojamiento: " + tipo_Aloja);
         Alojamiento alojamiento = pp.adicionarAlojamiento(capacidad, estado, direccion, tipo_Aloja) ;
-        log.info ("Adicionando bebedor: " + tipo_Aloja);
+        log.info ("Adicionando Alojamiento: " + tipo_Aloja);
         return alojamiento ;
 	}
 

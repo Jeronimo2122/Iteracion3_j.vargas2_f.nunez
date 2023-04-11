@@ -214,7 +214,7 @@ public class PersistenciaAlohandes{
 	/**
 	 * @return La cadena de caracteres con el nombre del secuenciador de parranderos
 	 */
-	public String darSeqParranderos ()
+	public String darSeqAlohandes ()
 	{
 		return tablas.get (0);
 	}
@@ -590,6 +590,11 @@ public class PersistenciaAlohandes{
 	public List<Operador> darOperadores ()
 	{
 		return sqlOperador.darOperadores(pmf.getPersistenceManager());
+	}
+
+	public Operador darOperadorPorId (long id)
+	{
+		return sqlOperador.darOperadorPorId(pmf.getPersistenceManager(),id);
 	}
  
 

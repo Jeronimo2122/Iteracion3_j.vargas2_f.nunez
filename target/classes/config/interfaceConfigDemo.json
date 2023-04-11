@@ -14,20 +14,16 @@
 				}
 			]
 		},		
-		{ "menuTitle": "Operador",
+		{ "menuTitle": "Alojamiento/Operador",
 		  "options":
 			[
 				{
-					"label": "Registrar Operador",
-					"event": "ReqOperador"
+					"label": "Registrar Alojamiento Nuevo con Operador Nuevo",
+					"event": "ReqAlojamientoOperadorNuevos"
 				},
 				{
-					"label": "Eliminar Bebidas no servidas 1",
-					"event": "demoElimNoServidas1"
-				},
-				{
-					"label": "Eliminar Bebidas no servidas 2",
-					"event": "demoElimNoServidas2"
+					"label": "Registrar Alojamiento a un Operador Existente",
+					"event": "ReqAlojamientoOperadorExistente"
 				}
 			]
 		},

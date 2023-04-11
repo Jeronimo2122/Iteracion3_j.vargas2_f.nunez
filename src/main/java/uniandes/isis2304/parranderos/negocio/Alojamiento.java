@@ -151,7 +151,7 @@ public class Alojamiento implements VOAlojamiento
 	public String toString() 
 	{
 		return "Alojamiento [Id=" + Id + ", capacidad=" + capacidad + ", "
-				+ "estado=" + estado + "direccion=" + direccion + "tipo_aloja=" + tipo_aloja + "]" ;
+				+ "estado=" + estado + ", direccion=" + direccion + ", tipo_aloja=" + tipo_aloja + "]" ;
 	}
 	
 
