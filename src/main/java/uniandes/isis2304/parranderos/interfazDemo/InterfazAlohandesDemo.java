@@ -29,6 +29,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -307,7 +308,7 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
     }
 
 	/* ****************************************************************
-	 * 			Demos de Cliente
+	 * 			REGISTRA de Cliente
 	 *****************************************************************/
     /**
      * Demostración de creación, consulta y borrado de Bebidas.
@@ -490,6 +491,150 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
 		}
 	}
 
+	public void ReqEliminarAlojamiento( ) 
+    {
+    	try 
+    	{
+    		// Ejecución de la demo y recolección de los resultados
+			// ATENCIÓN: En una aplicación real, los datos JAMÁS están en el código
+
+			long id_aloja = Long.parseLong(JOptionPane.showInputDialog (this, "id Alojamiento a eliminar?", "Eliminar Alojamiento", JOptionPane.QUESTION_MESSAGE));
+			
+			if (id_aloja != 0)
+    		{
+        		long eliminadosaloja = alohandes.eliminarAlojamientoPorId(id_aloja);
+				
+        		if (eliminadosaloja == 0)
+        		{
+        			throw new Exception ("No se Elimino el alojamiento: " + eliminadosaloja);
+        		}
+
+        		String resultado = "En EliminarAlojamiento\n\n";
+        		resultado += "Numero de alojamientos Eliminados " + eliminadosaloja;
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+   
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+
+
+	/* ****************************************************************
+	 * 			Registrar Reserva y Cancelar Reserva
+	 *****************************************************************/
+    /**
+     * Demostración de creación, consulta y borrado de Bebidas.
+     * Incluye también los tipos de bebida pues el tipo de bebida es llave foránea en las bebidas
+     * Muestra la traza de la ejecución en el panelDatos
+     * 
+     * Pre: La base de datos está vacía
+     * Post: La base de datos está vacía
+     */
+
+	public void ReqRegReserva()
+	{
+		try 
+		{
+			// Ejecución de la demo y recolección de los resultados
+			// ATENCIÓN: En una aplicación real, los datos JAMÁS están en el código
+			String fecha_llegada = JOptionPane.showInputDialog (this, "Fecha llegada de la reserva?", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE);
+			String fecha_Salida = JOptionPane.showInputDialog (this, "Fecha Salida de la reserva?", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE);
+			float precio = Float.parseFloat(JOptionPane.showInputDialog (this, "Precio de la Reserva?", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE));
+			long id_cliente = Long.parseLong(JOptionPane.showInputDialog (this, "id Cliente de la reserva?", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE));
+			long id_alojamiento = Long.parseLong(JOptionPane.showInputDialog (this, "id Alojamiento de la reserva?", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE));
+			long id_operador = Long.parseLong(JOptionPane.showInputDialog (this, "id Operador de la reserva?", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE));
+			String estado = JOptionPane.showInputDialog (this, "Esatdo de la Reserva?('ACTIVA', 'CANCELADA')", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE);
+
+
+			if (fecha_llegada != null && fecha_Salida != null && precio >= 0 && id_cliente !=0 && id_alojamiento !=0 && id_operador !=0 
+			&& estado != null)
+			{
+				VOCliente cliente = alohandes.darClientePorID(id_cliente);
+				VOOperador operador =alohandes.darOperadorPorId(id_operador);
+				VOAlojamiento alojamiento =alohandes.darAlojamientoPorId(id_operador);
+				if (cliente == null || operador == null || alojamiento == null)
+				{
+					throw new Exception ("No se pudo crear La Reserva");
+				}
+
+				fecha_llegada = fecha_llegada + " 00:00:00.00";
+				fecha_Salida = fecha_Salida + " 00:00:00.00";
+				VOReserva Reserva = alohandes.adicionarReserva(Timestamp.valueOf(fecha_llegada), Timestamp.valueOf(fecha_Salida), precio,
+				id_cliente, id_alojamiento, id_operador, estado);
+				 
+				if (Reserva == null)
+				{
+					throw new Exception ("No se pudo crear La Reserva");
+				}
+				String resultado = "En adicionarCliente\n\n";
+				resultado += "Reserva Registrada exitosamente: " + Reserva;
+				resultado += "\n Operación terminada";
+				panelDatos.actualizarInterfaz(resultado);
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+	
+		} 
+		 catch (Exception e) 
+		{
+ //			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+ 
+	public void ReqCancelarReserva()
+	{
+		try 
+		{
+		
+		
+			long id_reserva = Long.parseLong(JOptionPane.showInputDialog (this, "id Cliente de la reserva?", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE));
+			
+
+			if ( id_reserva >= 0 )
+			{
+				VOReserva reserva = alohandes.darReservaPorId(id_reserva);
+
+				if (reserva == null) 
+				{
+					throw new Exception ("No Existe Reserva a Actualizar" + id_reserva);
+				}
+				long ReservasCanceladas = alohandes.ActualizarReserva("CANCELADA", id_reserva);
+
+				String resultado = "En CancelarReserva\n\n";
+				resultado += "Reserva Canceladas exitosamente: " + ReservasCanceladas;
+				resultado += "\n Operación terminada";
+				panelDatos.actualizarInterfaz(resultado);
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+	
+		} 
+		 catch (Exception e) 
+		{
+ //			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+
+
+
+	}
 
 
 
@@ -639,15 +784,13 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
 		String resultado = "\n\n ************************************\n\n";
 		resultado += " * Universidad	de	los	Andes	(Bogotá	- Colombia)\n";
 		resultado += " * Departamento	de	Ingeniería	de	Sistemas	y	Computación\n";
-		resultado += " * Licenciado	bajo	el	esquema	Academic Free License versión 2.1\n";
 		resultado += " * \n";		
 		resultado += " * Curso: isis2304 - Sistemas Transaccionales\n";
-		resultado += " * Proyecto: Parranderos Uniandes\n";
+		resultado += " * Proyecto: Alohandes Uniandes\n";
 		resultado += " * @version 1.0\n";
-		resultado += " * @author Germán Bravo\n";
+		resultado += " * @author Jeronimo Vargas Felipe Nuñez\n";
 		resultado += " * Julio de 2018\n";
 		resultado += " * \n";
-		resultado += " * Revisado por: Claudia Jiménez, Christian Ariza\n";
 		resultado += "\n ************************************\n\n";
 
 		panelDatos.actualizarInterfaz(resultado);
