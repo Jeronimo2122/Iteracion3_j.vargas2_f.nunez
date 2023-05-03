@@ -19,12 +19,12 @@ public class Reserva implements VOReserva
 	/**
 	 * Fecha_llegada del Reserva
 	 */
-	private Timestamp Fecha_llegada;
+	private String Fecha_llegada;
 
 	/**
 	 * Fecha_Salida del Reserva
 	 */
-	private Timestamp Fecha_Salida;
+	private String Fecha_Salida;
 	
 	/**
 	 * precio del Reserva
@@ -62,8 +62,8 @@ public class Reserva implements VOReserva
 	public Reserva() 
     {
     	this.Id = 0;
-		this.Fecha_llegada = new Timestamp(0);
-		this.Fecha_Salida = new Timestamp(0);
+		this.Fecha_llegada = "";
+		this.Fecha_Salida = "";
 		this.precio = 0;
 		this.Id_Cliente = 0;
 		this.Id_Alojamiento = 0;
@@ -73,7 +73,7 @@ public class Reserva implements VOReserva
 
 	/**
 	 */
-    public Reserva(long Id, Timestamp Fecha_llegada, Timestamp Fecha_Salida, float precio, long Id_Cliente, long Id_Alojamiento, long Id_Operador, String estado ) 
+    public Reserva(long Id, String Fecha_llegada, String Fecha_Salida, float precio, long Id_Cliente, long Id_Alojamiento, long Id_Operador, String estado ) 
     {
     	this.Id = Id;
 		this.Fecha_llegada = Fecha_llegada;
@@ -106,7 +106,7 @@ public class Reserva implements VOReserva
 	/**
 	 * @return el nombre del Cliente
 	 */
-	public Timestamp getFecha_llegada() 
+	public String getFecha_llegada() 
 	{
 		return Fecha_llegada;
 	}
@@ -114,20 +114,20 @@ public class Reserva implements VOReserva
 	/**
 	 * @param nombre El nuevo nombre del Cliente
 	 */
-	public void setFecha_llegada(Timestamp Fecha_llegada) 
+	public void setFecha_llegada(String Fecha_llegada) 
 	{
 		this.Fecha_llegada = Fecha_llegada;
 	}
 	
 	
 	
-	public Timestamp getFecha_Salida() 
+	public String getFecha_Salida() 
 	{
 		return Fecha_Salida;
 	}
 	
 
-	public void setFecha_Salida(Timestamp Fecha_Salida) 
+	public void setFecha_Salida(String Fecha_Salida) 
 	{
 		this.Fecha_Salida = Fecha_Salida;
 	}

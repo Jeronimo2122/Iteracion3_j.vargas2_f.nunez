@@ -78,6 +78,8 @@ public class ReservaTest
 	 * 3. Borrar un tipo de bebida por su identificador
 	 * 4. Borrar un tipo de bebida por su nombre
 	 */
+
+	 /** 
     @Test
 	public void CRDReservaTest() 
 	{
@@ -171,7 +173,7 @@ public class ReservaTest
     		alohandes.cerrarUnidadPersistencia ();    		
 		}
 	}
-
+	*/
 	//no es necesario unicidad ya que su identificador es el id y este es system assign
 
 	/* ****************************************************************

@@ -1,39 +1,222 @@
+01:26:50,012 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
+01:26:50,013 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
+01:26:50,030 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+01:26:58,517 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Eliminando Alojamiento con id: 142
+01:26:58,517 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Reserva
+01:29:52,000 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Reserva: 2 tuplas eliminadas
+01:29:52,000 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento_Operador
+01:29:52,035 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento_Operador: 1tuplas eliminadas
+01:29:52,035 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento por id: 142
+01:29:52,060 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento por Id: 1 tuplas eliminadas
+01:31:41,815 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
+01:31:41,815 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
+01:31:41,832 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+01:31:56,137 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Cliente: JERO
+01:31:56,806 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Cliente:JERO
+01:32:41,852 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
+01:32:41,914 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
+01:32:41,914 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Operador CITY U
+01:32:41,967 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Operador: CITY U
+01:32:41,967 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador [149, 150]
+01:32:41,998 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador: Alojamiento_Operador [Id_Aloja=149, Id_Operador=150] tuplas insertadas
+01:33:35,757 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Cliente por ID
+01:33:35,837 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Cliente por ID: Cliente [Identificacion=148, nombre=JERO, vinculo=ESTUDIANTE] existentes
+01:33:35,837 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Operadores
+01:33:35,864 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Operadores: Operador [Id=150, nombre=CITY U, ganancias=1234.0] bebidas existentes
+01:33:35,864 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Reserva [148, 148, 1.0]
+01:33:35,976 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Reserva: Reserva [Id=151, Fecha_llegada=02/02/2022, Fecha_Salida=02/02/2023, precio=1.0, Id_Cliente=149, Id_Operador=150, estado=ACTIVA] tuplas insertadas
+01:34:06,284 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Actualizando Reserva
+01:34:06,327 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Actualizando Reserva: 0 tuplas actualizadas
+01:34:26,207 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Actualizando Reserva
+01:34:26,321 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Actualizando Reserva: 1 tuplas actualizadas
+01:35:58,919 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Operadores
+01:35:58,946 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Operadores: Operador [Id=150, nombre=CITY U, ganancias=1234.0] bebidas existentes
+01:35:58,946 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
+01:35:58,998 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
+01:35:58,998 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador [152, 150]
+01:35:59,023 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador: Alojamiento_Operador [Id_Aloja=152, Id_Operador=150] tuplas insertadas
+01:38:01,102 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Eliminando Alojamiento con id: 152
+01:38:01,102 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Reserva
+01:38:01,127 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Reserva: 0 tuplas eliminadas
+01:38:01,127 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento_Operador
+01:38:01,155 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento_Operador: 1tuplas eliminadas
+01:38:01,155 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento por id: 152
+01:38:01,180 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento por Id: 1 tuplas eliminadas
+01:39:42,728 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Eliminando Alojamiento con id: 149
+01:39:42,728 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Reserva
+01:39:42,846 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Reserva: 1 tuplas eliminadas
+01:39:42,846 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento_Operador
+01:39:42,871 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento_Operador: 1tuplas eliminadas
+01:39:42,871 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento por id: 149
+01:39:42,972 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento por Id: 1 tuplas eliminadas
+01:44:07,684 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Cliente: FELIPE
+01:44:07,734 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Cliente:FELIPE
+01:45:12,756 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Operadores
+01:45:12,777 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Operadores: Operador [Id=150, nombre=CITY U, ganancias=1234.0] bebidas existentes
+01:45:12,777 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
+01:45:12,825 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
+01:45:12,825 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador [154, 150]
+01:45:12,846 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador: Alojamiento_Operador [Id_Aloja=154, Id_Operador=150] tuplas insertadas
+01:47:04,321 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Cliente por ID
+01:48:43,552 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Cliente por ID
+01:48:43,604 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Cliente por ID: Cliente [Identificacion=153, nombre=FELIPE, vinculo=PROFESOR] existentes
+01:48:43,604 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Operadores
+01:48:43,623 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Operadores: Operador [Id=150, nombre=CITY U, ganancias=1234.0] bebidas existentes
+01:48:43,623 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Reserva [153, 153, 1.0]
+01:48:43,703 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Reserva: Reserva [Id=155, Fecha_llegada=02/02/2021, Fecha_Salida=02/02/2022, precio=1.0, Id_Cliente=154, Id_Operador=150, estado=ACTIVA] tuplas insertadas
+01:48:59,420 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Actualizando Reserva
+01:48:59,440 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Actualizando Reserva: 1 tuplas actualizadas
+01:49:27,113 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Eliminando Alojamiento con id: 154
+01:49:27,113 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Reserva
+01:49:27,131 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Reserva: 1 tuplas eliminadas
+01:49:27,131 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento_Operador
+01:49:27,379 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento_Operador: 1tuplas eliminadas
+01:49:27,379 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento por id: 154
+01:49:27,397 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento por Id: 1 tuplas eliminadas
+12:43:34,695 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
+12:43:34,696 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
+12:43:34,731 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+12:43:48,451 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Cliente: CARLOS 
+12:43:49,412 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Cliente:CARLOS 
+12:44:15,550 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
+12:44:15,804 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
+12:44:15,804 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Operador LIVING
+12:44:16,088 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Operador: LIVING
+12:44:16,088 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador [162, 163]
+12:44:16,225 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador: Alojamiento_Operador [Id_Aloja=162, Id_Operador=163] tuplas insertadas
+12:45:09,831 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Cliente por ID
+12:45:09,925 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Cliente por ID: Cliente [Identificacion=161, nombre=CARLOS , vinculo=INVITADO] existentes
+12:45:09,925 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Operadores
+12:45:10,004 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Operadores: Operador [Id=163, nombre=LIVING, ganancias=50000.0] bebidas existentes
+12:45:10,004 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Reserva [161, 161, 10000.0]
+12:45:10,114 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Reserva: Reserva [Id=164, Fecha_llegada=02/02/2023, Fecha_Salida=02/02/2024, precio=10000.0, Id_Cliente=162, Id_Operador=163, estado=ACTIVA] tuplas insertadas
+12:45:17,719 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Actualizando Reserva
+12:45:17,780 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Actualizando Reserva: 1 tuplas actualizadas
+12:45:53,415 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Operadores
+12:45:53,498 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Operadores: Operador [Id=163, nombre=LIVING, ganancias=50000.0] bebidas existentes
+12:45:53,498 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
+12:45:53,624 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
+12:45:53,624 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador [165, 163]
+12:45:53,703 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador: Alojamiento_Operador [Id_Aloja=165, Id_Operador=163] tuplas insertadas
+12:46:28,749 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Eliminando Alojamiento con id: 165
+12:46:28,749 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Reserva
+12:46:29,090 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Reserva: 0 tuplas eliminadas
+12:46:29,090 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento_Operador
+12:46:29,132 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento_Operador: 1tuplas eliminadas
+12:46:29,132 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento por id: 165
+12:50:59,923 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
+12:50:59,923 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
+12:50:59,953 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+12:51:07,136 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Eliminando Alojamiento con id: 165
+12:51:07,136 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Reserva
+12:55:16,106 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
+12:55:16,114 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
+12:55:16,146 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+12:55:43,005 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
+12:55:43,320 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
+12:55:43,320 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Operador CITY U 
+12:55:44,028 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Operador: CITY U 
+12:55:44,028 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador [166, 167]
+12:55:44,154 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador: Alojamiento_Operador [Id_Aloja=166, Id_Operador=167] tuplas insertadas
+12:55:58,316 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Eliminando Alojamiento con id: 166
+12:55:58,316 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Reserva
+12:55:58,663 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Reserva: 0 tuplas eliminadas
+12:55:58,663 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento_Operador
+12:55:59,153 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento_Operador: 1tuplas eliminadas
+12:55:59,153 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento por id: 166
+12:55:59,419 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento por Id: 1 tuplas eliminadas
+12:56:50,298 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
+12:56:50,550 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
+12:56:50,550 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Operador LINVING
+12:56:50,833 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Operador: LINVING
+12:56:50,833 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador [168, 169]
+12:56:50,911 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador: Alojamiento_Operador [Id_Aloja=168, Id_Operador=169] tuplas insertadas
+12:57:22,423 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Eliminando Alojamiento con id: 168
+12:57:22,423 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Reserva
+12:57:22,509 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Reserva: 0 tuplas eliminadas
+12:57:22,509 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento_Operador
+12:57:22,561 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento_Operador: 1tuplas eliminadas
+12:57:22,561 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento por id: 168
+13:36:28,749 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
+13:36:28,749 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
+13:36:28,781 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+13:37:18,953 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
+13:37:19,346 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
+13:37:19,346 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Operador CITY U
+13:37:20,444 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Operador: CITY U
+13:37:20,444 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador [181, 182]
+13:37:20,475 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador: Alojamiento_Operador [Id_Aloja=181, Id_Operador=182] tuplas insertadas
+13:38:49,531 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Operadores
+13:38:49,748 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Operadores: Operador [Id=182, nombre=CITY U, ganancias=50000.0] bebidas existentes
+13:38:49,748 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
+13:38:50,154 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
+13:38:50,155 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador [183, 182]
+13:38:50,252 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador: Alojamiento_Operador [Id_Aloja=183, Id_Operador=182] tuplas insertadas
+13:39:21,835 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Cliente: FELIPE
+13:39:22,175 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Cliente:FELIPE
+13:43:17,271 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Cliente por ID
+13:44:58,910 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Cliente por ID
+13:44:59,119 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Cliente por ID: Cliente [Identificacion=184, nombre=FELIPE, vinculo=ESTUDIANTE] existentes
+13:44:59,119 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Operadores
+13:44:59,344 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Operadores: Operador [Id=182, nombre=CITY U, ganancias=50000.0] bebidas existentes
+13:44:59,345 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Reserva [184, 184, 10000.0]
+13:44:59,694 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Reserva: Reserva [Id=185, Fecha_llegada=02/02/2022, Fecha_Salida=02/02/2023, precio=10000.0, Id_Cliente=181, Id_Operador=182, estado=ACTIVA] tuplas insertadas
+13:45:39,219 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Actualizando Reserva
+13:45:39,264 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Actualizando Reserva: 1 tuplas actualizadas
+13:46:05,018 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Eliminando Alojamiento con id: 181
+13:46:05,018 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Reserva
+13:46:05,080 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Reserva: 1 tuplas eliminadas
+13:46:05,080 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento_Operador
+13:46:05,122 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento_Operador: 1tuplas eliminadas
+13:46:05,122 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento por id: 181
+13:47:11,436 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
+13:47:11,436 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
+13:47:11,475 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+13:47:32,902 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
+13:47:33,329 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
+13:47:33,329 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Operador CITY U
+13:47:33,670 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Operador: CITY U
+13:47:33,670 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador [186, 187]
+13:47:33,717 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador: Alojamiento_Operador [Id_Aloja=186, Id_Operador=187] tuplas insertadas
+13:48:01,659 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Eliminando Alojamiento con id: 181
+13:48:01,661 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Reserva
+13:48:01,936 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Reserva: 0 tuplas eliminadas
+13:48:01,936 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento_Operador
+13:48:01,959 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento_Operador: 0tuplas eliminadas
+13:48:01,959 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento por id: 181
+13:48:02,007 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento por Id: 0 tuplas eliminadas
+13:48:12,152 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Eliminando Alojamiento con id: 187
+13:48:12,153 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Reserva
+13:48:12,181 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Reserva: 0 tuplas eliminadas
+13:48:12,181 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento_Operador
+13:48:12,429 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento_Operador: 0tuplas eliminadas
+13:48:12,429 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento por id: 187
+13:48:12,461 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento por Id: 0 tuplas eliminadas
+13:48:20,959 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Eliminando Alojamiento con id: 186
+13:48:20,959 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Reserva
+13:48:21,061 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Reserva: 0 tuplas eliminadas
+13:48:21,061 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento_Operador
+13:48:21,084 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento_Operador: 1tuplas eliminadas
+13:48:21,084 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento por id: 186
+13:48:21,112 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento por Id: 1 tuplas eliminadas
+16:29:02,974 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
+16:29:02,974 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
+16:29:03,006 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+16:29:21,593 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Cliente: JERO
+16:29:24,840 (AWT-EventQueue-0) ERROR [uniandes.isis2304.parranderos.persistencia.PersistenciaAlohandes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO CLIENTE(identificacion, nombre, vinculo) values (?, ?, ?)".
+ORA-00942: la tabla o vista no existe
 
-19:56:46,558 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
-19:56:46,558 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
-19:56:46,584 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
-19:57:56,178 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
-19:57:56,290 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
-19:57:56,290 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Operador CITY U
-19:57:56,455 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Operador: CITY U
-19:57:56,456 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador [101, 102]
-19:57:56,484 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador: Alojamiento_Operador [Id_Aloja=101, Id_Operador=102] tuplas insertadas
-19:59:00,872 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Operadores
-19:59:00,991 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Operadores: Operador [Id=102, nombre=CITY U, ganancias=8000.0] bebidas existentes
-19:59:00,991 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
-19:59:01,247 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
-19:59:01,247 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador [103, 102]
-19:59:01,277 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador: Alojamiento_Operador [Id_Aloja=103, Id_Operador=102] tuplas insertadas
-20:27:47,463 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
-20:27:47,464 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
-20:27:47,481 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
-21:45:54,606 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
-21:45:54,606 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
-21:45:54,628 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
-21:46:37,768 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
-21:46:37,768 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
-21:46:37,785 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
-21:46:55,950 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Cliente: jero
-21:46:59,436 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Cliente:jero
-21:47:28,691 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
-21:47:29,832 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento: VIVIENDA_U
-21:47:29,832 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Operador CITY u
-21:47:30,155 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Operador: CITY u
-21:47:30,156 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador [122, 123]
-21:47:32,071 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Alojamiento_Operador: Alojamiento_Operador [Id_Aloja=122, Id_Operador=123] tuplas insertadas
-21:49:26,055 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Cliente por ID
-21:49:26,828 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Cliente por ID: Cliente [Identificacion=121, nombre=jero, vinculo=ESTUDIANTE] existentes
-21:49:26,829 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Operadores
-21:49:26,990 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Operadores: Operador [Id=123, nombre=CITY u, ganancias=8000.0] bebidas existentes
-21:49:26,990 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Dar información de un Alojamiento por id: 123
-21:49:27,389 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - 
+16:29:25,092 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Cliente:JERO
+16:36:56,131 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
+16:36:56,131 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
+16:36:56,163 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+16:37:19,120 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
+16:37:19,120 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
+16:37:19,152 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+16:37:32,657 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Cliente: JERONIMO
+16:37:36,036 (AWT-EventQueue-0) ERROR [uniandes.isis2304.parranderos.persistencia.PersistenciaAlohandes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO CLIENTE(identificacion, nombre, vinculo) values (?, ?, ?)".
+ORA-00942: la tabla o vista no existe
+
+16:37:36,327 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Cliente:JERONIMO
+16:38:50,991 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Cliente: JERO
+16:38:52,317 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Cliente:JERO

@@ -251,6 +251,8 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
      * Pre: La base de datos está vacía
      * Post: La base de datos está vacía
      */
+
+	/**
     public void demoReserva( )
     {
     	try 
@@ -307,6 +309,7 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
 		}
     }
 
+	*/
 	/* ****************************************************************
 	 * 			REGISTRA de Cliente
 	 *****************************************************************/
@@ -502,6 +505,9 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
 			
 			if (id_aloja != 0)
     		{
+				log.info("Eliminando Alojamiento con id: " + id_aloja);
+				long eliminadorreservas = alohandes.eliminarReservaPorIdAloja(id_aloja);
+				long eliminadosaloja_operador = alohandes.eliminarAlojamiento_OperadorID_aloja(id_aloja);
         		long eliminadosaloja = alohandes.eliminarAlojamientoPorId(id_aloja);
 				
         		if (eliminadosaloja == 0)
@@ -510,7 +516,7 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
         		}
 
         		String resultado = "En EliminarAlojamiento\n\n";
-        		resultado += "Numero de alojamientos Eliminados " + eliminadosaloja;
+        		resultado += "Numero de alojamientos Eliminados " + eliminadosaloja+" AL_OP:"+eliminadosaloja_operador+" RESERVA: "+eliminadorreservas;
     			resultado += "\n Operación terminada";
     			panelDatos.actualizarInterfaz(resultado);
     		}
@@ -547,29 +553,28 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
 		{
 			// Ejecución de la demo y recolección de los resultados
 			// ATENCIÓN: En una aplicación real, los datos JAMÁS están en el código
-			String fecha_llegada = JOptionPane.showInputDialog (this, "Fecha llegada de la reserva?", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE);
-			String fecha_Salida = JOptionPane.showInputDialog (this, "Fecha Salida de la reserva?", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE);
+			String fecha_llegada = JOptionPane.showInputDialog (this, "Fecha llegada de la reserva?FT[DD/MM/YYYY]", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE);
+			String fecha_Salida = JOptionPane.showInputDialog (this, "Fecha Salida de la reserva?FT[DD/MM/YYYY]", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE);
 			float precio = Float.parseFloat(JOptionPane.showInputDialog (this, "Precio de la Reserva?", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE));
 			long id_cliente = Long.parseLong(JOptionPane.showInputDialog (this, "id Cliente de la reserva?", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE));
 			long id_alojamiento = Long.parseLong(JOptionPane.showInputDialog (this, "id Alojamiento de la reserva?", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE));
 			long id_operador = Long.parseLong(JOptionPane.showInputDialog (this, "id Operador de la reserva?", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE));
 			String estado = JOptionPane.showInputDialog (this, "Esatdo de la Reserva?('ACTIVA', 'CANCELADA')", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE);
 
+			
 
 			if (fecha_llegada != null && fecha_Salida != null && precio >= 0 && id_cliente !=0 && id_alojamiento !=0 && id_operador !=0 
 			&& estado != null)
 			{
 				VOCliente cliente = alohandes.darClientePorID(id_cliente);
 				VOOperador operador =alohandes.darOperadorPorId(id_operador);
-				VOAlojamiento alojamiento =alohandes.darAlojamientoPorId(id_operador);
-				if (cliente == null || operador == null || alojamiento == null)
+				//VOAlojamiento alojamiento =alohandes.darAlojamientoPorId(id_alojamiento); || alojamiento == null
+				if (cliente == null || operador == null )
 				{
 					throw new Exception ("No se pudo crear La Reserva");
 				}
 
-				fecha_llegada = fecha_llegada + " 00:00:00.00";
-				fecha_Salida = fecha_Salida + " 00:00:00.00";
-				VOReserva Reserva = alohandes.adicionarReserva(Timestamp.valueOf(fecha_llegada), Timestamp.valueOf(fecha_Salida), precio,
+				VOReserva Reserva = alohandes.adicionarReserva(fecha_llegada, fecha_Salida, precio,
 				id_cliente, id_alojamiento, id_operador, estado);
 				 
 				if (Reserva == null)
@@ -601,17 +606,12 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
 		{
 		
 		
-			long id_reserva = Long.parseLong(JOptionPane.showInputDialog (this, "id Cliente de la reserva?", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE));
+			long id_reserva = Long.parseLong(JOptionPane.showInputDialog (this, "id de la reserva?", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE));
 			
 
 			if ( id_reserva >= 0 )
 			{
-				VOReserva reserva = alohandes.darReservaPorId(id_reserva);
-
-				if (reserva == null) 
-				{
-					throw new Exception ("No Existe Reserva a Actualizar" + id_reserva);
-				}
+				
 				long ReservasCanceladas = alohandes.ActualizarReserva("CANCELADA", id_reserva);
 
 				String resultado = "En CancelarReserva\n\n";

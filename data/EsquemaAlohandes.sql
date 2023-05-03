@@ -7,6 +7,7 @@
 
 -- Creaci�n del secuenciador
 create sequence Alohandes_sequence;
+
 --1--------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE CLIENTE(
     IDENTIFICACION NUMBER NOT NULL, 
