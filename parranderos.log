@@ -199,3 +199,24 @@
 13:48:21,084 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento_Operador: 1tuplas eliminadas
 13:48:21,084 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento por id: 186
 13:48:21,112 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Eliminando Alojamiento por Id: 1 tuplas eliminadas
+16:29:02,974 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
+16:29:02,974 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
+16:29:03,006 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+16:29:21,593 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Cliente: JERO
+16:29:24,840 (AWT-EventQueue-0) ERROR [uniandes.isis2304.parranderos.persistencia.PersistenciaAlohandes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO CLIENTE(identificacion, nombre, vinculo) values (?, ?, ?)".
+ORA-00942: la tabla o vista no existe
+
+16:29:25,092 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Cliente:JERO
+16:36:56,131 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
+16:36:56,131 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
+16:36:56,163 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+16:37:19,120 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
+16:37:19,120 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
+16:37:19,152 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+16:37:32,657 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Cliente: JERONIMO
+16:37:36,036 (AWT-EventQueue-0) ERROR [uniandes.isis2304.parranderos.persistencia.PersistenciaAlohandes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO CLIENTE(identificacion, nombre, vinculo) values (?, ?, ?)".
+ORA-00942: la tabla o vista no existe
+
+16:37:36,327 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Cliente:JERONIMO
+16:38:50,991 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Cliente: JERO
+16:38:52,317 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Adicionando Cliente:JERO
