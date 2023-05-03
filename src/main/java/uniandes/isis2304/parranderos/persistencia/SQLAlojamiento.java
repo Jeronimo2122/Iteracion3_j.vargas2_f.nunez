@@ -78,7 +78,7 @@ class SQLAlojamiento
 
 	public Alojamiento darAlojamientoPorId (PersistenceManager pm, long id) 
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAlojamiento() + " WHERE id = ?");
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAlojamiento() + " WHERE ID = ?");
 		q.setResultClass(Alojamiento.class);
 		q.setParameters(id);
 		return (Alojamiento) q.executeUnique();

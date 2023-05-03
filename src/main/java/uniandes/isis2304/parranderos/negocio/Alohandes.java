@@ -238,7 +238,7 @@ public class Alohandes{
 	 * Adiciona entradas al log de la aplicación
 	 * @return El número de tuplas eliminadas
 	 */
-	public long eliminarBebedorPorNombre (String tipo_aloja)
+	public long eliminarAlojamientoPorTipoAloja (String tipo_aloja)
 	{
         log.info ("Eliminando Alojamineto por tipo: " + tipo_aloja);
         long resp = pp.eliminarAlojamientoPorTipoAloja(tipo_aloja);
@@ -266,9 +266,9 @@ public class Alohandes{
 	 */
 	public Alojamiento darAlojamientoPorId (long id_Alojamiento)
 	{
-        log.info ("Dar información de un Alojamiento por id: " + id_Alojamiento);
+		log.info ("Buscando bebedor por Id: " + id_Alojamiento) ;
         Alojamiento alojamiento = pp.darAlojamientoPorId(id_Alojamiento);
-        log.info ("Buscando bebedor por Id: " + id_Alojamiento != null ? alojamiento : "NO EXISTE");
+		log.info ("Dar información de un Alojamiento por id: " + alojamiento);
         return alojamiento;
 	}
 
@@ -427,7 +427,7 @@ public class Alohandes{
 	 * Adiciona entradas al log de la aplicación
 	 * @return Un objeto Gustan con los valores dados
 	 */
-	public Reserva adicionarReserva(Timestamp fecha_llegada, Timestamp fecha_salida, float precio, long Id_Cliente, long Id_Alojamiento, long Id_Operador, String estado)
+	public Reserva adicionarReserva(String fecha_llegada, String fecha_salida, float precio, long Id_Cliente, long Id_Alojamiento, long Id_Operador, String estado)
 	{
         log.info ("Adicionando Reserva [" + Id_Cliente + ", " + Id_Cliente + ", "+precio+ "]");
         Reserva resp = pp.adicionarReserva(fecha_llegada, fecha_salida, precio, Id_Cliente, Id_Alojamiento, Id_Operador, estado);
@@ -444,6 +444,13 @@ public class Alohandes{
 	{
         log.info ("Eliminando Reserva");
         long resp = pp.eliminarReservaPorId(id_Reserva);
+        log.info ("Eliminando Reserva: " + resp + " tuplas eliminadas");
+        return resp;
+	}
+	public long eliminarReservaPorIdAloja(long id_aloja)
+	{
+        log.info ("Eliminando Reserva");
+        long resp = pp.eliminarReservaPoridAloja(id_aloja);
         log.info ("Eliminando Reserva: " + resp + " tuplas eliminadas");
         return resp;
 	}
@@ -583,7 +590,13 @@ public class Alohandes{
         log.info ("Eliminando Alojamiento_Operador: " + resp + "tuplas eliminadas");
         return resp;
 	}
-	
+	public long eliminarAlojamiento_OperadorID_aloja (long id_Alojamiento)
+	{
+        log.info ("Eliminando Alojamiento_Operador");
+        long resp = pp.eliminarAlojamiento_OperadorPoridAlojamiento(id_Alojamiento);
+        log.info ("Eliminando Alojamiento_Operador: " + resp + "tuplas eliminadas");
+        return resp;
+	}
 	/**
 	 * Encuentra todos los Alojamiento_Servicio en Aforoandes
 	 * Adiciona entradas al log de la aplicación

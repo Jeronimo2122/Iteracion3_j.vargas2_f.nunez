@@ -41,10 +41,10 @@ class SQLReserva
 	{
 		this.pp = pp;
 	}
-	public long adicionarReserva (PersistenceManager pm, long Id, Timestamp fecha_llegada, Timestamp fecha_salida, float precio, long Id_Cliente, long Id_Alojamiento, long Id_Operador, String estado) 
+	public long adicionarReserva (PersistenceManager pm, long Id, String fecha_llegada, String fecha_salida, float precio, long Id_Cliente, long Id_Alojamiento, long Id_Operador, String estado) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaReserva() + 
-		"(Id, fecha_llegada, fecha_salida, precio, Id_Cliente, Id_Alojamiento, Id_Operador, estado) values (?, ?, ?, ?, ?, ?, ?, ?)");
+		"(Id, fecha_llegada, fecha_salida, precio, Id_Cliente, Id_Alojamiento, Id_Operador, estado) values (?, TO_DATE(?, 'DD/MM/YYYY'), TO_DATE(?, 'DD/MM/YYYY'), ?, ?, ?, ?, ?)");
         q.setParameters(Id, fecha_llegada, fecha_salida, precio, Id_Cliente, Id_Alojamiento, Id_Operador, estado);
         return (long) q.executeUnique();
 	}
@@ -58,7 +58,7 @@ class SQLReserva
 
 	public long eliminarReservaPorAlojamiento (PersistenceManager pm, long id_Alojamiento)
 	{
-        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaReserva () + " WHERE id_Alojamiento = ?");
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaReserva () + " WHERE ID_ALOJAMIENTO = ?");
         q.setParameters(id_Alojamiento);
         return (long) q.executeUnique();
 	}
@@ -81,7 +81,7 @@ class SQLReserva
 
 	public long ActulizarReserva (PersistenceManager pm, String estado, Long id_reserva)
 	{
-		Query q = pm.newQuery(SQL, "UPDATE" + pp.darTablaReserva () + "SET estado = ? WHERE ID = ?");
+		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaReserva () + " SET estado = ? WHERE ID = ?");
 		q.setParameters(estado, id_reserva);
 		return (long) q.executeUnique();
 	}

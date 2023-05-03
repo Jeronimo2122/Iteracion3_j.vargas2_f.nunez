@@ -21,9 +21,6 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import java.io.FileReader;
-import java.security.Timestamp;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
 import org.apache.log4j.Logger;
@@ -31,16 +28,15 @@ import org.junit.Test;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
-import uniandes.isis2304.parranderos.negocio.Alohandes;
-import uniandes.isis2304.parranderos.negocio.VOReserva;
-
+import uniandes.isis2304.parranderos.negocio.Parranderos;
+import uniandes.isis2304.parranderos.negocio.VOTipoBebida;
 
 /**
  * Clase con los métdos de prueba de funcionalidad sobre TIPOBEBIDA
  * @author Germán Bravo
  *
  */
-public class ReservaTest
+public class TipoBebidaTest
 {
 	/* ****************************************************************
 	 * 			Constantes
@@ -48,7 +44,7 @@ public class ReservaTest
 	/**
 	 * Logger para escribir la traza de la ejecución
 	 */
-	private static Logger log = Logger.getLogger(ReservaTest.class.getName());
+	private static Logger log = Logger.getLogger(TipoBebidaTest.class.getName());
 	
 	/**
 	 * Ruta al archivo de configuración de los nombres de tablas de la base de datos: La unidad de persistencia existe y el esquema de la BD también
@@ -66,10 +62,10 @@ public class ReservaTest
 	/**
 	 * La clase que se quiere probar
 	 */
-    private Alohandes alohandes;
+    private Parranderos parranderos;
 	
     /* ****************************************************************
-	 * 			Métodos de prueba para la tabla Reserva - Creación y borrado
+	 * 			Métodos de prueba para la tabla TipoBebida - Creación y borrado
 	 *****************************************************************/
 	/**
 	 * Método que prueba las operaciones sobre la tabla TipoBebida
@@ -78,16 +74,14 @@ public class ReservaTest
 	 * 3. Borrar un tipo de bebida por su identificador
 	 * 4. Borrar un tipo de bebida por su nombre
 	 */
-
-	 /** 
     @Test
-	public void CRDReservaTest() 
+	public void CRDTipoBebidaTest() 
 	{
     	// Probar primero la conexión a la base de datos
 		try
 		{
 			log.info ("Probando las operaciones CRD sobre TipoBebida");
-			alohandes = new Alohandes (openConfig (CONFIG_TABLAS_A));
+			parranderos = new Parranderos (openConfig (CONFIG_TABLAS_A));
 		}
 		catch (Exception e)
 		{
@@ -105,76 +99,109 @@ public class ReservaTest
     	try
 		{
 			// Lectura de los tipos de bebida con la tabla vacía
-			List <VOReserva> lista = alohandes.darVOReservas();
-			assertEquals ("No debe haber reservas creadas!!", 0, lista.size ());
+			List <VOTipoBebida> lista = parranderos.darVOTiposBebida();
+			assertEquals ("No debe haber tipos de bebida creados!!", 0, lista.size ());
 
 			// Lectura de los tipos de bebida con un tipo de bebida adicionado
-			long idReserva1 = 1;
-			SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-			String fechaLlegada1Str = "2023-01-01 00:00:00";
-			Date parsedDate1 = (Date) dateFormat1.parse(fechaLlegada1Str);
-			java.sql.Timestamp fechaLlegada1 = new java.sql.Timestamp(parsedDate1.getTime());
-
-			SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-			String fechaFin1Str = "2023-01-05 00:00:00";
-			Date parsedDate2 = (Date) dateFormat2.parse(fechaFin1Str);
-			java.sql.Timestamp fechaFin1 = new java.sql.Timestamp(parsedDate2.getTime());
-
-			VOReserva Reserva1 = alohandes.adicionarReserva( fechaLlegada1 , fechaFin1, 100000, 1, 1, 1, "Activa");
-			lista = alohandes.darVOReservas();
-			assertEquals ("Debe haber una reserva creado !!", 1, lista.size ());
-			assertEquals ("El objeto creado y el traido de la BD deben ser iguales !!", Reserva1, lista.get (0));
+			String nombreTipoBebida1 = "Vino tinto";
+			VOTipoBebida tipoBebida1 = parranderos.adicionarTipoBebida (nombreTipoBebida1);
+			lista = parranderos.darVOTiposBebida();
+			assertEquals ("Debe haber un tipo de bebida creado !!", 1, lista.size ());
+			assertEquals ("El objeto creado y el traido de la BD deben ser iguales !!", tipoBebida1, lista.get (0));
 
 			// Lectura de los tipos de bebida con dos tipos de bebida adicionados
-			long idReserva2 = 2;
-			SimpleDateFormat dateFormat3 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-			String fechaLlegada2Str = "2023-02-01 00:00:00";
-			Date parsedDate3 = (Date) dateFormat3.parse(fechaLlegada2Str);
-			java.sql.Timestamp fechaLlegada2 = new java.sql.Timestamp(parsedDate3.getTime());
-
-			SimpleDateFormat dateFormat4 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-			String fechaFin2Str = "2023-01-05 00:00:00";
-			Date parsedDate4 = (Date) dateFormat4.parse(fechaFin2Str);
-			java.sql.Timestamp fechaFin2 = new java.sql.Timestamp(parsedDate4.getTime());
-
-
-			VOReserva Reserva2 = alohandes.adicionarReserva (fechaLlegada2, fechaFin2, 200000, 2, 2, 2, "Cancelada");
-			lista = alohandes.darVOReservas();
+			String nombreTipoBebida2 = "Cerveza";
+			VOTipoBebida tipoBebida2 = parranderos.adicionarTipoBebida (nombreTipoBebida2);
+			lista = parranderos.darVOTiposBebida();
 			assertEquals ("Debe haber dos tipos de bebida creados !!", 2, lista.size ());
-			assertTrue ("El primer tipo de bebida adicionado debe estar en la tabla", Reserva1.equals (lista.get (0)) || Reserva1.equals (lista.get (1)));
-			assertTrue ("El segundo tipo de bebida adicionado debe estar en la tabla", Reserva2.equals (lista.get (0)) || Reserva2.equals (lista.get (1)));
+			assertTrue ("El primer tipo de bebida adicionado debe estar en la tabla", tipoBebida1.equals (lista.get (0)) || tipoBebida1.equals (lista.get (1)));
+			assertTrue ("El segundo tipo de bebida adicionado debe estar en la tabla", tipoBebida2.equals (lista.get (0)) || tipoBebida2.equals (lista.get (1)));
 
 			// Prueba de eliminación de un tipo de bebida, dado su identificador
-			long tbEliminados = alohandes.eliminarReservaPorId (Reserva1.getId ());
-			assertEquals ("Debe haberse eliminado una reserva !!", 1, tbEliminados);
-			lista = alohandes.darVOReservas();
-			assertEquals ("Debe haber una sola reserva !!", 1, lista.size ());
-			assertFalse ("La primer reserva NO debe estar en la tabla", Reserva1.equals (lista.get (0)));
-			assertTrue ("La segunda reserva adicionada debe estar en la tabla", Reserva2.equals (lista.get (0)));
+			long tbEliminados = parranderos.eliminarTipoBebidaPorId (tipoBebida1.getId ());
+			assertEquals ("Debe haberse eliminado un tipo de bebida !!", 1, tbEliminados);
+			lista = parranderos.darVOTiposBebida();
+			assertEquals ("Debe haber un solo tipo de bebida !!", 1, lista.size ());
+			assertFalse ("El primer tipo de bebida adicionado NO debe estar en la tabla", tipoBebida1.equals (lista.get (0)));
+			assertTrue ("El segundo tipo de bebida adicionado debe estar en la tabla", tipoBebida2.equals (lista.get (0)));
 			
 			// Prueba de eliminación de un tipo de bebida, dado su identificador
-			tbEliminados = alohandes.eliminarReservaPorId (Reserva2.getId());
-			assertEquals ("Debe haberse eliminado una reserva !!", 1, tbEliminados);
-			lista = alohandes.darVOReservas();
+			tbEliminados = parranderos.eliminarTipoBebidaPorNombre (nombreTipoBebida2);
+			assertEquals ("Debe haberse eliminado un tipo de bebida !!", 1, tbEliminados);
+			lista = parranderos.darVOTiposBebida();
 			assertEquals ("La tabla debió quedar vacía !!", 0, lista.size ());
 		}
 		catch (Exception e)
 		{
 //			e.printStackTrace();
-			String msg = "Error en la ejecución de las pruebas de operaciones sobre la tabla Reserva.\n";
+			String msg = "Error en la ejecución de las pruebas de operaciones sobre la tabla TipoBebida.\n";
 			msg += "Revise el log de parranderos y el de datanucleus para conocer el detalle de la excepción";
 			System.out.println (msg);
 
-    		fail ("Error en las pruebas sobre la tabla Reserva");
+    		fail ("Error en las pruebas sobre la tabla TipoBebida");
 		}
 		finally
 		{
-			alohandes.limpiarAlohandes() ;
-    		alohandes.cerrarUnidadPersistencia ();    		
+			parranderos.limpiarParranderos ();
+    		parranderos.cerrarUnidadPersistencia ();    		
 		}
 	}
-	*/
-	//no es necesario unicidad ya que su identificador es el id y este es system assign
+
+    /**
+     * Método de prueba de la restricción de unicidad sobre el nombre de TipoBebida
+     */
+	@Test
+	public void unicidadTipoBebidaTest() 
+	{
+    	// Probar primero la conexión a la base de datos
+		try
+		{
+			log.info ("Probando la restricción de UNICIDAD del nombre del tipo de bebida");
+			parranderos = new Parranderos (openConfig (CONFIG_TABLAS_A));
+		}
+		catch (Exception e)
+		{
+//			e.printStackTrace();
+			log.info ("Prueba de UNICIDAD de Tipobebida incompleta. No se pudo conectar a la base de datos !!. La excepción generada es: " + e.getClass ().getName ());
+			log.info ("La causa es: " + e.getCause ().toString ());
+
+			String msg = "Prueba de UNICIDAD de Tipobebida incompleta. No se pudo conectar a la base de datos !!.\n";
+			msg += "Revise el log de parranderos y el de datanucleus para conocer el detalle de la excepción";
+			System.out.println (msg);
+			fail (msg);
+		}
+		
+		// Ahora si se pueden probar las operaciones
+		try
+		{
+			// Lectura de los tipos de bebida con la tabla vacía
+			List <VOTipoBebida> lista = parranderos.darVOTiposBebida();
+			assertEquals ("No debe haber tipos de bebida creados!!", 0, lista.size ());
+
+			// Lectura de los tipos de bebida con un tipo de bebida adicionado
+			String nombreTipoBebida1 = "Vino tinto";
+			VOTipoBebida tipoBebida1 = parranderos.adicionarTipoBebida (nombreTipoBebida1);
+			lista = parranderos.darVOTiposBebida();
+			assertEquals ("Debe haber un tipo de bebida creado !!", 1, lista.size ());
+
+			VOTipoBebida tipoBebida2 = parranderos.adicionarTipoBebida (nombreTipoBebida1);
+			assertNull ("No puede adicionar dos tipos de bebida con el mismo nombre !!", tipoBebida2);
+		}
+		catch (Exception e)
+		{
+//			e.printStackTrace();
+			String msg = "Error en la ejecución de las pruebas de UNICIDAD sobre la tabla TipoBebida.\n";
+			msg += "Revise el log de parranderos y el de datanucleus para conocer el detalle de la excepción";
+			System.out.println (msg);
+
+    		fail ("Error en las pruebas de UNICIDAD sobre la tabla TipoBebida");
+		}    				
+		finally
+		{
+			parranderos.limpiarParranderos ();
+    		parranderos.cerrarUnidadPersistencia ();    		
+		}
+	}
 
 	/* ****************************************************************
 	 * 			Métodos de configuración

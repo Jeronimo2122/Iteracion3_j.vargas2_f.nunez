@@ -711,7 +711,7 @@ public class PersistenciaAlohandes{
 	 */
 	public Alojamiento darAlojamientoPorId (long idAloja) 
 	{
-		return (Alojamiento) sqlAlojamiento.darAlojamientoPorId(pmf.getPersistenceManager(), idAloja);
+		return  sqlAlojamiento.darAlojamientoPorId(pmf.getPersistenceManager(), idAloja);
 	}
 
 	/**
@@ -851,7 +851,7 @@ public class PersistenciaAlohandes{
 	/**
 	 * Método que inserta, de manera transaccional, una tupla en la tabla RESERVA
 	 */
-	public Reserva adicionarReserva(Timestamp fecha_llegada, Timestamp fecha_salida, float precio, long Id_Cliente, long Id_Alojamiento, long Id_Operador, String estado) 
+	public Reserva adicionarReserva(String fecha_llegada, String fecha_salida, float precio, long Id_Cliente, long Id_Alojamiento, long Id_Operador, String estado) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
