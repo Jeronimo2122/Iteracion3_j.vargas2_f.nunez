@@ -3,6 +3,9 @@ package uniandes.isis2304.parranderos.persistencia;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,7 +14,6 @@ import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Transaction;
-
 import org.apache.log4j.Logger;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -851,7 +853,7 @@ public class PersistenciaAlohandes{
 	/**
 	 * Método que inserta, de manera transaccional, una tupla en la tabla RESERVA
 	 */
-	public Reserva adicionarReserva(String fecha_llegada, String fecha_salida, float precio, long Id_Cliente, long Id_Alojamiento, long Id_Operador, String estado) 
+	public Reserva adicionarReserva(String fecha_llegada, String fecha_salida, float precio, long Id_Cliente, long Id_Alojamiento, String estado) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
@@ -859,11 +861,20 @@ public class PersistenciaAlohandes{
 		{
 			tx.begin();
 			long Id = nextval ();
-			long tuplasInsertadas = sqlReserva.adicionarReserva(pm, Id, fecha_llegada, fecha_salida, precio, Id_Cliente, Id_Alojamiento, Id_Operador, estado);
+			long tuplasInsertadas = sqlReserva.adicionarReserva(pm, Id, fecha_llegada, fecha_salida, precio, Id_Cliente, Id_Alojamiento, estado);
 			tx.commit();
 			log.trace ("Inserción de reserva: [" + Id + ", " + Id_Alojamiento + "]. " + tuplasInsertadas + " tuplas insertadas");
 
-			return new Reserva(Id, fecha_llegada, fecha_salida, precio, Id_Cliente, Id_Alojamiento, Id_Operador, estado);
+			SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+			Date Datefecha_llegada = formatoFecha.parse(fecha_llegada);
+			long tiempo1 = Datefecha_llegada.getTime();
+			Timestamp timestamp_llegada = new Timestamp(tiempo1);
+
+			Date Datefecha_salida = formatoFecha.parse(fecha_salida);
+			long tiempo2 = Datefecha_salida.getTime();
+			Timestamp timestamp_salida = new Timestamp(tiempo2);
+
+			return new Reserva(Id, timestamp_llegada, timestamp_salida, precio, Id_Cliente, Id_Alojamiento, estado);
 		}
 		catch (Exception e)
 		{
@@ -984,6 +995,10 @@ public class PersistenciaAlohandes{
 	public Reserva darReservaPorId (long idReserva)
 	{
 		return sqlReserva.darReservaPorId(pmf.getPersistenceManager(),idReserva);
+	}
+	public List<Reserva> darReservasPorIdCliente (long id_cliente)
+	{
+		return sqlReserva.darReservasPorIdCliente(pmf.getPersistenceManager(), id_cliente);
 	}
  
  
@@ -1584,7 +1599,7 @@ public class PersistenciaAlohandes{
 	}
 
 	/* ****************************************************************
-	 * 			Métodos para manejar la relación Edificio_Universitario
+	 *  Métodos para manejar la relación Edificio_Universitario
 	 *****************************************************************/
 
 	/**
@@ -1670,7 +1685,7 @@ public class PersistenciaAlohandes{
 		return sqlEdificio_Universitario.darEdificio_UniversitarioPorId(pmf.getPersistenceManager(), idEdificio_Universitario);
 	}
 
-		/* ****************************************************************
+	/* ****************************************************************
 	 * 			Métodos para manejar la relación Persona
 	 *****************************************************************/
 
@@ -1785,6 +1800,153 @@ public class PersistenciaAlohandes{
         }
 		
 	}
+
+	/* ****************************************************************
+	 *                    REQ FUNCIONAL 7
+	 *****************************************************************/
+
+	public long reservacolectiva (String servicios, String tipo_Aloja, int numAlojas, String fecha_llegada, 
+	String fecha_salida, float precio, long Id_Cliente, String estado) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+	        Transaction tx=pm.currentTransaction();
+	        try
+	        {
+	            tx.begin();
+	            long tuplasInsertadas = 0;
+				List<Alojamiento> listAloja = sqlAlojamiento.darAlojamientosDisponiblesPorTipo(pm,fecha_llegada, fecha_salida, servicios, tipo_Aloja);
+				log.info("Inserción de reserva: [" + listAloja.size() + ", " + numAlojas + "]");
+				if (listAloja.size() >= numAlojas)  
+					for (int i = 0; i < numAlojas; i++) {
+
+						Alojamiento alojamiento = listAloja.get(i);
+						long Id_Res = nextval ();
+						long Id_Alojamiento = alojamiento.getId();
+						tuplasInsertadas += sqlReserva.adicionarReserva(pm, Id_Res, fecha_llegada, fecha_salida, precio, Id_Cliente, Id_Alojamiento, estado);
+
+					}else
+					{
+						throw new Exception("No hay suficientes alojamientos disponibles");
+					}
+					log.trace ("Inserción de reserva: [" + Id_Cliente + ", " + tuplasInsertadas + "]");
+
+	            tx.commit();
+
+	            return tuplasInsertadas;
+	        }
+	        catch (Exception e)
+	        {
+//	        	e.printStackTrace();
+	        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+	        	return -1;
+	        }
+	        finally
+	        {
+	            if (tx.isActive())
+	            {
+	                tx.rollback();
+	            }
+	            pm.close();
+	        }
+	}
+
+	 /* ****************************************************************
+	 *                    REQ FUNCIONAL 8
+	 *****************************************************************/
+	public ArrayList CancelarReservaColectiva(Long id_Cliente) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+	        Transaction tx=pm.currentTransaction();
+	        try
+	        {
+	            tx.begin();
+				
+	            ArrayList rta = new ArrayList<>(); 
+			
+				List<Reserva> listarReservas = sqlReserva.darReservasPorIdCliente(pm,id_Cliente);
+			
+				Date fechaActual = new Date();
+
+				SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy"); // patrón de fecha
+				
+				Timestamp fecha_llegada = listarReservas.get(0).getFecha_llegada(); // fecha en formato String
+				log.info ("Dates"+listarReservas.get(0).getFecha_Salida());
+                // Convertir el objeto Timestamp a una cadena de texto con el formato especificado
+                String Stringfecha_llegada = formatoFecha.format(fecha_llegada);
+				Date Datefecha_llegada = formatoFecha.parse(Stringfecha_llegada); // convertir String a Date 
+				
+				Timestamp fecha_salida = listarReservas.get(0).getFecha_Salida();; // fecha en formato String
+				String Stringfecha_salida = formatoFecha.format(fecha_salida);
+				Date Datefecha_salida = formatoFecha.parse(Stringfecha_salida); // convertir String a Date 
+
+				log.info(fecha_llegada +" "+ fecha_salida);
+
+				Calendar calendar = Calendar.getInstance(); // obtener una instancia del calendario
+				calendar.setTime(Datefecha_llegada); // establecer la fecha actual
+				calendar.add(Calendar.DAY_OF_MONTH, -3); // restar tres días
+				Date fechaRestadatres = calendar.getTime(); // obtener la nueva fecha
+				
+				double costoCancelacion = 0;
+				if (fechaActual.compareTo(Datefecha_llegada) > 0 && fechaActual.compareTo(Datefecha_salida) < 0 ) {
+					// La fecha está dentro del rango de la reserva 
+					for (Reserva reserva : listarReservas) {
+						costoCancelacion += reserva.getPrecio();
+						this.ActualizarReserva("CANCELADA", reserva.getId());
+					}
+					costoCancelacion = costoCancelacion*0.5;
+				} 
+				else if(fechaActual.compareTo(fechaRestadatres) > 0 && fechaActual.compareTo(Datefecha_llegada) < 0 ){
+					// La fecha está dentro de los tres dias antes de la reserva hasta la fecha 
+					for (Reserva reserva : listarReservas) {
+						costoCancelacion += reserva.getPrecio();
+						this.ActualizarReserva("CANCELADA", reserva.getId());
+					}
+					costoCancelacion = costoCancelacion*0.3;
+				}
+				else if (fechaActual.compareTo(fechaRestadatres) < 0) {
+					// La fecha está antes de los 3 dias de lareserva
+					for (Reserva reserva : listarReservas) {
+						costoCancelacion += reserva.getPrecio();
+						this.ActualizarReserva("CANCELADA", reserva.getId());
+					}
+					costoCancelacion = costoCancelacion*0.1;
+				}
+
+				rta.add(costoCancelacion);
+				rta.add(listarReservas.size());
+
+	            tx.commit();
+
+	            return rta;
+	        }
+	        catch (Exception e)
+	        {
+//	        	e.printStackTrace();
+	        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+				ArrayList rta = new ArrayList<>();
+				rta.add(-1);
+	        	return rta;
+	        }
+	        finally
+	        {
+	            if (tx.isActive())
+	            {
+	                tx.rollback();
+	            }
+	            pm.close();
+	        }
+	}
+
+
+	 /* ****************************************************************
+	 *                    REQ FUNCIONAL 9
+	 *****************************************************************/
+
+	 /* ****************************************************************
+	 *  				  REQ FUNCIONAL 10
+	 *****************************************************************/
+
+
 	
 
  }

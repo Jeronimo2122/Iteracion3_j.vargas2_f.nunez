@@ -134,11 +134,7 @@ public class Alojamiento implements VOAlojamiento
 	{
 		return tipo_aloja;
 	}
-	
-	/**
-	 * @param ciudad - nuevo vinculo del Cliente
-	 */
-	public void setTipo_Aloja(String tipo_aloja) 
+	public void setTipo_aloja(String tipo_aloja) 
 	{
 		this.tipo_aloja = tipo_aloja;
 	}

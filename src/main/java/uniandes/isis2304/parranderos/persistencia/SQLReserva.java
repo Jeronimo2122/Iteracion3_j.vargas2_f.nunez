@@ -1,6 +1,5 @@
 package uniandes.isis2304.parranderos.persistencia;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -41,11 +40,11 @@ class SQLReserva
 	{
 		this.pp = pp;
 	}
-	public long adicionarReserva (PersistenceManager pm, long Id, String fecha_llegada, String fecha_salida, float precio, long Id_Cliente, long Id_Alojamiento, long Id_Operador, String estado) 
+	public long adicionarReserva (PersistenceManager pm, long Id, String fecha_llegada, String fecha_salida, float precio, long Id_Cliente, long Id_Alojamiento, String estado) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaReserva() + 
-		"(Id, fecha_llegada, fecha_salida, precio, Id_Cliente, Id_Alojamiento, Id_Operador, estado) values (?, TO_DATE(?, 'DD/MM/YYYY'), TO_DATE(?, 'DD/MM/YYYY'), ?, ?, ?, ?, ?)");
-        q.setParameters(Id, fecha_llegada, fecha_salida, precio, Id_Cliente, Id_Alojamiento, Id_Operador, estado);
+		"(Id, fecha_llegada, fecha_salida, precio, Id_Cliente, Id_Alojamiento, estado) values (?, TO_DATE(?, 'DD/MM/YYYY'), TO_DATE(?, 'DD/MM/YYYY'), ?, ?, ?, ?)");
+        q.setParameters(Id, fecha_llegada, fecha_salida, precio, Id_Cliente, Id_Alojamiento, estado);
         return (long) q.executeUnique();
 	}
 
@@ -85,5 +84,14 @@ class SQLReserva
 		q.setParameters(estado, id_reserva);
 		return (long) q.executeUnique();
 	}
+
+	public List<Reserva> darReservasPorIdCliente (PersistenceManager pm, long id_Cliente)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaReserva() + " WHERE ID_CLIENTE = ?");
+		q.setResultClass(Reserva.class);
+		q.setParameters(id_Cliente);
+		return (List<Reserva>) q.executeList();
+	}
+
 
 }

@@ -4,12 +4,7 @@
  * Licenciado	bajo	el	esquema	Academic Free License versión 2.1
  * 		
  * Curso: isis2304 - Sistemas Transaccionales
- * Proyecto: Parranderos Uniandes
- * @version 1.0
- * @author Germán Bravo
- * Julio de 2018
- * 
- * Revisado por: Claudia Jiménez, Christian Ariza
+ * Proyecto: ALOJANDES
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 
@@ -28,9 +23,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jdo.JDODataStoreException;
@@ -330,7 +323,7 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
 			// ATENCIÓN: En una aplicación real, los datos JAMÁS están en el código
 
 			String nombreCliente = JOptionPane.showInputDialog (this, "Nombre del Cliente?", "Registrar Cliente", JOptionPane.QUESTION_MESSAGE);
-			String vinculo = JOptionPane.showInputDialog (this, "Vinculo del Cliente('ESTUDIANTE','PROFESOR','EMPLEADO','INVITADO','EGRESADO','PADRE')", "Registrar Cliente", JOptionPane.QUESTION_MESSAGE);
+			String vinculo = JOptionPane.showInputDialog (this, "Vinculo del Cliente('ESTUDIANTE','PROFESOR','EMPLEADO','INVITADO','EGRESADO','PADRE','COLECTIVA')", "Registrar Cliente", JOptionPane.QUESTION_MESSAGE);
 			vinculo = vinculo.toUpperCase();
 			if (nombreCliente != null)
     		{
@@ -558,30 +551,22 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
 			float precio = Float.parseFloat(JOptionPane.showInputDialog (this, "Precio de la Reserva?", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE));
 			long id_cliente = Long.parseLong(JOptionPane.showInputDialog (this, "id Cliente de la reserva?", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE));
 			long id_alojamiento = Long.parseLong(JOptionPane.showInputDialog (this, "id Alojamiento de la reserva?", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE));
-			long id_operador = Long.parseLong(JOptionPane.showInputDialog (this, "id Operador de la reserva?", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE));
 			String estado = JOptionPane.showInputDialog (this, "Esatdo de la Reserva?('ACTIVA', 'CANCELADA')", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE);
 
 			
 
-			if (fecha_llegada != null && fecha_Salida != null && precio >= 0 && id_cliente !=0 && id_alojamiento !=0 && id_operador !=0 
+			if (fecha_llegada != null && fecha_Salida != null && precio >= 0 && id_cliente !=0 && id_alojamiento !=0
 			&& estado != null)
 			{
-				VOCliente cliente = alohandes.darClientePorID(id_cliente);
-				VOOperador operador =alohandes.darOperadorPorId(id_operador);
-				//VOAlojamiento alojamiento =alohandes.darAlojamientoPorId(id_alojamiento); || alojamiento == null
-				if (cliente == null || operador == null )
-				{
-					throw new Exception ("No se pudo crear La Reserva");
-				}
 
 				VOReserva Reserva = alohandes.adicionarReserva(fecha_llegada, fecha_Salida, precio,
-				id_cliente, id_alojamiento, id_operador, estado);
+				id_cliente, id_alojamiento, estado);
 				 
 				if (Reserva == null)
 				{
 					throw new Exception ("No se pudo crear La Reserva");
 				}
-				String resultado = "En adicionarCliente\n\n";
+				String resultado = "En adicionarRESERVA\n\n";
 				resultado += "Reserva Registrada exitosamente: " + Reserva;
 				resultado += "\n Operación terminada";
 				panelDatos.actualizarInterfaz(resultado);
@@ -635,6 +620,109 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
 
 
 	}
+
+	/* ****************************************************************
+	 *                    REQ FUNCIONAL 7
+	 *****************************************************************/
+
+	public void Reqreservacolectiva () {
+		try {
+			
+			
+			int numAlojas = Integer.parseInt(JOptionPane.showInputDialog (this, "Numero de alojamientos en su reserva?", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE));
+			String tipo_Aloja = JOptionPane.showInputDialog (this, "Tipo de alojamiento de su reserva?[VIVIENDA_U,HABITACION_HOTEL,HABITACION_HOSTAL,VIVIENDA,APARTAMENTO,HABITACION_VIVIENDA]", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE);
+			String servicio = JOptionPane.showInputDialog (this, "Servicio de sus alojamiento? [WI-FI,TINA,GIMNASIO,ETC..]"," Registrar Reserva", JOptionPane.QUESTION_MESSAGE);
+			
+			String fecha_llegada = JOptionPane.showInputDialog (this, "Fecha llegada de la reserva?FT[DD/MM/YYYY]", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE);
+			String fecha_Salida = JOptionPane.showInputDialog (this, "Fecha Salida de la reserva?FT[DD/MM/YYYY]", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE);
+			float precio = Float.parseFloat(JOptionPane.showInputDialog (this, "Precio de la Reserva?", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE));
+			long id_cliente = Long.parseLong(JOptionPane.showInputDialog (this, "id Cliente de la reserva?", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE));
+			String estado = JOptionPane.showInputDialog (this, "Esatdo de la Reserva?('ACTIVA', 'CANCELADA')", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE);
+
+			if (fecha_llegada != null && fecha_Salida != null && precio >= 0 && id_cliente !=0 
+			&& estado != null)
+			{
+
+				long num = alohandes.reservacolectiva(servicio, tipo_Aloja, numAlojas, fecha_llegada, fecha_Salida, precio, id_cliente, estado);
+				 
+				if (num == 0)
+				{
+					throw new Exception ("No se pudo crear La Reserva");
+				}
+				String resultado = "En RESERVA_COLECTIVA\n\n";
+				resultado += "Alojamientos Reservados exitosamente: " + num;
+				resultado += "\n Operación terminada";
+				panelDatos.actualizarInterfaz(resultado);
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} catch (Exception e) {
+
+			// TODO: handle exception
+		}
+	}
+
+	/* ****************************************************************
+	 *                    REQ FUNCIONAL 8
+	 *****************************************************************/
+	public void CancelarReqreservacolectiva () {
+		try {
+			
+			
+			long id_cliente = Long.parseLong(JOptionPane.showInputDialog (this, "id Cliente de la reserva colectiva?", "Cancelar Reserva", JOptionPane.QUESTION_MESSAGE));
+
+			if ( id_cliente !=0 )
+			{
+
+				ArrayList Costo = alohandes.CancelarReservaColectiva(id_cliente);
+				
+				if (Costo.size() == 2){
+
+					if (Double.compare((Double)Costo.get(0), 0) == 0)
+					{
+						String resultado = "En CANCELAR RESERVA COLECTIVA\n\n";
+						resultado += "Las Reservas ya fueron utilizadas ";
+						resultado += "\n Operación terminada";
+						panelDatos.actualizarInterfaz(resultado);
+					}else
+					{
+						String resultado = "En CANCELAR RESERVA COLECTIVA\n\n";
+						resultado += "Reservas Canceladas: "+ Costo.get(1);
+						resultado += "\n Con un costo de cancelacion de: "+ Costo.get(0);
+						resultado += "\n Operación terminada";
+						panelDatos.actualizarInterfaz(resultado);
+					}
+					
+				}
+				else
+				{
+					String resultado = "En CANCELAR RESERVA COLECTIVA\n\n";
+					resultado += "\n Error en la Operación ";
+					panelDatos.actualizarInterfaz(resultado);
+				}
+				
+				
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} catch (Exception e) {
+
+			// TODO: handle exception
+		}
+	}
+
+	/* ****************************************************************
+	 *                    REQ FUNCIONAL 7
+	 *****************************************************************/
+	/* ****************************************************************
+	 *                    REQ FUNCIONAL 7
+	 *****************************************************************/
+
+
 
 
 
