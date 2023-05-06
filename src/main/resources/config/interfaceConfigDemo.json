@@ -41,7 +41,17 @@
 				{
 					"label": "Cancelar Reserva",
 					"event": "ReqCancelarReserva"
+				},
+				{
+					"label": "Reserva Colectiva",
+					"event": "Reqreservacolectiva"
+				},
+				{
+					"label": "Cancelar Reserva Colectiva",
+					"event": "CancelarReqreservacolectiva"
 				}
+				
+
 			]
 		},
 		{ "menuTitle": "Mantenimiento",

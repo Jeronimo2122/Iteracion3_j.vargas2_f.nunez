@@ -86,7 +86,7 @@ class SQLAlojamiento
 
 	public List<Alojamiento> darAlojamientosPorTipo (PersistenceManager pm, String tipo)
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAlojamiento ()  + " WHERE id = ?");
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAlojamiento ()  + " WHERE TIPO_ALOJA = ?");
 		q.setResultClass(Alojamiento.class);
 		q.setParameters(tipo);
 		return (List<Alojamiento>) q.executeList();
@@ -96,6 +96,24 @@ class SQLAlojamiento
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAlojamiento ());
 		q.setResultClass(Alojamiento.class);
+		return (List<Alojamiento>) q.executeList();
+	}
+
+	public List<Alojamiento> darAlojamientosDisponiblesPorTipo (PersistenceManager pm, String fecha_llegada, String fecha_Salida,
+		String servicio, String tipo_Aloja )
+	{
+		Query q = pm.newQuery(SQL, "SELECT a.id,a.capacidad,a.estado,a.direccion,a.tipo_aloja "+
+		"FROM ALOJAMIENTO_SERVICIO ASER,SERVICIO S, (SELECT a.id,a.capacidad,a.estado,a.direccion,a.tipo_aloja "+
+		"	FROM ALOJAMIENTO A LEFT JOIN RESERVA R "+
+		"	ON a.ID = R.ID_ALOJAMIENTO "+
+		"	WHERE R.fecha_llegada NOT BETWEEN TO_DATE( ?,'DD/MM/YYYY') AND TO_DATE(?,'DD/MM/YYYY') "+
+		"	AND R.fecha_salida NOT BETWEEN TO_DATE(?,'DD/MM/YYYY') AND TO_DATE(?,'DD/MM/YYYY') "+
+		"	OR R.fecha_salida IS NULL ) A "+
+		"WHERE aser.id_aloja = a.id AND aser.id_servicio = s.id "+
+		"AND S.NOMBRE like ? AND a.tipo_aloja = ?  "+   
+		"GROUP BY a.id,a.capacidad,a.estado,a.direccion,a.tipo_aloja");
+		q.setResultClass(Alojamiento.class);
+		q.setParameters(fecha_llegada, fecha_Salida, fecha_llegada, fecha_Salida, servicio, tipo_Aloja);
 		return (List<Alojamiento>) q.executeList();
 	}
 

@@ -1,6 +1,6 @@
 package uniandes.isis2304.parranderos.negocio;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -427,10 +427,10 @@ public class Alohandes{
 	 * Adiciona entradas al log de la aplicación
 	 * @return Un objeto Gustan con los valores dados
 	 */
-	public Reserva adicionarReserva(String fecha_llegada, String fecha_salida, float precio, long Id_Cliente, long Id_Alojamiento, long Id_Operador, String estado)
+	public Reserva adicionarReserva(String fecha_llegada, String fecha_salida, float precio, long Id_Cliente, long Id_Alojamiento, String estado)
 	{
         log.info ("Adicionando Reserva [" + Id_Cliente + ", " + Id_Cliente + ", "+precio+ "]");
-        Reserva resp = pp.adicionarReserva(fecha_llegada, fecha_salida, precio, Id_Cliente, Id_Alojamiento, Id_Operador, estado);
+        Reserva resp = pp.adicionarReserva(fecha_llegada, fecha_salida, precio, Id_Cliente, Id_Alojamiento, estado);
         log.info ("Adicionando Reserva: " + resp + " tuplas insertadas");
         return resp;
 	}
@@ -482,6 +482,14 @@ public class Alohandes{
         Reserva reserva = pp.darReservaPorId(id_reserva);	
         log.info ("Dar Reserva: ");
         return reserva;
+	}
+
+	public List<Reserva> darReservasPorIdCLiente (long id_cliente)
+	{
+        log.info ("Listando Reserva");
+        List<Reserva> reservas = pp.darReservasPorIdCliente(id_cliente);	
+        log.info ("Listando Reserva: " + reservas.size() + " preferencias de gusto existentes");
+        return reservas;
 	}
 
 	/**
@@ -911,6 +919,31 @@ public class Alohandes{
 		log.info ("Generando los VO de Edificio_Universitario: " + VOEdificios_Universitarios.size () + " edficios universitarios existentes");
 		return VOEdificios_Universitarios;
 	}
+
+	/* ****************************************************************
+	 *                    REQ FUNCIONAL 7
+	 *****************************************************************/
+
+	public long reservacolectiva (String servicios, String tipo_Aloja, int numAlojas, String fecha_llegada, 
+	String fecha_salida, float precio, long Id_Cliente, String estado)
+	{
+		log.info ("Reserva colectiva de Cliente con ID:" + Id_Cliente);
+		long resp = pp.reservacolectiva(servicios, tipo_Aloja, numAlojas, fecha_llegada, fecha_salida, precio, Id_Cliente, estado);
+		log.info ("Reserva colectiva: " + resp + " tuplas insertadas");
+		return resp;
+	}
+	/* ****************************************************************
+	 *                    REQ FUNCIONAL 8
+	 *****************************************************************/
+	public ArrayList CancelarReservaColectiva(Long id_Cliente) 
+	{
+		log.info ("Cancelar Reserva colectiva de Cliente con ID:" + id_Cliente);
+		ArrayList resp = pp.CancelarReservaColectiva(id_Cliente);
+		log.info ("Cancelacion Reserva:" + resp.get(0));
+		return resp;
+	}
+
+
 
 	/* ****************************************************************
 	 * 			Métodos para administración

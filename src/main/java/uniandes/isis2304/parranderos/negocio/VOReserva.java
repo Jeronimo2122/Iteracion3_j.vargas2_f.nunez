@@ -20,12 +20,12 @@ public interface VOReserva
 	/**
 	 * @return Fecha_llegada de la Reserva
 	 */
-	public String getFecha_llegada();
+	public Timestamp getFecha_llegada();
 	
 	/**
 	 * @return Fecha_Salida de la Reserva
 	 */
-	public String getFecha_Salida();
+	public Timestamp getFecha_Salida();
 	
 	/**
 	 * @return Precio de la Reserva
@@ -38,14 +38,9 @@ public interface VOReserva
 	public long getId_cliente();
 	
 	/**
-	 * @return Id_alojamiento de la Reserva
-	 */
-	public long getId_alojamiento();
-	
-	/**
 	 * @return Id_operador de la Reserva
 	 */
-	public long getId_operador();
+	public long getId_Alojamiento();
 	
 	/**
 	 * @return Estado de la Reserva
