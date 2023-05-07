@@ -84,3 +84,6 @@
 15:48:47,035 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Deshabiltar Alojamiento con el id: 11
 15:48:47,121 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.persistencia.PersistenciaAlohandes] - 1NumReservas: 1
 15:48:47,212 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Deshabiltado el Alojamiento con el id: 11
+15:56:26,765 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
+15:56:26,765 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
+15:56:26,802 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
