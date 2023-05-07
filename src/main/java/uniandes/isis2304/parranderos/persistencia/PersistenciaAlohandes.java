@@ -1992,29 +1992,19 @@ public class PersistenciaAlohandes{
 									res.getId_cliente(),  AlojaDisponible.getId(),"ACTIVA");
 								
 								CuentaRelocalizados += 1;
-
 							}
 							else
 							{
 								//No se pudo relocalizar
 								CuentaNoRe +=1;
 							}
-
-
 						}
-					
 					}
-
 					rta.add(CuentaRelocalizados);
 					rta.add(CuentaNoRe);
 					rta.add(Aloja);
 				
 				}
-				
-				
-					
-
-		
 	            tx.commit();
 
 	            return rta;

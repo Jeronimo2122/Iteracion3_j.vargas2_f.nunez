@@ -134,7 +134,7 @@ class SQLAlojamiento
 		"	WHERE R.fecha_llegada NOT BETWEEN ? AND ? "+ 
 		"	AND R.fecha_salida NOT BETWEEN ? AND ?  "+ 
 		"	OR R.fecha_salida IS NULL OR R.ESTADO = 'CANCELADA') N "+ 
-		" WHERE N.estado = 'DISPONIBLE' AND N.CAPACIDAD <= ?");  
+		" WHERE N.estado = 'DISPONIBLE' AND N.CAPACIDAD >= ?");  
 
 		q.setResultClass(Alojamiento.class);
 		q.setParameters(fecha_llegada, fecha_Salida, fecha_llegada, fecha_Salida, capacidad);
