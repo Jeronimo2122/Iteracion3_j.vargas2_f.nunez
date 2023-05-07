@@ -942,7 +942,28 @@ public class Alohandes{
 		log.info ("Cancelacion Reserva:" + resp.get(0));
 		return resp;
 	}
+	/* ****************************************************************
+	 *                    REQ FUNCIONAL 9
+	 *****************************************************************/
+	public ArrayList DeshabilitarAlojamiento(Long id_Aloja) 
+	{
+		log.info ("Deshabiltar Alojamiento con el id: "+id_Aloja);
+		ArrayList resp = pp.DeshabilitarAlojamiento(id_Aloja);
+		log.info ("Deshabiltado el Alojamiento con el id: "+id_Aloja);
+		return resp;
+	}
+	 
 
+	/* ****************************************************************
+	 *                    REQ FUNCIONAL 10
+	 *****************************************************************/
+	public String habilitarAlojamiento(Long id_Aloja)
+	{
+		log.info ("Habiltar Alojamiento con el id: "+id_Aloja);
+		String resp = pp.habilitarAlojamiento(id_Aloja);
+		log.info ("Habiltado el Alojamiento con el id: "+id_Aloja);
+		return resp;
+	}
 
 
 	/* ****************************************************************

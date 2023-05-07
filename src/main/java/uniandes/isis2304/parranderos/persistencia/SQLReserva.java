@@ -93,5 +93,13 @@ class SQLReserva
 		return (List<Reserva>) q.executeList();
 	}
 
+	public List<Reserva> darReservasPorIdAlojamiento(PersistenceManager pm, long id_Aloja)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaReserva() + " WHERE ID_ALOJAMIENTO = ? AND ESTADO = 'ACTIVA' ORDER BY fecha_insercion ASC");
+		q.setResultClass(Reserva.class);
+		q.setParameters(id_Aloja);
+		return (List<Reserva>) q.executeList();
+	}
+
 
 }

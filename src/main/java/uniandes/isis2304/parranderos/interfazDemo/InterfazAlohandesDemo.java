@@ -718,12 +718,117 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
 	/* ****************************************************************
 	 *                    REQ FUNCIONAL 9
 	 *****************************************************************/
+	public void ReqDeshabilitarAloja()
+	{
+		try 
+		{
+		
+			long id_Aloja = Long.parseLong(JOptionPane.showInputDialog (this, "id del Alojamiento ha deshabilitar?", "Deshabilitar Alojamiento", JOptionPane.QUESTION_MESSAGE));
+			
 
+			if ( id_Aloja >= 0 )
+			{
+				ArrayList RtaAlojaDeshabilitado = alohandes.DeshabilitarAlojamiento(id_Aloja);
+				if(RtaAlojaDeshabilitado.size()==3)
+				{
+					String resultado = "En Deshabilitar Alojamiento\n\n";
+					resultado += "El Alojamiento"+RtaAlojaDeshabilitado.get(2);
+					resultado += "\nSe tuvo que relocalizar: " + RtaAlojaDeshabilitado.get(0)+" reserva/s";
+					resultado += "\nPor falta de disponibilidad no se pudo relocalizar: "+ RtaAlojaDeshabilitado.get(1)+" reserva/s";
+					resultado += "\nAlojamiento Deshabilitado";
+					panelDatos.actualizarInterfaz(resultado);
+				}
+				else
+				{
+					if (RtaAlojaDeshabilitado.get(0).equals(0)){
+
+						String resultado = "En Deshabilitar Alojamiento\n\n";
+						resultado += "El Alojamiento ya estaba deshabilitado";
+						resultado += "\n "+RtaAlojaDeshabilitado.get(1);
+						resultado += "\nAlojamiento Deshabilitado";
+						panelDatos.actualizarInterfaz(resultado);
+
+					}
+					else
+					{
+						String resultado = "En Deshabilitar Alojamiento\n\n";
+						resultado += "Error en la operacion";
+						panelDatos.actualizarInterfaz(resultado);
+					}
+				}
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+	
+		} 
+		 catch (Exception e) 
+		{
+ //			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+
+
+
+	}
 
 
 	/* ****************************************************************
 	 *                    REQ FUNCIONAL 10
 	 *****************************************************************/
+	public void ReqhabilitarAloja()
+	{
+		try 
+		{
+		
+			long id_Aloja = Long.parseLong(JOptionPane.showInputDialog (this, "id del Alojamiento para habilitar?", "Habilitar Alojamiento", JOptionPane.QUESTION_MESSAGE));
+			
+
+			if ( id_Aloja >= 0 )
+			{
+				String RtaAlojahabilitado = alohandes.habilitarAlojamiento(id_Aloja);
+				String resultado = "En Habilitar Alojamiento\n\n";
+				if(RtaAlojahabilitado == null)
+				{
+					
+					resultado += "\nNo se realizo la operacion";
+					panelDatos.actualizarInterfaz(resultado);
+				}
+				else if (RtaAlojahabilitado == "")
+				{
+					
+					resultado += "El Alojamiento ya estaba Disponible: "+RtaAlojahabilitado;
+					resultado += "\nOperacion Termianda";
+					panelDatos.actualizarInterfaz(resultado);
+				}
+				else{
+
+					resultado += "El Alojamiento ahora ya esta Disponible: "+RtaAlojahabilitado;
+					resultado += "\nOperacion Termianda";
+					panelDatos.actualizarInterfaz(resultado);
+					
+				}
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+	
+		} 
+		 catch (Exception e) 
+		{
+ //			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+
+
+
+	}
+
+
 
 	
 	 /* ****************************************************************

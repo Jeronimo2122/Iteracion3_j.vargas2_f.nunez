@@ -1870,7 +1870,7 @@ public class PersistenciaAlohandes{
 				SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy"); // patrón de fecha
 				
 				Timestamp fecha_llegada = listarReservas.get(0).getFecha_llegada(); // fecha en formato String
-				log.info ("Dates"+listarReservas.get(0).getFecha_Salida());
+				
                 // Convertir el objeto Timestamp a una cadena de texto con el formato especificado
                 String Stringfecha_llegada = formatoFecha.format(fecha_llegada);
 				Date Datefecha_llegada = formatoFecha.parse(Stringfecha_llegada); // convertir String a Date 
@@ -1938,13 +1938,148 @@ public class PersistenciaAlohandes{
 	}
 
 
-	 /* ****************************************************************
-	 *                    REQ FUNCIONAL 9
-	 *****************************************************************/
+	/* ****************************************************************
+	*                    REQ FUNCIONAL 9
+	*****************************************************************/
+	public ArrayList DeshabilitarAlojamiento (long id_Alojamiento) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+	        Transaction tx=pm.currentTransaction();
+	        try
+	        {
+	            tx.begin();
+				ArrayList rta = new ArrayList<>(); 
+				SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+				Alojamiento Aloja = darAlojamientoPorId(id_Alojamiento);
+
+				if (Aloja.getEstado() == "DESHABILITADO")
+				{
+					rta.add(0);
+					rta.add(Aloja);
+				}
+				else
+				{
+					long A = sqlAlojamiento.DeshabilitarAlojamiento(pm,"DESHABILITADO", id_Alojamiento);
+					List<Reserva> ReservasAlojaDes = sqlReserva.darReservasPorIdAlojamiento(pm, id_Alojamiento);
+					Aloja = darAlojamientoPorId(id_Alojamiento);
+					
+					log.info(+A+"NumReservas: "+ReservasAlojaDes.size());
+
+					int CuentaRelocalizados = 0;
+					int CuentaNoRe = 0;
+
+					if (ReservasAlojaDes.size() != 0)
+					{
+						for (int j = 0; j < ReservasAlojaDes.size(); j++) {
+
+							Reserva res = ReservasAlojaDes.get(j);
+							sqlReserva.ActulizarReserva(pm, "CANCELADA", res.getId());
+
+							List<Alojamiento> AlojasDisponibles = sqlAlojamiento.darAlojamientosRelocalizables(pm, res.getFecha_llegada(),res.getFecha_Salida(),Aloja.getCapacidad() );
+							if (AlojasDisponibles.size() > 0){
+								//Se intenta relocalizar
+								Alojamiento AlojaDisponible = AlojasDisponibles.get(0);
+								long id_new = nextval();
+
+								Timestamp fecha_llegada = res.getFecha_llegada(); // fecha en formato String
+								String Stringfecha_llegada = formatoFecha.format(fecha_llegada);
+
+								Timestamp fecha_salida = res.getFecha_Salida(); // fecha en formato String
+								String Stringfecha_salida = formatoFecha.format(fecha_salida);
+
+								
+								sqlReserva.adicionarReserva(pm, id_new, Stringfecha_llegada, Stringfecha_salida, res.getPrecio(),
+									res.getId_cliente(),  AlojaDisponible.getId(),"ACTIVA");
+								
+								CuentaRelocalizados += 1;
+
+							}
+							else
+							{
+								//No se pudo relocalizar
+								CuentaNoRe +=1;
+							}
+
+
+						}
+					
+					}
+
+					rta.add(CuentaRelocalizados);
+					rta.add(CuentaNoRe);
+					rta.add(Aloja);
+				
+				}
+				
+				
+					
+
+		
+	            tx.commit();
+
+	            return rta;
+	        }
+	        catch (Exception e)
+	        {
+//	        	e.printStackTrace();
+	        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+				ArrayList rta = new ArrayList<>(); 
+				rta.add(-1);
+	        	return rta;
+	        }
+	        finally
+	        {
+	            if (tx.isActive())
+	            {
+	                tx.rollback();
+	            }
+	            pm.close();
+	        }
+	}
+
 
 	 /* ****************************************************************
 	 *  				  REQ FUNCIONAL 10
 	 *****************************************************************/
+	public String habilitarAlojamiento (long id_Alojamiento) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+	        Transaction tx=pm.currentTransaction();
+	        try
+	        {
+	            tx.begin();
+				String rta = "";
+				Alojamiento Aloja = darAlojamientoPorId(id_Alojamiento);
+				log.info(Aloja.getEstado().equals("DESHABILITADO"));
+				if(Aloja.getEstado().equals("DESHABILITADO"))
+				{
+					sqlAlojamiento.DeshabilitarAlojamiento(pm, "DISPONIBLE", id_Alojamiento);
+					Aloja = darAlojamientoPorId(id_Alojamiento);
+					rta = Aloja.toString();
+				}
+
+	            tx.commit();
+				log.info(rta);
+
+	            return rta;
+	        }
+	        catch (Exception e)
+	        {
+//	        	e.printStackTrace();
+	        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+				
+	        	return null;
+	        }
+	        finally
+	        {
+	            if (tx.isActive())
+	            {
+	                tx.rollback();
+	            }
+	            pm.close();
+	        }
+	}
+
 
 
 	

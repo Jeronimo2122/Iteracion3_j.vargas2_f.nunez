@@ -28,7 +28,17 @@
 				{
 					"label": "Retirar Oferta de Alojamiento",
 					"event": "ReqEliminarAlojamiento"
+				},
+				{
+					"label": "Deshabilitar Oferta de Alojamiento",
+					"event": "ReqDeshabilitarAloja"
+				},
+				{
+					"label": "Habilitar Oferta de Alojamiento",
+					"event": "ReqhabilitarAloja"
 				}
+				
+				
 			]
 		},
 		{ "menuTitle": "RESERVA",

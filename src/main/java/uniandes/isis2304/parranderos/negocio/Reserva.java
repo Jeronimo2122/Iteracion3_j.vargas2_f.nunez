@@ -46,6 +46,8 @@ public class Reserva implements VOReserva
 	 * Estado de Reserva
 	 */
 	private String estado;
+
+	private Timestamp Fecha_insercion;
 	
 	
 
@@ -58,17 +60,18 @@ public class Reserva implements VOReserva
 	public Reserva() 
     {
     	this.Id = 0;
-		this.Fecha_llegada = new Timestamp(0);;
-		this.Fecha_Salida = new Timestamp(0);;
+		this.Fecha_llegada = new Timestamp(0);
+		this.Fecha_Salida = new Timestamp(0);
 		this.precio = 0;
 		this.Id_cliente = 0;
 		this.Id_Alojamiento = 0;
 		this.estado = "";
+		this.Fecha_insercion = new Timestamp(0);
 	}
 
 	/**
 	 */
-    public Reserva(long Id, Timestamp Fecha_llegada, Timestamp Fecha_Salida, float precio, long Id_Cliente, long Id_Alojamiento, String estado ) 
+    public Reserva(long Id, Timestamp Fecha_llegada, Timestamp Fecha_Salida, float precio, long Id_Cliente, long Id_Alojamiento, String estado) 
     {
     	this.Id = Id;
 		this.Fecha_llegada = Fecha_llegada;
@@ -168,6 +171,15 @@ public class Reserva implements VOReserva
 	public void setEstado(String estado) 
 	{
 		this.estado = estado;
+	}
+
+	public Timestamp getFecha_insercion() 
+	{
+		return Fecha_insercion;
+	}
+	public void setFecha_insercion(Timestamp Fecha_insercion) 
+	{
+		this.Fecha_insercion = Fecha_insercion;
 	}
 	
 	@Override
