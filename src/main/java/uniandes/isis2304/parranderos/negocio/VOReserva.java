@@ -46,10 +46,13 @@ public interface VOReserva
 	 * @return Estado de la Reserva
 	 */
 	public String getEstado();
-	@Override
+	
 	/**
 	 * @return Una cadena de caracteres con todos los atributos del bar
 	 */
+	public Timestamp getFecha_insercion();
+	@Override
+	
 	public String toString();
 
 }

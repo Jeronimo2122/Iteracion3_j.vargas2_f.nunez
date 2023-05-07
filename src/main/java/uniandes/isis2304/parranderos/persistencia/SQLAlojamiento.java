@@ -1,5 +1,6 @@
 package uniandes.isis2304.parranderos.persistencia;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -108,15 +109,36 @@ class SQLAlojamiento
 		"	ON a.ID = R.ID_ALOJAMIENTO "+
 		"	WHERE R.fecha_llegada NOT BETWEEN TO_DATE( ?,'DD/MM/YYYY') AND TO_DATE(?,'DD/MM/YYYY') "+
 		"	AND R.fecha_salida NOT BETWEEN TO_DATE(?,'DD/MM/YYYY') AND TO_DATE(?,'DD/MM/YYYY') "+
-		"	OR R.fecha_salida IS NULL ) A "+
+		"	OR R.fecha_salida IS NULL OR R.ESTADO = 'CANCELADA') A "+
 		"WHERE aser.id_aloja = a.id AND aser.id_servicio = s.id "+
-		"AND S.NOMBRE like ? AND a.tipo_aloja = ?  "+   
+		"AND a.estado = 'DISPONIBLE' AND S.NOMBRE like ? AND a.tipo_aloja = ?  "+   
 		"GROUP BY a.id,a.capacidad,a.estado,a.direccion,a.tipo_aloja");
 		q.setResultClass(Alojamiento.class);
 		q.setParameters(fecha_llegada, fecha_Salida, fecha_llegada, fecha_Salida, servicio, tipo_Aloja);
 		return (List<Alojamiento>) q.executeList();
 	}
 
+	public long DeshabilitarAlojamiento (PersistenceManager pm, String estado, Long Id_aloja)
+	{
+		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaAlojamiento() + " SET estado = ? WHERE ID = ?");
+		q.setParameters(estado, Id_aloja);
+		return (long) q.executeUnique();
+	}
 	
+	public List<Alojamiento> darAlojamientosRelocalizables (PersistenceManager pm, Timestamp fecha_llegada, Timestamp fecha_Salida, Integer capacidad)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * "+ 
+		" FROM (SELECT a.id,a.capacidad,a.estado,a.direccion,a.tipo_aloja "+ 
+		"	FROM ALOJAMIENTO A LEFT JOIN RESERVA R "+ 
+		"	ON a.ID = R.ID_ALOJAMIENTO "+ 
+		"	WHERE R.fecha_llegada NOT BETWEEN ? AND ? "+ 
+		"	AND R.fecha_salida NOT BETWEEN ? AND ?  "+ 
+		"	OR R.fecha_salida IS NULL OR R.ESTADO = 'CANCELADA') N "+ 
+		" WHERE N.estado = 'DISPONIBLE' AND N.CAPACIDAD <= ?");  
+
+		q.setResultClass(Alojamiento.class);
+		q.setParameters(fecha_llegada, fecha_Salida, fecha_llegada, fecha_Salida, capacidad);
+		return (List<Alojamiento>) q.executeList();
+	}
 
 }
