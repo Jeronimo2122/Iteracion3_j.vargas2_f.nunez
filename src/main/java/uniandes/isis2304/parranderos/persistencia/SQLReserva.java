@@ -87,7 +87,7 @@ class SQLReserva
 
 	public List<Reserva> darReservasPorIdCliente (PersistenceManager pm, long id_Cliente)
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaReserva() + " WHERE ID_CLIENTE = ? ESTADO = 'ACTIVA'");
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaReserva() + " WHERE ID_CLIENTE = ? AND ESTADO = 'ACTIVA'");
 		q.setResultClass(Reserva.class);
 		q.setParameters(id_Cliente);
 		return (List<Reserva>) q.executeList();

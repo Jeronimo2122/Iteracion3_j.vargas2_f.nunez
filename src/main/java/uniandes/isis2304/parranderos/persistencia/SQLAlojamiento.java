@@ -151,7 +151,7 @@ class SQLAlojamiento
 		"	AND R.fecha_salida NOT BETWEEN TO_DATE(?,'DD/MM/YYYY') AND TO_DATE(?,'DD/MM/YYYY')  "+
 		"	OR R.fecha_salida IS NULL OR R.ESTADO = 'CANCELADA' ) A, ALOJAMIENTO_SERVICIO ASER, SERVICIO S "+
 		"WHERE A.ID = ASER.ID_aLOJA AND ASER.ID_SERVICIO = S.ID "+
-		"AND S.NOMBRE like ? "+
+		"AND S.NOMBRE like ? AND A.ESTADO = 'DISPONIBLE' "+
 		"GROUP BY a.id, a.capacidad, a.estado, a.direccion, a.tipo_aloja "+
 		"HAVING COUNT(*) = 1  order by a.id ");  
 
