@@ -87,3 +87,65 @@
 15:56:26,765 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
 15:56:26,765 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
 15:56:26,802 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+19:32:02,467 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
+19:32:02,467 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
+19:32:02,503 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+19:32:27,904 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Alojamientos con Ese Servicio
+19:32:28,833 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultado Alojamientos con Ese Servicio
+19:34:16,832 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
+19:34:16,847 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
+19:34:16,879 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+19:34:51,922 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Alojamientos con Ese Servicio
+19:34:52,162 (AWT-EventQueue-0) ERROR [uniandes.isis2304.parranderos.persistencia.PersistenciaAlohandes] - Exception : Error con la ejecucion de Query de SQL "SELECT a.id,a.capacidad,a.estado,a.direccion,a.tipo_aloja FROM (SELECT a.id,a.capacidad,a.estado,a.direccion,a.tipo_aloja  FROM ALOJAMIENTO A LEFT JOIN RESERVA R  ON a.ID = R.ID_ALOJAMIENTO  WHERE R.fecha_llegada NOT BETWEEN TO_DATE(?,'DD/MM/YYYY') AND TO_DATE(?,'DD/MM/YYYY')  AND R.fecha_salida NOT BETWEEN TO_DATE(?,'DD/MM/YYYY') AND TO_DATE(?,'DD/MM/YYYY')   OR R.fecha_salida IS NULL OR R.ESTADO = 'CANCELADA' ) A, ALOJAMIENTO_SERVICIO ASER, SERVICIO S WHERE A.ID = ASER.ID_aLOJA AND ASER.ID_SERVICIO = S.ID AND S.NOMBRE like ? GROUP BY A.id, a.tipo_ALOJA HAVING COUNT(*) = 1".
+ORA-00979: no es una expresión GROUP BY
+
+19:34:52,178 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultado Alojamientos con Ese Servicio
+19:38:32,612 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
+19:38:32,618 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
+19:38:32,654 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+19:38:55,691 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Alojamientos con Ese Servicio
+19:38:56,100 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultado Alojamientos con Ese Servicio
+20:06:48,799 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
+20:06:48,799 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
+20:06:48,831 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+20:06:52,930 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Alojamientos con Ese Servicio
+20:06:52,986 (AWT-EventQueue-0) ERROR [uniandes.isis2304.parranderos.persistencia.PersistenciaAlohandes] - Exception : Cannot invoke "uniandes.isis2304.parranderos.persistencia.SQL_RFC1.RFC1(javax.jdo.PersistenceManager)" because "this.sql_RFC1" is null
+
+20:06:52,986 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultado Alojamientos con Ese Servicio
+20:09:23,264 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
+20:09:23,264 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
+20:09:23,304 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+20:09:30,819 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Alojamientos con Ese Servicio
+20:09:31,247 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultado Alojamientos con Ese Servicio
+20:11:50,380 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
+20:11:50,380 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
+20:11:50,428 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+20:11:57,700 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Alojamientos con Ese Servicio
+20:11:58,000 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultado Alojamientos con Ese Servicio
+20:16:58,491 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
+20:16:58,491 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
+20:16:58,522 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+20:17:03,111 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Alojamientos con Ese Servicio
+20:17:04,339 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultado Alojamientos con Ese Servicio
+20:17:36,013 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Alojamientos con Ese Servicio
+20:17:36,133 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultado Alojamientos con Ese Servicio
+20:19:07,995 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
+20:19:07,995 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
+20:19:08,084 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+20:19:27,608 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Alojamientos con Ese Servicio
+20:19:27,978 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultado Alojamientos con Ese Servicio
+20:47:50,384 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
+20:47:50,384 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
+20:47:50,401 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+20:47:53,616 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Vicnulos y su cantidad
+20:47:53,847 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Vicnulos y su cantidad
+21:03:18,796 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
+21:03:18,796 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
+21:03:18,816 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+21:03:23,404 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Alojamientos y su cantidad
+21:03:23,611 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Alojamientos y su cantidad
+21:09:05,445 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Interfaz
+21:09:05,445 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se aplica configuración indicada en el archivo de configuración
+21:09:05,464 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazAlohandesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+21:09:23,859 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Alojamientos y su cantidad
+21:09:24,071 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Alohandes] - Consultando Alojamientos y su cantidad

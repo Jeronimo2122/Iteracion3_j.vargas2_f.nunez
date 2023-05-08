@@ -141,4 +141,35 @@ class SQLAlojamiento
 		return (List<Alojamiento>) q.executeList();
 	}
 
+	public List<Alojamiento> RFC4 (PersistenceManager pm, String fecha_llegada, String fecha_Salida, String servicio)
+	{
+		Query q = pm.newQuery(SQL, "SELECT a.id, a.capacidad, a.estado, a.direccion, a.tipo_aloja "+
+		"FROM (SELECT a.id, a.capacidad, a.estado, a.direccion, a.tipo_aloja "+
+		"	FROM ALOJAMIENTO A LEFT JOIN RESERVA R "+
+		"	ON a.ID = R.ID_ALOJAMIENTO "+
+		"	WHERE R.fecha_llegada NOT BETWEEN TO_DATE(?,'DD/MM/YYYY') AND TO_DATE(?,'DD/MM/YYYY') "+
+		"	AND R.fecha_salida NOT BETWEEN TO_DATE(?,'DD/MM/YYYY') AND TO_DATE(?,'DD/MM/YYYY')  "+
+		"	OR R.fecha_salida IS NULL OR R.ESTADO = 'CANCELADA' ) A, ALOJAMIENTO_SERVICIO ASER, SERVICIO S "+
+		"WHERE A.ID = ASER.ID_aLOJA AND ASER.ID_SERVICIO = S.ID "+
+		"AND S.NOMBRE like ? "+
+		"GROUP BY a.id, a.capacidad, a.estado, a.direccion, a.tipo_aloja "+
+		"HAVING COUNT(*) = 1  order by a.id ");  
+
+		q.setResultClass(Alojamiento.class);
+		q.setParameters(fecha_llegada, fecha_Salida, fecha_llegada, fecha_Salida, servicio);
+		return (List<Alojamiento>) q.executeList();
+	}
+
+	public List<Alojamiento> RFC9(PersistenceManager pm) {
+		Query q = pm.newQuery(SQL, "SELECT A.ID, A.TIPO_ALOJA "+
+		"FROM ALOJAMIENTO A "+
+		"WHERE NOT EXISTS ( "+
+		"	SELECT * "+
+		"	FROM RESERVA R  "+
+		"	WHERE R.ID_ALOJAMIENTO = A.ID "+
+		"	AND R.FECHA_LLEGADA >= (SELECT MAX(FECHA_LLEGADA) FROM RESERVA WHERE ID_ALOJAMIENTO = A.ID) - INTERVAL '1' MONTH)");
+		q.setResultClass(Alojamiento.class);
+		return (List<Alojamiento>) q.executeList();
+	}
+
 }

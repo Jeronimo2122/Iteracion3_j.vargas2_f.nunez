@@ -965,6 +965,77 @@ public class Alohandes{
 		return resp;
 	}
 
+	/* ****************************************************************
+	 *                    REQ FUNCIONAL CONSULTA 1
+	 *****************************************************************/
+	public List<RFC1> RFC1 (){
+		log.info ("Consultando Alojamientos con Ese Servicio");
+		List<RFC1> resp = pp.RFC1();
+		log.info ("Consultado Alojamientos con Ese Servicio");
+		return resp;
+	}
+	 /* ****************************************************************
+	 *                    REQ FUNCIONAL CONSULTA 4
+	 *****************************************************************/
+	public List<Alojamiento> RFC4(String fecha_llegada, String fecha_Salida, String servicio){
+		log.info ("Consultando Alojamientos con Ese Servicio");
+		List<Alojamiento> resp = pp.RFC4(fecha_llegada, fecha_Salida, servicio);
+		log.info ("Consultado Alojamientos con Ese Servicio");
+		return resp;
+	}
+
+	 /* ****************************************************************
+	 *                    REQ FUNCIONAL CONSULTA 5
+	 *****************************************************************/
+	public List<RFC5> RFC5(){
+		log.info ("Consultando Vicnulos y su cantidad");
+		List<RFC5> resp = pp.RFC5();
+		log.info ("Consultando Vicnulos y su cantidad");
+		return resp;
+
+	}
+	 /* ****************************************************************
+	 *                    REQ FUNCIONAL CONSULTA 6
+	 *****************************************************************/
+	public List<RFC6> RFC6(long id_Cliente){
+		log.info ("Consultando Alojamientos y su cantidad");
+		List<RFC6> resp = pp.RFC6(id_Cliente);
+		log.info ("Consultando Alojamientos y su cantidad");
+		return resp;
+
+	}
+	 /* ****************************************************************
+	 *                    REQ FUNCIONAL CONSULTA 7
+	 *****************************************************************/
+	public List<RFC7> RFC7(String tipo_aloja, String fecha_llegada, String fecha_salida){
+		log.info ("Consulta ANALIZAR LA OPERACIÓN DE ALOHANDES");
+		List<RFC7> resp = pp.RFC7(tipo_aloja, fecha_llegada, fecha_salida);
+		log.info ("Consulta ANALIZAR LA OPERACIÓN DE ALOHANDES");
+		return resp;
+
+	}
+
+	 /* ****************************************************************
+	 *                    REQ FUNCIONAL CONSULTA 8
+	 *****************************************************************/
+	public List<RFC8> RFC8(long id_aloja){
+		log.info ("Consultando  LOS CLIENTES FRECUENTES");
+		List<RFC8> resp = pp.RFC8(id_aloja);
+		log.info ("Consultando LOS CLIENTES FRECUENTES");
+		return resp;
+
+	}
+
+	 /* ****************************************************************
+	 *                    REQ FUNCIONAL CONSULTA 9
+	 *****************************************************************/
+	public List<Alojamiento> RFC9(){
+		log.info ("Consultando Alojamientos y su cantidad");
+		List<Alojamiento> resp = pp.RFC9();
+		log.info ("Consultando Alojamientos y su cantidad");
+		return resp;
+
+	}
 
 	/* ****************************************************************
 	 * 			Métodos para administración

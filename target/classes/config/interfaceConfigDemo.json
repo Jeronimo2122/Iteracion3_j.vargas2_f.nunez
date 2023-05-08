@@ -63,7 +63,30 @@
 				
 
 			]
-		},
+		},{ "menuTitle": "CONSULTAS",
+		"options":
+		  [
+			  {
+				  "label": "RFC1 Dinero Operadores",
+				  "event": "RFC1"
+			  },
+			  {
+				  "label": "RFC4 Alojamientos Disp",
+				  "event": "RFC4"
+			  },
+			  {
+				  "label": "RFC5 Vinculo y cantidad",
+				  "event": "RFC5"
+			  },
+			  {
+				  "label": "RFC6 Uso Cliente",
+				  "event": "RFC6"
+			  }
+
+			  
+
+		  ]
+	  },
 		{ "menuTitle": "Mantenimiento",
 		  "options":
 			[

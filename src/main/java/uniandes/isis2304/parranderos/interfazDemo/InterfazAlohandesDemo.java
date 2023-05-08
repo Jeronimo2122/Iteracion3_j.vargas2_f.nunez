@@ -43,12 +43,19 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
+
 import uniandes.isis2304.parranderos.negocio.Alohandes;
+import uniandes.isis2304.parranderos.negocio.Alojamiento;
 import uniandes.isis2304.parranderos.negocio.VOAlojamiento;
 import uniandes.isis2304.parranderos.negocio.VOAlojamiento_Operador;
 import uniandes.isis2304.parranderos.negocio.VOCliente;
 import uniandes.isis2304.parranderos.negocio.VOOperador;
 import uniandes.isis2304.parranderos.negocio.VOReserva;
+import uniandes.isis2304.parranderos.negocio.RFC1;
+import uniandes.isis2304.parranderos.negocio.RFC5;
+import uniandes.isis2304.parranderos.negocio.RFC6;
+import uniandes.isis2304.parranderos.negocio.RFC7;
+import uniandes.isis2304.parranderos.negocio.RFC8;
 
 
 @SuppressWarnings("serial")
@@ -828,6 +835,180 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
 
 	}
 
+	/* ****************************************************************
+	 *                    REQ FUNCIONAL CONSULTA 1
+	 *****************************************************************/
+	public void RFC1()
+	{
+		try 
+		{
+			String resultado = "Restultado consulta RFC1\n\n";
+			resultado += " DINERO RECIBIDO POR CADA PROVEEDOR";
+			List<RFC1> consulta = alohandes.RFC1();
+			
+			for (RFC1 rfc1 : consulta) {
+				resultado += "\n"+rfc1.toString();
+			}
+			resultado += "\nFIN DE LA CONSULTA";
+			panelDatos.actualizarInterfaz(resultado);
+	
+		} 
+		 catch (Exception e) 
+		{
+ //			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+
+
+
+	}
+
+	/* ****************************************************************
+	 *                    REQ FUNCIONAL CONSULTA 4
+	 *****************************************************************/
+	public void RFC4()
+	{
+		try 
+		{
+
+			String servicio = JOptionPane.showInputDialog (this, "Servicio de sus alojamiento? [WI-FI,TINA,GIMNASIO,ETC..]"," Registrar Reserva", JOptionPane.QUESTION_MESSAGE);
+			String fecha_llegada = JOptionPane.showInputDialog (this, "Fecha llegada de la reserva?FT[DD/MM/YYYY]", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE);
+			String fecha_Salida = JOptionPane.showInputDialog (this, "Fecha Salida de la reserva?FT[DD/MM/YYYY]", "Registrar Reserva", JOptionPane.QUESTION_MESSAGE);
+			
+
+			List<Alojamiento> consulta = alohandes.RFC4(fecha_llegada, fecha_Salida, servicio);
+			String resultado = "Resultado de la Consulta\n\n";
+
+			for (int i = 0; i < consulta.size(); i++) {
+				resultado += "\n"+consulta.get(i);
+			}
+			resultado += "\nFIN DE LA CONSULTA";
+			panelDatos.actualizarInterfaz(resultado);
+	
+		} 
+		 catch (Exception e) 
+		{
+ //			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+
+
+
+	}
+
+	/* ****************************************************************
+	 *                    REQ FUNCIONAL CONSULTA 5
+	 *****************************************************************/
+	public void RFC5()
+	{
+		try 
+		{
+			String resultado = "Resultado consulta RFC5 \n\n";
+			resultado += " Vinculo y numero de usuarios por vinculo";
+			List<RFC5> consulta = alohandes.RFC5();
+			
+			for (RFC5 rfc5 : consulta) {
+				resultado += "\n"+rfc5.toString();
+			}
+			resultado += "\nFIN DE LA CONSULTA";
+			panelDatos.actualizarInterfaz(resultado);
+	
+		} 
+		 catch (Exception e) 
+		{
+ //			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+
+
+
+	}
+	/* ****************************************************************
+	 *                    REQ FUNCIONAL CONSULTA 6
+	 *****************************************************************/
+	public void RFC6()
+	{
+		try 
+		{
+			long id_cliente = Long.parseLong(JOptionPane.showInputDialog (this, "id Cliente del Cliente a Consultar", "Consulta RFC6", JOptionPane.QUESTION_MESSAGE));
+
+			String resultado = "Resultado de Consulta RFC6\n\n";
+			List<RFC6> consulta = alohandes.RFC6(id_cliente);
+			if (consulta.size()==0){
+				resultado = "Resultado de Consulta RFC6\n\n";
+				resultado += "La consulta esta vacia";
+				throw new Exception ("La consulta esta vacia");
+			}
+
+			
+			resultado += "El cliente con id: "+id_cliente+" tiene el siguient uso: ";
+			for (RFC6 rfc6 : consulta) {
+				resultado += "\n"+rfc6.toString();
+			}
+			resultado += "\nFin de la Cosnulta";
+			panelDatos.actualizarInterfaz(resultado);
+	
+		} 
+		 catch (Exception e) 
+		{
+ //			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+
+
+
+	}
+	/* ****************************************************************
+	 *                    REQ FUNCIONAL CONSULTA 7
+	 *****************************************************************/
+	public void RFC7()
+	{
+		try 
+		{
+			String tipo_Aloja = JOptionPane.showInputDialog (this, "tipo de alojamiento? [WI-FI,TINA,GIMNASIO,ETC..]"," RFC7", JOptionPane.QUESTION_MESSAGE);
+			String fecha_llegada = JOptionPane.showInputDialog (this, "Fecha inicio?FT[DD/MM/YYYY]", "RFC7", JOptionPane.QUESTION_MESSAGE);
+			String fecha_Salida = JOptionPane.showInputDialog (this, "Fecha fin?FT[DD/MM/YYYY]", "RFC7", JOptionPane.QUESTION_MESSAGE);
+
+			String resultado = "Resultado de Consulta RFC7\n\n";
+			List<RFC7> consulta = alohandes.RFC7(tipo_Aloja, fecha_llegada, fecha_Salida);
+			if (consulta.size()==0){
+				resultado = "Resultado de Consulta RFC6\n\n";
+				resultado += "La consulta esta vacia";
+				throw new Exception ("La consulta esta vacia");
+			}
+
+			
+			resultado += "El Analisis de la operacion es:";
+			for (RFC7 rfc7 : consulta) {
+				resultado += "\n"+rfc7.toString();
+			}
+			resultado += "\nFin de la Cosnulta";
+			panelDatos.actualizarInterfaz(resultado);
+	
+		} 
+		 catch (Exception e) 
+		{
+ //			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+
+
+
+	}
+
+
+	 /* ****************************************************************
+	 *                    REQ FUNCIONAL CONSULTA 8
+	 *****************************************************************/
+
+	 /* ****************************************************************
+	 *                    REQ FUNCIONAL CONSULTA 9
+	 *****************************************************************/
 
 
 	
