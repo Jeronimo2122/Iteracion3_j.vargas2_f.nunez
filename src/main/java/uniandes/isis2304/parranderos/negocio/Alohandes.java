@@ -1010,7 +1010,7 @@ public class Alohandes{
 	public List<RFC7> RFC7(String tipo_aloja, String fecha_llegada, String fecha_salida){
 		log.info ("Consulta ANALIZAR LA OPERACIÓN DE ALOHANDES");
 		List<RFC7> resp = pp.RFC7(tipo_aloja, fecha_llegada, fecha_salida);
-		log.info ("Consulta ANALIZAR LA OPERACIÓN DE ALOHANDES");
+		log.info ("Consulta ANALIZAR LA OPERACIÓN DE ALOHANDES"+resp.size());
 		return resp;
 
 	}

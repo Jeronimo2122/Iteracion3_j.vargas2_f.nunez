@@ -161,7 +161,7 @@ class SQLAlojamiento
 	}
 
 	public List<Alojamiento> RFC9(PersistenceManager pm) {
-		Query q = pm.newQuery(SQL, "SELECT A.ID, A.TIPO_ALOJA "+
+		Query q = pm.newQuery(SQL, "SELECT a.id, a.capacidad, a.estado, a.direccion, a.tipo_aloja "+
 		"FROM ALOJAMIENTO A "+
 		"WHERE NOT EXISTS ( "+
 		"	SELECT * "+

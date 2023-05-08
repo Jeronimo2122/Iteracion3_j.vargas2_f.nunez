@@ -40,45 +40,18 @@ public class SQL_RFC7 {
 
     public List<RFC7> RFC7 (PersistenceManager pm, String tipo_aloja, String fecha_llegada, String fecha_salida)
     {
-        Query q = pm.newQuery(SQL, "(SELECT fecha_llegada AS fecha, "+
-        "COUNT(*) AS alojamientos_ocupados, "+
-        "       SUM(PRECIO) AS ingresos_totales  "+
-        "FROM reserva  "+
-        "JOIN alojamiento ON reserva.id_alojamiento = alojamiento.id "+
-        "WHERE alojamiento.tipo_aloja = 'tipo_de_alojamiento'  "+
-        "  AND fecha_llegada BETWEEN 'fecha_inicio' AND 'fecha_fin'  "+
-        "GROUP BY fecha_llegada  "+
-        "ORDER BY alojamientos_ocupados DESC, ingresos_totales DESC  "+
-        "FETCH FIRST 1 ROWS ONLY) "+
- 
-        "UNION  "+
- 
-        "(SELECT fecha_llegada AS fecha,  "+
-        "        COUNT(*) AS alojamientos_ocupados,  "+
-        "        SUM(PRECIO) AS ingresos_totales  "+
-        " FROM reserva  "+
-        "JOIN alojamiento ON reserva.id_alojamiento = alojamiento.id "+
-        " WHERE alojamiento.tipo_aloja = 'tipo_de_alojamiento'  "+ 
-        "   AND fecha_llegada BETWEEN 'fecha_inicio' AND 'fecha_fin'  "+ 
-        " GROUP BY fecha_llegada  "+ 
-        " ORDER BY alojamientos_ocupados ASC, ingresos_totales ASC  "+
-        " FETCH FIRST 1 ROWS ONLY) "+
- 
-        "UNION  "+
- 
-        "(SELECT fecha_llegada AS fecha,  "+
-        "       COUNT(*) AS alojamientos_ocupados,  "+
-        "       SUM(PRECIO) AS ingresos_totales  "+
-        "FROM reserva  "+
-        " JOIN alojamiento ON reserva.id_alojamiento = alojamiento.id  "+
-        " WHERE alojamiento.tipo_aloja = 'tipo_de_alojamiento'  "+
-        "   AND fecha_llegada BETWEEN 'fecha_inicio' AND 'fecha_fin'  "+
-        "GROUP BY fecha_llegada  "+
-        " ORDER BY ingresos_totales DESC  "+
-        " FETCH FIRST 1 ROWS ONLY)");   
+        Query q = pm.newQuery(SQL, "SELECT TO_CHAR(FECHA_LLEGADA, 'MM/YYYY') AS MES, "+
+        "COUNT(ID_ALOJAMIENTO) AS ALOJAMIENTOS_OCUPADOS, "+
+        "SUM(PRECIO) AS INGRESOS, "+
+        "SUM(CAPACIDAD) AS OCUPACION "+
+        "FROM RESERVA JOIN ALOJAMIENTO ON RESERVA.ID_ALOJAMIENTO = ALOJAMIENTO.ID  "+
+        "WHERE FECHA_LLEGADA BETWEEN TO_DATE(?,'DD/MM/YYYY') AND TO_DATE(?,'DD/MM/YYYY') "+
+        "AND ALOJAMIENTO.TIPO_ALOJA = ? "+
+        "GROUP BY TO_CHAR(FECHA_LLEGADA, 'MM/YYYY') "+
+        "ORDER BY MES, ALOJAMIENTOS_OCUPADOS,INGRESOS DESC, OCUPACION DESC");   
         
         q.setResultClass(RFC7.class);
-        q.setParameters(tipo_aloja, fecha_llegada, fecha_salida);
+        q.setParameters(fecha_llegada, fecha_salida, tipo_aloja);
         return (List<RFC7>) q.executeList();
     }
     

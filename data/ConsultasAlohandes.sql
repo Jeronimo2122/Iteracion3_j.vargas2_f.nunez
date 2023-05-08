@@ -87,49 +87,22 @@ GROUP BY
 
 --RFC7: 
 
-(SELECT fecha_llegada AS fecha, 
-       COUNT(*) AS alojamientos_ocupados, 
-       SUM(PRECIO) AS ingresos_totales 
-FROM reserva 
-JOIN alojamiento ON reserva.id_alojamiento = alojamiento.id
-WHERE alojamiento.tipo_aloja = 'tipo_de_alojamiento' 
-  AND fecha_llegada BETWEEN 'fecha_inicio' AND 'fecha_fin' 
-GROUP BY fecha_llegada 
-ORDER BY alojamientos_ocupados DESC, ingresos_totales DESC 
-FETCH FIRST 1 ROWS ONLY)
-
-UNION 
-
-(SELECT fecha_llegada AS fecha, 
-       COUNT(*) AS alojamientos_ocupados, 
-       SUM(PRECIO) AS ingresos_totales 
-FROM reserva 
-JOIN alojamiento ON reserva.id_alojamiento = alojamiento.id
-WHERE alojamiento.tipo_aloja = 'tipo_de_alojamiento' 
-  AND fecha_llegada BETWEEN 'fecha_inicio' AND 'fecha_fin' 
-GROUP BY fecha_llegada 
-ORDER BY alojamientos_ocupados ASC, ingresos_totales ASC 
-FETCH FIRST 1 ROWS ONLY)
-
-UNION 
-
-(SELECT fecha_llegada AS fecha, 
-       COUNT(*) AS alojamientos_ocupados, 
-       SUM(PRECIO) AS ingresos_totales 
-FROM reserva 
-JOIN alojamiento ON reserva.id_alojamiento = alojamiento.id 
-WHERE alojamiento.tipo_aloja = 'tipo_de_alojamiento' 
-  AND fecha_llegada BETWEEN 'fecha_inicio' AND 'fecha_fin' 
-GROUP BY fecha_llegada 
-ORDER BY ingresos_totales DESC 
-FETCH FIRST 1 ROWS ONLY);
+SELECT TO_CHAR(FECHA_LLEGADA, 'MM/YYYY') AS MES,
+       COUNT(ID_ALOJAMIENTO) AS ALOJAMIENTOS_OCUPADOS,
+       SUM(PRECIO) AS INGRESOS,
+       SUM(CAPACIDAD) AS OCUPACION
+FROM RESERVA JOIN ALOJAMIENTO ON RESERVA.ID_ALOJAMIENTO = ALOJAMIENTO.ID 
+WHERE FECHA_LLEGADA BETWEEN TO_DATE('01/01/2023','DD/MM/YYYY') AND TO_DATE('02/09/2023','DD/MM/YYYY')
+AND ALOJAMIENTO.TIPO_ALOJA = 'VIVIENDA_U'
+GROUP BY TO_CHAR(FECHA_LLEGADA, 'MM/YYYY')
+ORDER BY MES, ALOJAMIENTOS_OCUPADOS,INGRESOS DESC, OCUPACION DESC ;
 
 --RFC8:
 
 SELECT C.IDENTIFICACION, COUNT(*) AS NUM_RESERVAS, SUM(TRUNC(MONTHS_BETWEEN(R.FECHA_SALIDA, R.FECHA_LLEGADA)*30)) AS NUM_NOCHES
 FROM RESERVA R
 INNER JOIN CLIENTE C ON R.ID_CLIENTE = C.IDENTIFICACION
-WHERE R.ID_ALOJAMIENTO = 1
+WHERE R.ID_ALOJAMIENTO = 7
 GROUP BY C.IDENTIFICACION
 HAVING COUNT(*) >= 3 OR SUM(TRUNC(MONTHS_BETWEEN(R.FECHA_SALIDA, R.FECHA_LLEGADA)*30)) >= 15
 ORDER BY NUM_RESERVAS DESC;

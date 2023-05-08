@@ -81,6 +81,18 @@
 			  {
 				  "label": "RFC6 Uso Cliente",
 				  "event": "RFC6"
+			  },
+			  {
+				  "label": "RFC7 Analizar Operacion ALOHANDES",
+				  "event": "RFC7"
+			  },
+			  {
+				  "label": "RFC8 Encontrar Clientes Frecuentes",
+				  "event": "RFC8"
+			  },
+			  {
+				  "label": "RFC9 Alojamientos Baja Demanda",
+				  "event": "RFC9"
 			  }
 
 			  

@@ -969,7 +969,7 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
 	{
 		try 
 		{
-			String tipo_Aloja = JOptionPane.showInputDialog (this, "tipo de alojamiento? [WI-FI,TINA,GIMNASIO,ETC..]"," RFC7", JOptionPane.QUESTION_MESSAGE);
+			String tipo_Aloja = JOptionPane.showInputDialog (this, "tipo de alojamiento?[VIVIENDA_U,HABITACION_HOTEL,HABITACION_HOSTAL,VIVIENDA,APARTAMENTO,HABITACION_VIVIENDA]"," RFC7", JOptionPane.QUESTION_MESSAGE);
 			String fecha_llegada = JOptionPane.showInputDialog (this, "Fecha inicio?FT[DD/MM/YYYY]", "RFC7", JOptionPane.QUESTION_MESSAGE);
 			String fecha_Salida = JOptionPane.showInputDialog (this, "Fecha fin?FT[DD/MM/YYYY]", "RFC7", JOptionPane.QUESTION_MESSAGE);
 
@@ -986,7 +986,7 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
 			for (RFC7 rfc7 : consulta) {
 				resultado += "\n"+rfc7.toString();
 			}
-			resultado += "\nFin de la Cosnulta";
+			resultado += "\nFin de la Consulta";
 			panelDatos.actualizarInterfaz(resultado);
 	
 		} 
@@ -1005,10 +1005,68 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
 	 /* ****************************************************************
 	 *                    REQ FUNCIONAL CONSULTA 8
 	 *****************************************************************/
+	public void RFC8()
+	{
+		try 
+		{
+			long id_Aloja = Long.parseLong(JOptionPane.showInputDialog (this, "id del Alojamiento a Consultar", "Consulta RFC8", JOptionPane.QUESTION_MESSAGE));
+
+			String resultado = "Resultado de Consulta RFC8\n\n";
+			List<RFC8> consulta = alohandes.RFC8(id_Aloja);
+			if (consulta.size()==0){
+				resultado = "Resultado de Consulta RFC6\n\n";
+				resultado += "La consulta esta vacia";
+				throw new Exception ("La consulta esta vacia");
+			}
+
+			resultado += "El Alojamiento con id: "+id_Aloja+" tiene los sgts clientes frecuentes: ";
+			for (RFC8 rfc8 : consulta) {
+				resultado += "\n"+rfc8.toString();
+			}
+			resultado += "\nFin de la Cosnulta";
+			panelDatos.actualizarInterfaz(resultado);
+	
+		} 
+		 catch (Exception e) 
+		{
+ //			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+
+	}
 
 	 /* ****************************************************************
 	 *                    REQ FUNCIONAL CONSULTA 9
 	 *****************************************************************/
+	public void RFC9()
+	{
+		try 
+		{
+			String resultado = "Resultado de Consulta RFC9\n\n";
+			List<Alojamiento> consulta = alohandes.RFC9();
+			if (consulta.size()==0){
+				resultado = "Resultado de Consulta RFC6\n\n";
+				resultado += "La consulta esta vacia";
+				throw new Exception ("La consulta esta vacia");
+			}
+
+			resultado += "Las ofertas que no tienen mucha demanda son: ";
+			for (Alojamiento aloja : consulta) {
+				resultado += "\n"+aloja.toString();
+			}
+			resultado += "\nFin de la Cosnulta";
+			panelDatos.actualizarInterfaz(resultado);
+	
+		} 
+		 catch (Exception e) 
+		{
+ //			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+
+	}
 
 
 	
