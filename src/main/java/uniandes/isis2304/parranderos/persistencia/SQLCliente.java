@@ -104,5 +104,53 @@ class SQLCliente
 		return (List<Cliente>) q.executeList();
 	}
 
+	public List<Cliente> RFC10_1 (PersistenceManager pm, String fecha_llegada, String fecha_Salida, long id_alojamiento)
+	{
+		Query q = pm.newQuery(SQL, "SELECT CLIENTE.* "+
+		"FROM CLIENTE, RESERVA "+
+		"WHERE CLIENTE.IDENTIFICACION = RESERVA.ID_CLIENTE "+
+		"AND RESERVA.FECHA_LLEGADA >= TO_DATE(?,'DD/MM/YYYY')  "+
+		"AND RESERVA.FECHA_SALIDA <= TO_DATE(?,'DD/MM/YYYY') "+
+		"AND RESERVA.ID_ALOJAMIENTO = ? "+
+		"GROUP BY CLIENTE.IDENTIFICACION, CLIENTE.NOMBRE, CLIENTE.VINCULO"); 
+		q.setResultClass(Cliente.class);
+		q.setParameters(fecha_llegada, fecha_Salida, id_alojamiento);
+		return (List<Cliente>) q.executeList();
+	}
+
+	public List<Cliente> RFC10_2 (PersistenceManager pm, String fecha_llegada, String fecha_Salida, String Tipo_Aloja)
+	{
+		Query q = pm.newQuery(SQL, "SELECT C.* "+
+		"FROM CLIENTE C, RESERVA R, ALOJAMIENTO A "+
+		"WHERE C.IDENTIFICACION = R.ID_CLIENTE AND A.ID = R.ID_ALOJAMIENTO "+
+		"	AND R.FECHA_LLEGADA >= TO_DATE('01/05/2023','DD/MM/YYYY')  "+
+		"	AND R.FECHA_SALIDA <= TO_DATE('01/12/2023','DD/MM/YYYY') "+
+		"	AND A.TIPO_ALOJA = 'HABITACION_HOSTAL' "+
+		"GROUP BY C.IDENTIFICACION, C.NOMBRE, C.VINCULO"); 
+		q.setResultClass(Cliente.class);
+		q.setParameters(fecha_llegada, fecha_Salida, Tipo_Aloja);
+		return (List<Cliente>) q.executeList();
+	}
+
+	public List<Cliente> RFC11_1 (PersistenceManager pm, String fecha_llegada, String fecha_Salida, String Tipo_Aloja)
+	{
+		Query q = pm.newQuery(SQL, "SELECT C.IDENTIFICACION, C.NOMBRE, C.VINCULO "+
+		"FROM CLIENTE C "+
+		"WHERE C.IDENTIFICACION NOT IN ( "+
+		"  SELECT R.ID_CLIENTE "+
+		"  FROM RESERVA R, ALOJAMIENTO A "+
+		"  WHERE R.ID_ALOJAMIENTO = A.ID  "+
+		" AND A.TIPO_ALOJA = ? "+
+		"  AND R.FECHA_LLEGADA >= TO_DATE(?,'DD/MM/YYYY') "+
+		"  AND R.FECHA_SALIDA <= TO_DATE(?,'DD/MM/YYYY') "+
+		") "+
+		"ORDER BY C.IDENTIFICACION, C.VINCULO, C.NOMBRE"); 
+		q.setResultClass(Cliente.class);
+		q.setParameters(Tipo_Aloja, fecha_llegada, fecha_Salida);
+		return (List<Cliente>) q.executeList();
+	}
+
+	
+
 	
 }

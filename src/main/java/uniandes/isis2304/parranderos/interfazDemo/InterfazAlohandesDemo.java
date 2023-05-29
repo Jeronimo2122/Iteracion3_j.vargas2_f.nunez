@@ -46,6 +46,7 @@ import com.google.gson.stream.JsonReader;
 
 import uniandes.isis2304.parranderos.negocio.Alohandes;
 import uniandes.isis2304.parranderos.negocio.Alojamiento;
+import uniandes.isis2304.parranderos.negocio.Cliente;
 import uniandes.isis2304.parranderos.negocio.VOAlojamiento;
 import uniandes.isis2304.parranderos.negocio.VOAlojamiento_Operador;
 import uniandes.isis2304.parranderos.negocio.VOCliente;
@@ -56,6 +57,8 @@ import uniandes.isis2304.parranderos.negocio.RFC5;
 import uniandes.isis2304.parranderos.negocio.RFC6;
 import uniandes.isis2304.parranderos.negocio.RFC7;
 import uniandes.isis2304.parranderos.negocio.RFC8;
+import uniandes.isis2304.parranderos.negocio.RFC12;
+import uniandes.isis2304.parranderos.negocio.RFC13;
 
 
 @SuppressWarnings("serial")
@@ -1067,6 +1070,199 @@ public class InterfazAlohandesDemo extends JFrame implements ActionListener
 		}
 
 	}
+
+	/* ****************************************************************
+	 *                    REQ FUNCIONAL CONSULTA 10
+	 *****************************************************************/
+	public void RFC10(){
+
+		try 
+		{
+			long cues = Long.parseLong(JOptionPane.showInputDialog (this, "Bajo que criterio quiere clasificar a los usuarios?\n1. Id_Alojamiento\n 2.Tipo_Alojamiento", "Consulta RFC10", JOptionPane.QUESTION_MESSAGE));
+			String fecha_llegada = (JOptionPane.showInputDialog (this, "Ingrese fecha de inicio del rango a revisar el consumo?FT[DD/MM/YYYY]", "Consulta RFC10", JOptionPane.QUESTION_MESSAGE));
+			String fecha_Salida = (JOptionPane.showInputDialog (this, "Ingress fecha de final del rango a revisar el consumo?FT[DD/MM/YYYY]", "Consulta RFC10", JOptionPane.QUESTION_MESSAGE));
+
+			if (cues == 1L){
+
+				long id_Aloja = Long.parseLong(JOptionPane.showInputDialog (this, "Ingrese el Id_Alojamiento", "Consulta RFC10", JOptionPane.QUESTION_MESSAGE));
+
+				
+				List<Cliente> consulta = alohandes.RFC10_1(fecha_llegada, fecha_Salida, id_Aloja);
+				String resultado = "Resultado de Consulta RFC10: "+consulta.size()+ "Respuestas \n\n";
+				if (consulta.size()==0){
+					resultado = "Resultado de Consulta RFC10:\n\n";
+					resultado += "La consulta esta vacia";
+					throw new Exception ("La consulta esta vacia");
+				}
+				resultado += "Los usuarios que tienen al menos una reserva en el Aloja de id "+id_Aloja+" son: ";
+				int i = 0;
+				for (Cliente cliente : consulta) {
+					resultado += "\n"+cliente.toString();
+					i++;
+					if (i == 50){
+						break;
+					}
+				}
+				resultado += "\nFin de la Consulta";
+				panelDatos.actualizarInterfaz(resultado);
+
+			} else if (cues == 2L){
+
+				String tipo_Aloja = (JOptionPane.showInputDialog (this, "Ingresa el tipo_Aloja?[VIVIENDA_U,HABITACION_HOTEL,HABITACION_HOSTAL,VIVIENDA,APARTAMENTO,HABITACION_VIVIENDA]", "Consulta RFC10", JOptionPane.QUESTION_MESSAGE));
+
+
+				List<Cliente> consulta = alohandes.RFC10_2(fecha_llegada, fecha_Salida, tipo_Aloja);
+				String resultado = "Resultado de Consulta RFC10: "+consulta.size()+ "Respuestas \n\n";
+
+				if (consulta.size()==0){
+					resultado = "Resultado de Consulta RFC10\n\n";
+					resultado += "La consulta esta vacia";
+					throw new Exception ("La consulta esta vacia");
+				}
+				resultado += "Los usuarios que tienen al menos una reserva en alojas de tipo "+tipo_Aloja+" son: ";
+				int i = 0;
+				for (Cliente cliente : consulta) {
+					resultado += "\n"+cliente.toString();
+					i++;
+					if (i == 50){
+						break;
+					}
+				}
+				resultado += "\nFin de la ConSulta";
+				panelDatos.actualizarInterfaz(resultado);
+
+			} else {
+				throw new Exception ("No se selecciono un criterio valido");
+			}
+				
+	
+		} 
+		 catch (Exception e) 
+		{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+
+	 /* ****************************************************************
+	 *                    REQ FUNCIONAL CONSULTA 11
+	 *****************************************************************/
+	public void RFC11(){
+		
+		try 
+		{
+			String fecha_llegada = (JOptionPane.showInputDialog (this, "Ingrese fecha de inicio del rango a revisar el consumo?FT[DD/MM/YYYY]", "Consulta RFC11", JOptionPane.QUESTION_MESSAGE));
+			String fecha_Salida = (JOptionPane.showInputDialog (this, "Ingress fecha de final del rango a revisar el consumo?FT[DD/MM/YYYY]", "Consulta RFC11", JOptionPane.QUESTION_MESSAGE));
+
+			String tipo_aloja = (JOptionPane.showInputDialog (this, "Ingresa el tipo_Aloja?[VIVIENDA_U,HABITACION_HOTEL,HABITACION_HOSTAL,VIVIENDA,APARTAMENTO,HABITACION_VIVIENDA]", "Consulta RFC11", JOptionPane.QUESTION_MESSAGE));
+
+			List<Cliente> consulta = alohandes.RFC11_1(fecha_llegada, fecha_Salida, tipo_aloja);
+			String resultado = "Resultado de Consulta RFC11: "+consulta.size()+ "Respuestas \n\n";
+
+			if (consulta.size()==0){
+				resultado = "Resultado de Consulta RFC11\n\n";
+				resultado += "La consulta esta vacia";
+				throw new Exception ("La consulta esta vacia");
+			}
+			resultado += "Los usuarios que NO tienen al menos una reserva en alojas de tipo "+tipo_aloja+" son: ";
+			int i = 0;
+			for (Cliente cliente : consulta) {
+				resultado += "\n"+cliente.toString();
+				i++;
+				if (i == 50){
+					break;
+				}
+
+			}
+			resultado += "\nFin de la Consulta";
+			panelDatos.actualizarInterfaz(resultado);
+	
+		} 
+		 catch (Exception e) 
+		{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+
+	 /* ****************************************************************
+	 *                    REQ FUNCIONAL CONSULTA 12
+	 *****************************************************************/
+	public void RFC12()
+	{
+		try 
+		{
+			List<RFC12> consulta = alohandes.RFC12();
+			String resultado = "Resultado de Consulta RFC12: "+consulta.size()+ "Respuestas \n\n";
+
+			if (consulta.size()==0){
+				resultado = "Resultado de Consulta RFC12\n\n";
+				resultado += "La consulta esta vacia";
+				throw new Exception ("La consulta esta vacia");
+			}
+
+			resultado += "El funcionamiento semanal es el siguiente: ";
+			int i = 0;
+			for (RFC12 USUA : consulta) {
+				resultado += "\n"+USUA.toString();
+				i++;
+				if (i == 50){
+					break;
+				}
+			}
+			resultado += "\nFin de la Cosnulta";
+			panelDatos.actualizarInterfaz(resultado);
+	
+		} 
+		 catch (Exception e) 
+		{
+ //			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+
+	}
+
+
+	 /* ****************************************************************
+	 *                    REQ FUNCIONAL CONSULTA 13
+	 *****************************************************************/
+	public void RFC13()
+	{
+		try 
+		{
+			List<RFC13> consulta = alohandes.RFC13();
+			String resultado = "Resultado de Consulta RFC13: "+consulta.size()+ "Respuestas \n\n";
+
+			if (consulta.size()==0){
+				resultado = "Resultado de Consulta RFC13\n\n";
+				resultado += "La consulta esta vacia";
+				throw new Exception ("La consulta esta vacia");
+			}
+
+			resultado += "Los Buenos clientes son: ";
+			int i = 0;
+			for (RFC13 USUA : consulta) {
+				resultado += "\n"+USUA.toString();
+				i++;
+				if (i == 50){
+					break;
+				}
+			}
+			resultado += "\nFin de la Cosnulta";
+			panelDatos.actualizarInterfaz(resultado);
+	
+		} 
+		 catch (Exception e) 
+		{
+ //			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+
+	}
+
+
 
 
 	

@@ -93,6 +93,22 @@
 			  {
 				  "label": "RFC9 Alojamientos Baja Demanda",
 				  "event": "RFC9"
+			  },
+			  {
+				  "label": "RFC10 Consumo Usuarios",
+				  "event": "RFC10"
+			  },
+			  {
+				  "label": "RFC11 NO Consumo Usuarios",
+				  "event": "RFC11"
+			  },
+			  {
+				  "label": "RFC12 Funcionamiento Semanal",
+				  "event": "RFC12"
+			  },
+			  {
+				  "label": "RFC13 Buenos Clientes",
+				  "event": "RFC13"
 			  }
 
 			  

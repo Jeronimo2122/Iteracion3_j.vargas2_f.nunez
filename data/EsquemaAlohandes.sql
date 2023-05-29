@@ -11,7 +11,7 @@ create sequence Alohandes_sequence;
 --1--------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE CLIENTE(
     IDENTIFICACION NUMBER NOT NULL, 
-    NOMBRE VARCHAR2(500) NOT NULL,
+    NOMBRE VARCHAR2(50) NOT NULL,
     VINCULO VARCHAR2(50) NOT NULL,
     CONSTRAINT PK_CLIENTE PRIMARY KEY(IDENTIFICACION)
 );
@@ -22,7 +22,7 @@ CHECK (VINCULO IN ('ESTUDIANTE','PROFESOR','EMPLEADO','INVITADO','EGRESADO','PAD
 --2----------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE OPERADOR(
     ID NUMBER, 
-    NOMBRE VARCHAR2 (20) NOT NULL,
+    NOMBRE VARCHAR2 (50) NOT NULL,
     GANANCIAS NUMBER NOT NULL
 );
 ALTER TABLE OPERADOR

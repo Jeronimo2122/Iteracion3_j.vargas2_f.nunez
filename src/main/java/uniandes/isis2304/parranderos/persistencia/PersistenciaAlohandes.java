@@ -36,6 +36,8 @@ import uniandes.isis2304.parranderos.negocio.RFC5;
 import uniandes.isis2304.parranderos.negocio.RFC6;
 import uniandes.isis2304.parranderos.negocio.RFC7;
 import uniandes.isis2304.parranderos.negocio.RFC8;
+import uniandes.isis2304.parranderos.negocio.RFC12;
+import uniandes.isis2304.parranderos.negocio.RFC13;
 
 /**
  * 
@@ -109,6 +111,8 @@ public class PersistenciaAlohandes{
 	private SQL_RFC6 sql_RFC6;
 	private SQL_RFC7 sql_RFC7;
 	private SQL_RFC8 sql_RFC8;
+	private SQL_RFC12 sql_RFC12;
+	private SQL_RFC13 sql_RFC13;
 	
 	/* ****************************************************************
 	 * 			Métodos del MANEJADOR DE PERSISTENCIA
@@ -228,6 +232,8 @@ public class PersistenciaAlohandes{
 		sql_RFC6 = new SQL_RFC6(this);
 		sql_RFC7 = new SQL_RFC7(this);
 		sql_RFC8 = new SQL_RFC8(this);
+		sql_RFC12 = new SQL_RFC12(this);
+		sql_RFC13 = new SQL_RFC13(this);
 		sqlUtil = new SQLUtil(this);
 	}
 
@@ -2296,7 +2302,7 @@ public class PersistenciaAlohandes{
 	 }
 
 	  /* ****************************************************************
-	 *  				  REQ FUNCIONAL CONSULTA 8
+	 *  				  REQ FUNCIONAL CONSULTA 9
 	 *****************************************************************/
 
 	 public List<Alojamiento> RFC9 () 
@@ -2309,6 +2315,179 @@ public class PersistenciaAlohandes{
 				 
 				List<Alojamiento> rta = sqlAlojamiento.RFC9(pm);
 
+				 tx.commit();
+ 
+				 return rta;
+			 }
+			 catch (Exception e)
+			 {
+ //	        	e.printStackTrace();
+				 log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+				 
+				 return null;
+			 }
+			 finally
+			 {
+				 if (tx.isActive())
+				 {
+					 tx.rollback();
+				 }
+				 pm.close();
+			 }
+	 }
+
+	 /* ****************************************************************
+	 *  				  REQ FUNCIONAL CONSULTA 10
+	 *****************************************************************/
+
+	 public List<Cliente> RFC10_1 (String fecha_llegada, String fecha_Salida, long id_alojamiento) 
+	 {
+		 PersistenceManager pm = pmf.getPersistenceManager();
+			 Transaction tx=pm.currentTransaction();
+			 try
+			 {
+				 tx.begin();
+				 
+				List<Cliente> rta = sqlCliente.RFC10_1(pm, fecha_llegada, fecha_Salida, id_alojamiento);
+
+				 tx.commit();
+ 
+				 return rta;
+			 }
+			 catch (Exception e)
+			 {
+ //	        	e.printStackTrace();
+				 log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+				 
+				 return null;
+			 }
+			 finally
+			 {
+				 if (tx.isActive())
+				 {
+					 tx.rollback();
+				 }
+				 pm.close();
+			 }
+	 }
+
+
+	 public List<Cliente> RFC10_2 (String fecha_llegada, String fecha_Salida, String tipo_Aloja) 
+	 {
+		 PersistenceManager pm = pmf.getPersistenceManager();
+			 Transaction tx=pm.currentTransaction();
+			 try
+			 {
+				 tx.begin();
+				 
+				List<Cliente> rta = sqlCliente.RFC10_2(pm, fecha_Salida, fecha_llegada, tipo_Aloja);
+
+				 tx.commit();
+ 
+				 return rta;
+			 }
+			 catch (Exception e)
+			 {
+ //	        	e.printStackTrace();
+				 log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+				 
+				 return null;
+			 }
+			 finally
+			 {
+				 if (tx.isActive())
+				 {
+					 tx.rollback();
+				 }
+				 pm.close();
+			 }
+	 }
+
+
+	 /* ****************************************************************
+	 *  				  REQ FUNCIONAL CONSULTA 11
+	 *****************************************************************/
+	public List<Cliente> RFC11_1 (String fecha_llegada, String fecha_Salida, String tipo_Aloja) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+			Transaction tx=pm.currentTransaction();
+			try
+			{
+				tx.begin();
+				
+			   List<Cliente> rta = sqlCliente.RFC11_1(pm, fecha_llegada, fecha_Salida, tipo_Aloja);
+
+				tx.commit();
+
+				return rta;
+			}
+			catch (Exception e)
+			{
+//	        	e.printStackTrace();
+				log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+				
+				return null;
+			}
+			finally
+			{
+				if (tx.isActive())
+				{
+					tx.rollback();
+				}
+				pm.close();
+			}
+	}
+
+
+	 /* ****************************************************************
+	 *  				  REQ FUNCIONAL CONSULTA 12
+	 *****************************************************************/
+
+	 public List<RFC12> RFC12 () 
+	 {
+		 PersistenceManager pm = pmf.getPersistenceManager();
+			 Transaction tx=pm.currentTransaction();
+			 try
+			 {
+				 tx.begin();
+				 
+				List<RFC12> rta = sql_RFC12.RFC12(pm);
+ 
+				 tx.commit();
+ 
+				 return rta;
+			 }
+			 catch (Exception e)
+			 {
+ //	        	e.printStackTrace();
+				 log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+				 
+				 return null;
+			 }
+			 finally
+			 {
+				 if (tx.isActive())
+				 {
+					 tx.rollback();
+				 }
+				 pm.close();
+			 }
+	 }
+
+	 /* ****************************************************************
+	 *  				  REQ FUNCIONAL CONSULTA 13
+	 *****************************************************************/
+
+	 public List<RFC13> RFC13 () 
+	 {
+		 PersistenceManager pm = pmf.getPersistenceManager();
+			 Transaction tx=pm.currentTransaction();
+			 try
+			 {
+				 tx.begin();
+				 
+				List<RFC13> rta = sql_RFC13.RFC13(pm);
+ 
 				 tx.commit();
  
 				 return rta;

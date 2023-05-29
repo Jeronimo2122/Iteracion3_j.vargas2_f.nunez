@@ -1036,6 +1036,57 @@ public class Alohandes{
 		return resp;
 
 	}
+	/* ****************************************************************
+	 *                    REQ FUNCIONAL CONSULTA 10
+	 *****************************************************************/
+	public List<Cliente> RFC10_1(String fecha_llegada, String fecha_Salida, long id_alojamiento){
+		log.info ("Consultando Clientes y su consumo");
+		List<Cliente> resp = pp.RFC10_1(fecha_llegada, fecha_Salida, id_alojamiento);
+		log.info ("Consultando Clientes y su consumo");
+		return resp;
+	}
+
+	public List<Cliente> RFC10_2(String fecha_llegada, String fecha_Salida, String tipo_Aloja){
+		log.info ("Consultando Clientes y su consumo");
+		List<Cliente> resp = pp.RFC10_2(fecha_llegada, fecha_Salida, tipo_Aloja);
+		log.info ("Consultando Clientes y su consumo");
+		return resp;
+	}
+
+	 /* ****************************************************************
+	 *                    REQ FUNCIONAL CONSULTA 11
+	 *****************************************************************/
+	public List<Cliente> RFC11_1(String fecha_llegada, String fecha_Salida, String tipo_Aloja){
+		log.info ("Consultando Clientes y su consumo");
+		List<Cliente> resp = pp.RFC11_1(fecha_llegada, fecha_Salida, tipo_Aloja);
+		log.info ("Consultando Clientes y su consumo");
+		return resp;
+	}
+
+
+	 /* ****************************************************************
+	 *                    REQ FUNCIONAL CONSULTA 12
+	 *****************************************************************/
+	public List<RFC12> RFC12(){
+		log.info ("Consultando funcionamiento Semanal");
+		List<RFC12> resp = pp.RFC12();
+		log.info ("Consultando funcionamiento Semanal");
+		return resp;
+	}
+
+
+
+	 /* ****************************************************************
+	 *                    REQ FUNCIONAL CONSULTA 13
+	 *****************************************************************/
+	public List<RFC13> RFC13(){
+		log.info ("Consultando Clientes y su consumo");
+		List<RFC13> resp = pp.RFC13();
+		log.info ("Consultando Clientes y su consumo");
+		return resp;
+	}
+
+
 
 	/* ****************************************************************
 	 * 			Métodos para administración
